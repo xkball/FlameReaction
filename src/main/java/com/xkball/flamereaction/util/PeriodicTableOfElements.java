@@ -1,6 +1,6 @@
 package com.xkball.flamereaction.util;
 
-import com.xkball.flamereaction.material.elements.IElements;
+import com.xkball.flamereaction.part.material.elements.IElements;
 
 /**
  * 元素周期表

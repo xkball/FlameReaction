@@ -21,6 +21,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -32,8 +33,7 @@ public class FlameReaction
     
     public static final String MOD_ID = "flamereaction";
 
-    public FlameReaction()
-    {
+    public FlameReaction() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -89,5 +89,9 @@ public class FlameReaction
     
     public static RegistryObject<Item> getItem(String name){
         return getItem(new ResourceLocation(FlameReaction.MOD_ID,name));
+    }
+    
+    public static String getItemName(Item item){
+        return Objects.requireNonNull(item.getRegistryName()).getPath();
     }
 }
