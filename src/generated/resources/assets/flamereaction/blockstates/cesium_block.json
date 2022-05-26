@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "flamereaction:block/cesium_block"
+    }
+  }
+}

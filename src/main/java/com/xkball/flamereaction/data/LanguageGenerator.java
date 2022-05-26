@@ -1,13 +1,12 @@
 package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.item.ItemList;
+import com.xkball.flamereaction.itemlike.item.ItemList;
+import com.xkball.flamereaction.itemgroup.Groups;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 import java.util.Objects;
 
@@ -22,12 +21,6 @@ public class LanguageGenerator extends LanguageProvider {
         this.locale = locale;
     }
     
-    @SubscribeEvent
-    public static void dataGen(GatherDataEvent event){
-        event.getGenerator().addProvider(new LanguageGenerator(event.getGenerator(),EN_US));
-        event.getGenerator().addProvider(new LanguageGenerator(event.getGenerator(),ZH_CN));
-    }
-    
     @Override
     protected void addTranslations() {
         for(Item item : ItemList.item_instance.values()){
@@ -39,5 +32,21 @@ public class LanguageGenerator extends LanguageProvider {
                     }
             );
         }
+        this.add(Groups.MATERIAL_GROUP.getDisplayName().getString(),
+                switch (this.locale){
+                    default -> throw new IllegalStateException("Unexpected value: " + this.locale);
+                    case EN_US -> "materials";
+                    case ZH_CN -> "材料";
+        });
+        
+//        for(Block block : BlockList.block_instance.values()){
+//            this.add(block,
+//                    switch (this.locale){
+//                default -> throw new IllegalStateException("Unexpected value: " + this.locale);
+//                case EN_US -> Objects.requireNonNull(block.getRegistryName()).getPath();
+//                case ZH_CN -> Objects.requireNonNull(block.getRegistryName()).getPath()+"need translate";
+//            }
+//            );
+//        }
     }
 }

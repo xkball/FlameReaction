@@ -1,9 +1,10 @@
-package com.xkball.flamereaction.item.materialitem;
+package com.xkball.flamereaction.itemlike.item.materialitem;
 
+import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.part.material.IMaterial;
-import com.xkball.flamereaction.util.MaterialKind;
-import net.minecraft.world.item.Item;
-public abstract class MaterialItem extends Item {
+import com.xkball.flamereaction.util.MaterialType;
+
+public abstract class MaterialItem extends FRCItem {
     
     private final IMaterial material;
     public MaterialItem(Properties p_41383_,IMaterial material) {
@@ -11,7 +12,9 @@ public abstract class MaterialItem extends Item {
         this.material = material;
     }
     
-    public abstract MaterialKind getMaterialKind();
+    public MaterialType getMaterialKind(){
+        return MaterialType.UNKNOW;
+    }
     
     public IMaterial getMaterial() {
         return material;

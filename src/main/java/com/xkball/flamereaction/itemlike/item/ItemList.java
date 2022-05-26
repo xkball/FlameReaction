@@ -1,4 +1,4 @@
-package com.xkball.flamereaction.item;
+package com.xkball.flamereaction.itemlike.item;
 
 import net.minecraft.world.item.Item;
 
@@ -9,7 +9,8 @@ import java.util.Objects;
 public class ItemList {
     public static Map<String, Item> item_instance = new HashMap<>();
     
-    public static void addItem(Item item){
+    public static Item addItem(Item item){
         item_instance.put(Objects.requireNonNull(item.getRegistryName()).getPath(),item);
+        return item;
     }
 }

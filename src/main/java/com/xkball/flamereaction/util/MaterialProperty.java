@@ -1,8 +1,6 @@
 package com.xkball.flamereaction.util;
 
-import com.xkball.flamereaction.item.materialitem.MaterialItem;
 import com.xkball.flamereaction.part.material.IMaterial;
-import net.minecraft.world.item.Item;
 
 import java.awt.*;
 import java.util.HashMap;

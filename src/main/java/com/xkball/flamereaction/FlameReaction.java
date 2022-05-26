@@ -1,13 +1,19 @@
 package com.xkball.flamereaction;
 
 import com.mojang.logging.LogUtils;
+import com.xkball.flamereaction.itemlike.block.BlockList;
+import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlocks;
+import com.xkball.flamereaction.itemlike.block.materialblock.MetalScaffoldingBlock;
+import com.xkball.flamereaction.itemlike.item.ItemList;
+import com.xkball.flamereaction.itemlike.item.materialitem.MaterialIngot;
+import com.xkball.flamereaction.itemlike.item.materialitem.MaterialPlate;
+import com.xkball.flamereaction.part.material.BasicMaterial;
+import com.xkball.flamereaction.part.material.IMaterial;
+import com.xkball.flamereaction.util.PeriodicTableOfElements;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FireBlock;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -93,5 +99,20 @@ public class FlameReaction
     
     public static String getItemName(Item item){
         return Objects.requireNonNull(item.getRegistryName()).getPath();
+    }
+    
+    public static void init(){
+        BasicMaterial.loadList();
+        if(ItemList.item_instance.isEmpty() && BlockList.block_instance.isEmpty()){
+            for(IMaterial material : BasicMaterial.commonMaterials){
+                if(material != PeriodicTableOfElements.Cu && material != PeriodicTableOfElements.Fe){
+                    new MaterialIngot(material);
+                    new MaterialBlocks(material);
+                }
+                new MaterialPlate(material);
+                
+            }
+            new MetalScaffoldingBlock(PeriodicTableOfElements.Rainbow);
+        }
     }
 }

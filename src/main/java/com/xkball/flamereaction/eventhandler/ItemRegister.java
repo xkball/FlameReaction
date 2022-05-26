@@ -1,10 +1,7 @@
 package com.xkball.flamereaction.eventhandler;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.item.materialitem.MaterialIngot;
-import com.xkball.flamereaction.item.materialitem.MaterialPlate;
-import com.xkball.flamereaction.part.material.BasicMaterial;
-import com.xkball.flamereaction.part.material.IMaterial;
+import com.xkball.flamereaction.itemlike.item.ItemList;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,10 +16,9 @@ public class ItemRegister {
     
     @SubscribeEvent
     public static void onRegisterItem(RegistryEvent.Register<Item> event) {
-        BasicMaterial.loadList();
-        for(IMaterial material : BasicMaterial.commonMaterials){
-            event.getRegistry().register(new MaterialIngot(material));
-            event.getRegistry().register(new MaterialPlate(material));
+        FlameReaction.init();
+        for(Item item : ItemList.item_instance.values()){
+                event.getRegistry().register(item);
         }
         
     }

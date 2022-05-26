@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "flamereaction:block/zinc_block"
+    }
+  }
+}

@@ -1,15 +1,14 @@
 package com.xkball.flamereaction.util;
 
-import org.lwjgl.system.CallbackI;
-
-public enum MaterialKind {
+public enum MaterialType {
     UNKNOW("unknow"),
     INGOT("ingot"),
-    PLATE("plate");
+    PLATE("plate"),
+    BLOCK("block");
     
     private final String name;
     
-    MaterialKind(String name){
+    MaterialType(String name){
         this.name = name;
     }
     
