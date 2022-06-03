@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegister {
-    public static final DeferredRegister<Item> ITEM_DR = DeferredRegister.create(ForgeRegistries.ITEMS, FlameReaction.MOD_ID);
+    //public static final DeferredRegister<Item> ITEM_DR = DeferredRegister.create(ForgeRegistries.ITEMS, FlameReaction.MOD_ID);
     //public static final RegistryObject<Item> materialIngot = ITEM_DR.register("i", BasicMaterial::new);
     
     @SubscribeEvent

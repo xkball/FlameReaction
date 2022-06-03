@@ -1,0 +1,52 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "flamereaction:block/common/block",
+    "down": "flamereaction:block/common/block",
+    "up": "flamereaction:block/common/block",
+    "north": "flamereaction:block/common/block",
+    "south": "flamereaction:block/common/block",
+    "east": "flamereaction:block/common/block",
+    "west": "flamereaction:block/common/block"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#down",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#up",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#north",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#south",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#west",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#east",
+          "tintindex": 0
+        }
+      }
+    }
+  ]
+}

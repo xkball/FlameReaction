@@ -1,5 +1,6 @@
 package com.xkball.flamereaction.itemlike.itemblock;
 
+import com.xkball.flamereaction.itemlike.block.materialblock.MetalScaffoldingBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -25,63 +26,66 @@ public class MetalScaffoldingBlockItem extends BlockItem {
         BlockPos blockpos = blockPlaceContext.getClickedPos();
         Level level = blockPlaceContext.getLevel();
         BlockState blockstate = level.getBlockState(blockpos);
-        Block block = this.getBlock();
         //指向一个脚手架
-        if (blockstate.is(block)) {
-            Direction direction;
-            //副手使用
-            if (blockPlaceContext.isSecondaryUseActive()) {
-                direction =
-                        //人是不是在方块里面
-                        blockPlaceContext.isInside()
-                                ? blockPlaceContext.getClickedFace().getOpposite()
-                                : blockPlaceContext.getClickedFace();
+        if(!level.isClientSide){
+            if (!(blockstate.getBlock() instanceof MetalScaffoldingBlock)) {
+                return blockPlaceContext;
             }
-            //主手使用
             else {
-                direction =
-                        //向上点击则获得对应方向
-                        blockPlaceContext.getClickedFace() == Direction.UP
-                                ? blockPlaceContext.getHorizontalDirection()
-                                : Direction.UP;
-            }
-        
-            int i = 0;
-            BlockPos.MutableBlockPos mbpos = blockpos.mutable().move(direction);
-        
-            while (i < 50) {
-                
-                //如果放置位置超过高度上限
-                if (!level.isClientSide && !level.isInWorldBounds(mbpos)) {
-                    Player player = blockPlaceContext.getPlayer();
-                    int j = level.getMaxBuildHeight();
-                    //一定记得区分玩家
-                    if (player instanceof ServerPlayer && mbpos.getY() >= j) {
-                        ((ServerPlayer) player).sendMessage((new TranslatableComponent("build.tooHigh", j - 1)).withStyle(ChatFormatting.RED), ChatType.GAME_INFO, Util.NIL_UUID);
-                    }
-                    return null;
+                Direction direction;
+                //副手使用
+                if (blockPlaceContext.isSecondaryUseActive()) {
+                    direction =
+                            //人是不是在方块里面
+                            blockPlaceContext.isInside()
+                                    ? blockPlaceContext.getClickedFace().getOpposite()
+                                    : blockPlaceContext.getClickedFace();
                 }
+                //主手使用
+                else {
+                    direction =
+                            //向上点击则获得对应方向
+                            blockPlaceContext.getClickedFace() == Direction.UP
+                                    ? blockPlaceContext.getHorizontalDirection()
+                                    : Direction.UP;
+                }
+        
+                int i = 0;
+                BlockPos.MutableBlockPos mbpos = blockpos.mutable().move(direction);
+        
+                while (i < 50) {
             
-                blockstate = level.getBlockState(mbpos);
-                
-                if (!blockstate.is(this.getBlock())) {
-                    if (blockstate.canBeReplaced(blockPlaceContext)) {
-                        return BlockPlaceContext.at(blockPlaceContext, mbpos, direction);
+                    //如果放置位置超过高度上限
+                    if (!level.isInWorldBounds(mbpos)) {
+                        Player player = blockPlaceContext.getPlayer();
+                        int j = level.getMaxBuildHeight();
+                        //一定记得区分玩家
+                        if (player instanceof ServerPlayer && mbpos.getY() >= j) {
+                            ((ServerPlayer) player).sendMessage((new TranslatableComponent("build.tooHigh", j - 1)).withStyle(ChatFormatting.RED), ChatType.GAME_INFO, Util.NIL_UUID);
+                        }
+                        return null;
                     }
-                    return null;
-                }
             
-                mbpos.move(direction);
-                if (direction.getAxis().isHorizontal()) {
-                    ++i;
+                    blockstate = level.getBlockState(mbpos);
+            
+                    if (!blockstate.is(this.getBlock())) {
+                        if (blockstate.canBeReplaced(blockPlaceContext)) {
+                            return BlockPlaceContext.at(blockPlaceContext, mbpos, direction);
+                        }
+                        return null;
+                    }
+            
+                    mbpos.move(direction);
+                    if (direction.getAxis().isHorizontal()) {
+                        ++i;
+                    }
                 }
-            }
-            return null;
+                return null;
         
+            }
         }
-        else {
-            return blockPlaceContext;
-        }
+        return null;
+        
         
     }
 }
