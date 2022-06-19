@@ -1,0 +1,6 @@
+{
+  "parent": "flamereaction:block/template_fire_side",
+  "textures": {
+    "fire": "flamereaction:block/flame_fire_block_gray1"
+  }
+}

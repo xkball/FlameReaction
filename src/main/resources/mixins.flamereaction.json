@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.xkball.flamereaction.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "flamereaction.refmap.json",
+  "mixins": [
+    "FireworkStarFadeRecipeMixin",
+    "FireworkStarRecipeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

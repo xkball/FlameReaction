@@ -1,0 +1,61 @@
+package com.xkball.flamereaction.itemlike.block.blockentity;
+
+import com.xkball.flamereaction.eventhandler.BlockEntityRegister;
+import com.xkball.flamereaction.itemlike.item.ColoredFlammableItem;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nonnull;
+
+public class FlameFireBlockEntity extends EasyChangedBlockEntity {
+    
+    private  NonNullList<ItemStack> item = NonNullList.withSize(1, ItemStack.EMPTY);
+    
+    public FlameFireBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
+        super(BlockEntityRegister.FLAME_FIRE_BLOCK_ENTITY.get(), p_155229_, p_155230_);
+    }
+    
+    
+    public void setItem(Item item){
+        if(item instanceof ColoredFlammableItem){
+            this.item.set(0,new ItemStack(item));
+            dirty();
+        }
+    }
+    
+    
+    
+    @Override
+    public void load(@Nonnull CompoundTag compoundTag) {
+        super.load(compoundTag);
+        this.item = NonNullList.withSize(1, ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(compoundTag,item);
+    }
+    
+    @Override
+    protected void saveAdditional(@Nonnull CompoundTag compoundTag) {
+        super.saveAdditional(compoundTag);
+        ContainerHelper.saveAllItems(compoundTag,item);
+        
+    }
+    
+    //区块载入时调用？
+    @Nonnull
+    @Override
+    public CompoundTag getUpdateTag() {
+        var compound = super.getUpdateTag();
+        ContainerHelper.saveAllItems(compound,item);
+        return compound;
+    }
+    
+    @Override
+    public void handleUpdateTag(CompoundTag compoundTag) {
+        this.item = NonNullList.withSize(1, ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(compoundTag,item);
+    }
+}

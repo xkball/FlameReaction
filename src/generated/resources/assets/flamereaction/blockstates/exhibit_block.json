@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "is_locked=false": {
+      "model": "flamereaction:block/exhibit_block_unlock"
+    },
+    "is_locked=true": {
+      "model": "flamereaction:block/exhibit_block_locked"
+    }
+  }
+}

@@ -1,0 +1,184 @@
+
+  "variants": {
+
+    "button=true,east=false,south=false,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button", "uvlock": true },
+
+    "button=true,east=true,south=false,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button_e", "uvlock": true },
+    "button=true,east=false,south=true,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button_e","y": 90, "uvlock": true },
+    "button=true,east=false,south=false,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button_e","y": 180, "uvlock": true },
+    "button=true,east=false,south=false,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_e","y": 270, "uvlock": true },
+
+    "button=true,east=true,south=true,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button_es", "uvlock": true },
+    "button=true,east=false,south=true,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button_es","y": 90, "uvlock": true },
+    "button=true,east=false,south=false,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_es","y": 180, "uvlock": true },
+    "button=true,east=true,south=false,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_es","y": 270, "uvlock": true },
+
+    "button=true,east=true,south=false,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button_ew", "uvlock": true },
+    "button=true,east=false,south=true,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_ew","y": 180, "uvlock": true },
+
+    "button=true,east=true,south=true,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_button_ews", "uvlock": true },
+    "button=true,east=false,south=true,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_ews","y": 90, "uvlock": true },
+    "button=true,east=true,south=false,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_ews","y": 180, "uvlock": true },
+    "button=true,east=true,south=true,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_ews","y": 270, "uvlock": true },
+
+    "button=true,east=true,south=true,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_button_ewsn", "uvlock": true },
+
+
+    "button=false,east=false,south=false,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common", "uvlock": true },
+
+    "button=false,east=true,south=false,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common_e", "uvlock": true },
+    "button=false,east=false,south=true,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common_e","y": 90, "uvlock": true },
+    "button=false,east=false,south=false,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_e","y": 180, "uvlock": true },
+    "button=false,east=false,south=false,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_e","y": 270, "uvlock": true },
+
+    "button=false,east=true,south=true,west=false,north=false":
+    { "model": "flamereaction:block/scaffolding_common_es", "uvlock": true },
+    "button=false,east=false,south=true,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_es","y": 90, "uvlock": true },
+    "button=false,east=false,south=false,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_es","y": 180, "uvlock": true },
+    "button=false,east=true,south=false,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_es","y": 270, "uvlock": true },
+
+    "button=false,east=true,south=false,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_ew", "uvlock": true },
+    "button=false,east=false,south=true,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_ew","y": 180, "uvlock": true },
+
+    "button=false,east=true,south=true,west=true,north=false":
+    { "model": "flamereaction:block/scaffolding_common_ews", "uvlock": true },
+    "button=false,east=false,south=true,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_ews","y": 90, "uvlock": true },
+    "button=false,east=true,south=false,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_ews","y": 180, "uvlock": true },
+    "button=false,east=true,south=true,west=false,north=true":
+    { "model": "flamereaction:block/scaffolding_common_ews","y": 270, "uvlock": true },
+
+    "button=false,east=true,south=true,west=true,north=true":
+    { "model": "flamereaction:block/scaffolding_common_ewsn", "uvlock": true }
+  },
+alcohol lamp
+  {
+        "when": {"east": "false"},
+        "apply": [{"model": "flamereaction:block/scaffolding_side","uvlock": true },
+                  {"model": "flamereaction:block/scaffolding_side_fix","uvlock": true},
+                  {"model": "flamereaction:block/scaffolding_side_fix","y": 90,"uvlock": true}]
+      },
+      {
+        "when": {"south": "false"},
+        "apply": [{"model": "flamereaction:block/scaffolding_side","y": 90,"uvlock": true },
+                  {"model": "flamereaction:block/scaffolding_side_fix","y": 90,"uvlock": true},
+                  {"model": "flamereaction:block/scaffolding_side_fix","y": 180,"uvlock": true}]
+      },
+      {
+        "when": {"west": "false"},
+        "apply": [{"model": "flamereaction:block/scaffolding_side","y": 180,"uvlock": true },
+                  {"model": "flamereaction:block/scaffolding_side_fix","y": 180,"uvlock": true},
+                  {"model": "flamereaction:block/scaffolding_side_fix","y": 270,"uvlock": true}]
+      },
+      {
+        "when": {"north": "false"},
+        "apply": [{"model": "flamereaction:block/scaffolding_side","y": 270,"uvlock": true },
+                  {"model": "flamereaction:block/scaffolding_side_fix","y": 270,"uvlock": true},
+                  {"model": "flamereaction:block/scaffolding_side_fix","uvlock": true}]
+      },
+
+      {
+            "when": {"north":"true","east": "true"},
+            "apply": {"model": "flamereaction:block/scaffolding_side_fix_c","uvlock": true }
+          },
+          {
+            "when": {"east":"true","south": "true"},
+            "apply": {"model": "flamereaction:block/scaffolding_side_fix_c","y": 90,"uvlock": true }
+          },
+          {
+            "when": {"south":"true","west": "true"},
+            "apply": {"model": "flamereaction:block/scaffolding_side_fix_c","y": 180,"uvlock": true }
+          },
+          {
+            "when": {"west":"true","north": "true"},
+            "apply": {"model": "flamereaction:block/scaffolding_side_fix_c","y": 270,"uvlock": true }
+          }
+
+
+
+
+
+
+          {
+            "multipart": [
+
+              {
+                "apply": {"model":"flamereaction:block/scaffolding_center","uvlock": true}
+              },
+
+              {
+                "when": {"button": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_button","uvlock": true }
+              },
+
+              {
+                "when": {"east": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conE","uvlock": true }
+              },
+              {
+                "when": {"south": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conS","uvlock": true }
+              },
+              {
+                "when": {"west": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conE","y": 180,"uvlock": true }
+              },
+              {
+                "when": {"north": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conS","y": 180,"uvlock": true }
+              }
+
+            ]
+          }
+
+
+
+
+          {
+                "when": {"button": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_button","uvlock": true }
+              },
+
+              {
+                "when": {"east": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conE","uvlock": true }
+              },
+              {
+                "when": {"south": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conS","uvlock": true }
+              },
+              {
+                "when": {"west": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conE","y": 180,"uvlock": true }
+              },
+              {
+                "when": {"north": "true"},
+                "apply": {"model": "flamereaction:block/scaffolding_side_conS","y": 180,"uvlock": true }
+              }

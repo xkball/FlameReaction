@@ -304,4 +304,9 @@ public enum PeriodicTableOfElements implements IElements {
     public String getName() {
         return this.getElementName();
     }
+    
+    @Override
+    public String getSymbol() {
+        return getElementSymbol();
+    }
 }

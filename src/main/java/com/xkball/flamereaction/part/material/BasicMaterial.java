@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class BasicMaterial {
-    public static List<IMaterial> commonMaterials = new ArrayList<>();
+    public static final List<IMaterial> commonMaterials = new ArrayList<>();
    // public static Map<String,Item> item_instance = new HashMap<>();
     
     
@@ -33,9 +33,11 @@ public class BasicMaterial {
             commonMaterials.add(MaterialProperty.create(PeriodicTableOfElements.Rb,new Color(213,27,27)));
             commonMaterials.add(MaterialProperty.create(PeriodicTableOfElements.Sb,new Color(195,195,213)));
             commonMaterials.add(MaterialProperty.create(PeriodicTableOfElements.Sr,new Color(169,169,169)));
-            commonMaterials.add(MaterialProperty.create(PeriodicTableOfElements.Tl,new Color(216,216,216)));
+            //commonMaterials.add(MaterialProperty.create(PeriodicTableOfElements.Tl,new Color(216,216,216)));
             commonMaterials.add(MaterialProperty.create(PeriodicTableOfElements.Zn,new Color(212,203,203)));
+            commonMaterials.add(MaterialProperty.create(PeriodicTableOfElements.Pt,new Color(199,206,158)));
         }
+        
         
     }
     

@@ -1,0 +1,207 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "is_obvious_colored": "true"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/flame_fire_block_gray0"
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_gray1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "true"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/flame_fire_block_side0"
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side1"
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt0"
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "true"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/flame_fire_block_side0",
+          "y": 90
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side1",
+          "y": 90
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt0",
+          "y": 90
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt1",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "true"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/flame_fire_block_side0",
+          "y": 180
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side1",
+          "y": 180
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt0",
+          "y": 180
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt1",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "true"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/flame_fire_block_side0",
+          "y": 270
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side1",
+          "y": 270
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt0",
+          "y": 270
+        },
+        {
+          "model": "flamereaction:block/flame_fire_block_side_alt1",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "false"
+      },
+
+      "apply": [
+        {
+          "model": "flamereaction:block/fire_floor0"
+        },
+        {
+          "model": "flamereaction:block/fire_floor1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "false"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/fire_side0"
+        },
+        {
+          "model": "flamereaction:block/fire_side1"
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt0"
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "false"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/fire_side0",
+          "y": 90
+        },
+        {
+          "model": "flamereaction:block/fire_side1",
+          "y": 90
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt0",
+          "y": 90
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt1",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "false"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/fire_side0",
+          "y": 180
+        },
+        {
+          "model": "flamereaction:block/fire_side1",
+          "y": 180
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt0",
+          "y": 180
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt1",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "is_obvious_colored": "false"
+      },
+      "apply": [
+        {
+          "model": "flamereaction:block/fire_side0",
+          "y": 270
+        },
+        {
+          "model": "flamereaction:block/fire_side1",
+          "y": 270
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt0",
+          "y": 270
+        },
+        {
+          "model": "flamereaction:block/fire_side_alt1",
+          "y": 270
+        }
+      ]
+    }
+  ]
+}

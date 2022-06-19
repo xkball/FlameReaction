@@ -5,7 +5,7 @@ import com.xkball.flamereaction.part.material.IMaterial;
 import com.xkball.flamereaction.util.MaterialType;
 import net.minecraft.world.level.block.Block;
 
-public abstract class MaterialBlock extends FRCBlock {
+public abstract class MaterialBlock extends Block implements FRCBlock {
     
     private final IMaterial material;
     public MaterialBlock(Block.Properties p_41383_, IMaterial material) {

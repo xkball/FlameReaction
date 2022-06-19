@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "flamereaction:item/exhibit_block_key"
+  }
+}
