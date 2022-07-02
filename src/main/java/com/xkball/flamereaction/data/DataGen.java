@@ -18,5 +18,7 @@ public class DataGen {
         event.getGenerator().addProvider(btg);
         event.getGenerator().addProvider(new BlockLootTableGenerator(gen) );
         event.getGenerator().addProvider(new ItemTagGenerator(gen,btg,efh));
+        event.getGenerator().addProvider(new RecipeGenerator(gen));
+        event.getGenerator().addProvider(new FluidTagGenerator(gen,efh));
     }
 }

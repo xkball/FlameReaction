@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:block/sodium_block"
+    ]
+  },
+  "criteria": {
+    "sodium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:sodium_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:block/sodium_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "sodium_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

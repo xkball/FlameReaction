@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:block/manganese_block"
+    ]
+  },
+  "criteria": {
+    "manganese_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:manganese_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:block/manganese_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "manganese_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

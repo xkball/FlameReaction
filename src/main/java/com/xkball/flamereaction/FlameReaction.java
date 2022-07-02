@@ -1,17 +1,20 @@
 package com.xkball.flamereaction;
 
 import com.mojang.logging.LogUtils;
-import com.xkball.flamereaction.eventhandler.BlockEntityRegister;
+import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
+import com.xkball.flamereaction.eventhandler.register.FluidRegister;
+import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
+import com.xkball.flamereaction.itemgroup.Groups;
 import com.xkball.flamereaction.itemlike.block.blocktags.BlockTags;
-import com.xkball.flamereaction.itemlike.block.commonblocks.FlameFireBlock;
+import com.xkball.flamereaction.itemlike.block.commonblocks.*;
 import com.xkball.flamereaction.itemlike.item.commonitem.ExhibitBlockKey;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
+import com.xkball.flamereaction.itemlike.item.commonitem.HammerItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.UniversalSaddle;
 import com.xkball.flamereaction.itemlike.item.itemtags.ItemTags;
 import com.xkball.flamereaction.itemlike.item.materialitem.ColoredFlameItem;
 import com.xkball.flamereaction.part.material.FlammableChemicalMaterials;
 import com.xkball.flamereaction.util.BlockList;
-import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
 import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlocks;
 import com.xkball.flamereaction.itemlike.block.materialblock.MetalScaffoldingBlock;
 import com.xkball.flamereaction.util.ItemList;
@@ -20,16 +23,19 @@ import com.xkball.flamereaction.itemlike.item.materialitem.MaterialPlate;
 import com.xkball.flamereaction.part.material.BasicMaterial;
 import com.xkball.flamereaction.part.material.IMaterial;
 import com.xkball.flamereaction.util.PeriodicTableOfElements;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 import java.util.Objects;
+
+import static net.minecraft.world.item.Items.BUCKET;
 
 
 @Mod(FlameReaction.MOD_ID)
@@ -42,9 +48,27 @@ public class FlameReaction
     public static final String MOD_ID = "flamereaction";
 
     public FlameReaction() {
+        
+        LOGGER.info("flame_reaction initialization started");
         MinecraftForge.EVENT_BUS.register(this);
-        //BlockRegister.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        BlockEntityRegister.BLOCK_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        var bus = FMLJavaModLoadingContext.get().getModEventBus();
+        BlockEntityRegister.BLOCK_ENTITY_TYPES.register(bus);
+        RecipeRegister.RECIPE.register(bus);
+        RecipeRegister.SERIALIZER.register(bus);
+        FluidRegister.FLUIDS.register(bus);
+        FluidRegister.FLUID_BLOCKS.register(bus);
+        FluidRegister.FLUID_BUCKETS.register(bus);
+        //ForgeMod.enableMilkFluid();
+        bus.addListener(this::setup);
+    }
+    
+    private void setup(final FMLCommonSetupEvent event)
+    {
+        IMPURE_ALCOHOL_FLUID_BLOCK = (UnstableFluidBlock) FluidRegister.IMPURE_ALCOHOL_FLUID_BLOCK.get();
+        IMPURE_ALCOHOL_FLUID_BUCKET = (BucketItem) FluidRegister.IMPURE_ALCOHOL_FLUID_BUCKET.get();
+        BlockList.addBlock(IMPURE_ALCOHOL_FLUID_BLOCK);
+        //IMPURE_ALCOHOL_FLUID_BUCKET.setRegistryName(new ResourceLocation(FlameReaction.MOD_ID,UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME));
+        ItemList.addItem(IMPURE_ALCOHOL_FLUID_BUCKET);
     }
     
     public static String getItemName(Item item){
@@ -53,6 +77,10 @@ public class FlameReaction
     
     public static  FlameFireBlock FLAME_FIRE_BLOCK;
     public static UniversalSaddle UNIVERSAL_SADDLE;
+    public static ForgingTable FORGING_TABLE;
+    public static BrewingBarrel BREWING_BARREL;
+    public static UnstableFluidBlock IMPURE_ALCOHOL_FLUID_BLOCK;
+    public static BucketItem IMPURE_ALCOHOL_FLUID_BUCKET;
     
     public static void init(){
         BasicMaterial.loadList();
@@ -62,11 +90,17 @@ public class FlameReaction
             for(IMaterial material : BasicMaterial.commonMaterials){
                 if(material != PeriodicTableOfElements.Cu && material != PeriodicTableOfElements.Fe){
                     new MaterialIngot(material);
+                }
+            }
+            for(IMaterial material : BasicMaterial.commonMaterials){
+                if(material != PeriodicTableOfElements.Cu && material != PeriodicTableOfElements.Fe){
                     new MaterialBlocks(material);
                 }
-                new MaterialPlate(material);
-                
             }
+            for(IMaterial material : BasicMaterial.commonMaterials){
+                new MaterialPlate(material);
+            }
+            
             new MetalScaffoldingBlock(PeriodicTableOfElements.Fe);
             new ExhibitBlock();
             new ExhibitBlockKey();
@@ -75,10 +109,15 @@ public class FlameReaction
             }
             FLAME_FIRE_BLOCK = new FlameFireBlock();
             UNIVERSAL_SADDLE = new UniversalSaddle();
+            FORGING_TABLE = new ForgingTable();
+            BREWING_BARREL = new BrewingBarrel();
+
             
             for(DyeColor dyeColor : DyeColor.values()){
                 new FlameDyeItem(dyeColor.getName(), dyeColor);
             }
+            
+            new HammerItem();
         }
     }
 }

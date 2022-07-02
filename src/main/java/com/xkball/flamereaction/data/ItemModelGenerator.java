@@ -4,17 +4,21 @@ import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.item.ColoredFlammableItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.ExhibitBlockKey;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
+import com.xkball.flamereaction.itemlike.item.commonitem.HammerItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.UniversalSaddle;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialItem;
 import com.xkball.flamereaction.util.MaterialProperty;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.Objects;
 
 import static com.xkball.flamereaction.FlameReaction.getItemName;
 
@@ -53,6 +57,12 @@ public class ItemModelGenerator extends ItemModelProvider {
             }
             if(item instanceof FlameDyeItem){
                 generatedStampItem(getItemName(item),"flame_dye_item");
+            }
+            if(item instanceof HammerItem){
+                generatedItem("hammer");
+            }
+            if(item instanceof BucketItem){
+                generatedItem(Objects.requireNonNull(item.getRegistryName()).getPath());
             }
         }
     }

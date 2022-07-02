@@ -1,23 +1,23 @@
 {
   "replace": false,
   "values": [
-    "flamereaction:antimony_block",
-    "flamereaction:iron_scaffolding_block",
-    "flamereaction:calcium_block",
-    "flamereaction:manganese_block",
-    "flamereaction:potassium_block",
-    "flamereaction:lithium_block",
-    "flamereaction:barium_block",
-    "flamereaction:rubidium_block",
-    "flamereaction:platinum_block",
-    "flamereaction:boron_block",
-    "flamereaction:palladium_block",
     "flamereaction:rainbow_block",
-    "flamereaction:indium_block",
-    "flamereaction:strontium_block",
+    "flamereaction:boron_block",
+    "flamereaction:lithium_block",
     "flamereaction:sodium_block",
+    "flamereaction:calcium_block",
+    "flamereaction:barium_block",
+    "flamereaction:cesium_block",
+    "flamereaction:indium_block",
+    "flamereaction:potassium_block",
+    "flamereaction:manganese_block",
     "flamereaction:molybdenum_block",
+    "flamereaction:palladium_block",
+    "flamereaction:rubidium_block",
+    "flamereaction:antimony_block",
+    "flamereaction:strontium_block",
     "flamereaction:zinc_block",
-    "flamereaction:cesium_block"
+    "flamereaction:platinum_block",
+    "flamereaction:iron_scaffolding_block"
   ]
 }

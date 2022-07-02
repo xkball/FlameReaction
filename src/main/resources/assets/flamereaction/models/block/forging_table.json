@@ -3,8 +3,8 @@
 	"parent": "block/block",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "flamereaction:block/forgeing_table",
-		"particle": "flamereaction:block/forgeing_table"
+		"0": "flamereaction:block/forging_table",
+		"particle": "flamereaction:block/forging_table"
 	},
 	"elements": [
 		{

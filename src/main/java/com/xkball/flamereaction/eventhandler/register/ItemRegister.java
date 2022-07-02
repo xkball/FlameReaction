@@ -1,4 +1,4 @@
-package com.xkball.flamereaction.eventhandler;
+package com.xkball.flamereaction.eventhandler.register;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.util.ItemList;

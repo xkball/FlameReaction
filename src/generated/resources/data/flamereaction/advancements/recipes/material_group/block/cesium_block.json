@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:block/cesium_block"
+    ]
+  },
+  "criteria": {
+    "cesium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:cesium_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:block/cesium_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cesium_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

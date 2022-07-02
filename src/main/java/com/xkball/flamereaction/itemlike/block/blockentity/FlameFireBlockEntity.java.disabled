@@ -1,6 +1,6 @@
 package com.xkball.flamereaction.itemlike.block.blockentity;
 
-import com.xkball.flamereaction.eventhandler.BlockEntityRegister;
+import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.itemlike.item.ColoredFlammableItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;

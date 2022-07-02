@@ -69,7 +69,7 @@ public class ExhibitBlockBER implements BlockEntityRenderer<ExhibitBlockEntity> 
         boolean flag = bakedmodel.isGui3d();
         int j = this.getRenderAmount(itemstack);
         float f1 = Mth.sin(((float)exhibitBlockEntity.getAge() + p_115038_) / 10.0F + this.bobOffs) * 0.1F + 0.1F;
-        float f2 = shouldBob() ? bakedmodel.getTransforms().getTransform(ItemTransforms.TransformType.GROUND).scale.y() : 0;
+        float f2 = shouldBob() ? ItemTransforms.NO_TRANSFORMS.getTransform(ItemTransforms.TransformType.GROUND).scale.y() : 0;
         poseStack.translate(0.5D, f1 + 0.55F * f2, 0.5D);
         float f3 = this.getSpin(p_115038_,exhibitBlockEntity);
         poseStack.scale(1.3F, 1.3F,1.3F);

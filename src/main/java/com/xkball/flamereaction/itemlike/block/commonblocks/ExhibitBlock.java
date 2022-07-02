@@ -1,7 +1,7 @@
 package com.xkball.flamereaction.itemlike.block.commonblocks;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.eventhandler.BlockEntityRegister;
+import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.itemgroup.Groups;
 import com.xkball.flamereaction.itemlike.block.FRCBlock;
 import com.xkball.flamereaction.itemlike.block.blockentity.ExhibitBlockEntity;
@@ -59,7 +59,7 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock {
     public ExhibitBlock() {
         super(BlockBehaviour.Properties
                 .of(Material.GLASS)
-                .strength(8f,8f)
+                .strength(4f,8f)
                 .noOcclusion()
                 .sound(SoundType.GLASS)
                 .lightLevel((blockState) -> 15));

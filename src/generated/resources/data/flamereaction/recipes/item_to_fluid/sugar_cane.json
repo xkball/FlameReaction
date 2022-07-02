@@ -1,0 +1,20 @@
+{
+  "type": "flamereaction:single_to_fluid_recipe",
+  "input": [
+    {
+      "item": "minecraft:sugar_cane",
+      "count": 1
+    }
+  ],
+  "result_fluid": [
+    {
+      "fluid": "flamereaction:impure_alcohol_fluid",
+      "amount": 20
+    }
+  ],
+  "target": [
+    {
+      "block": "flamereaction:brewing_barrel"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "flamereaction:single_to_item_recipe",
+  "input": [
+    {
+      "item": "flamereaction:cesium_ingot",
+      "count": 1
+    }
+  ],
+  "output_item": [
+    {
+      "item": "flamereaction:cesium_plate",
+      "count": 1
+    }
+  ],
+  "target": [
+    {
+      "block": "flamereaction:forging_table"
+    }
+  ]
+}

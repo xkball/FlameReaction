@@ -1,14 +1,17 @@
 package com.xkball.flamereaction.itemlike.block.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -29,10 +32,13 @@ public abstract class EasyChangedBlockEntity extends BlockEntity {
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
-    //接受
+    
+    //区块载入发包？
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        handleUpdateTag(Objects.requireNonNull(pkt.getTag()));
+    public @NotNull CompoundTag getUpdateTag() {
+        var compoundTag = super.getUpdateTag();
+        this.saveWithoutMetadata();
+        return compoundTag;
     }
     
 }

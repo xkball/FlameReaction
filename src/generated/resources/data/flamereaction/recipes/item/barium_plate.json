@@ -1,0 +1,20 @@
+{
+  "type": "flamereaction:single_to_item_recipe",
+  "input": [
+    {
+      "item": "flamereaction:barium_ingot",
+      "count": 1
+    }
+  ],
+  "output_item": [
+    {
+      "item": "flamereaction:barium_plate",
+      "count": 1
+    }
+  ],
+  "target": [
+    {
+      "block": "flamereaction:forging_table"
+    }
+  ]
+}

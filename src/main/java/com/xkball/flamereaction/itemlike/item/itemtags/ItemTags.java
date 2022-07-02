@@ -1,5 +1,6 @@
 package com.xkball.flamereaction.itemlike.item.itemtags;
 
+import com.xkball.flamereaction.itemlike.item.commonitem.HammerItem;
 import com.xkball.flamereaction.part.material.BasicMaterial;
 import com.xkball.flamereaction.part.material.IMaterial;
 import com.xkball.flamereaction.util.MaterialType;
@@ -14,8 +15,9 @@ public class ItemTags {
     
     public static final HashMap<String,TagKey<Item>> itemTagsList = new HashMap<>();
     
-    private static TagKey<Item> tag(String name)
-    {
+    public static final TagKey<Item> HAMMER = tag("tool/hammer");
+    
+    private static TagKey<Item> tag(String name) {
         return net.minecraft.tags.ItemTags.create(new ResourceLocation("forge", name));
     }
     
@@ -29,6 +31,7 @@ public class ItemTags {
                 }
             }
         }
+        add(HAMMER);
     }
     
     public static void addMaterialTag(MaterialType materialType,IMaterial material){
@@ -39,8 +42,9 @@ public class ItemTags {
         return itemTagsList.get(materialType.getName()+"/"+material.getName());
     }
     
-    public static void add(TagKey<Item> tagKey){
+    public static TagKey<Item> add(TagKey<Item> tagKey){
         itemTagsList.put(tagKey.location().getPath(),tagKey);
+        return tagKey;
     }
 
 }

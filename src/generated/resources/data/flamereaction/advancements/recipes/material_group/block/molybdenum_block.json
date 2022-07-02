@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:block/molybdenum_block"
+    ]
+  },
+  "criteria": {
+    "molybdenum_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:molybdenum_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:block/molybdenum_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "molybdenum_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

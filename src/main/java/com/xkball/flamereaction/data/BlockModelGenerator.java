@@ -1,6 +1,8 @@
 package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
+import com.xkball.flamereaction.itemlike.block.commonblocks.BrewingBarrel;
+import com.xkball.flamereaction.itemlike.block.commonblocks.ForgingTable;
 import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
 import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlock;
@@ -43,8 +45,19 @@ public class BlockModelGenerator extends BlockStateProvider {
                 this.exhibitBlock(block);
                 this.simpleBlockItem(block, getBlockModel("exhibit_block_unlock"));
             }
+            if(block instanceof ForgingTable){
+                var model = getBlockModel("forging_table");
+                this.simpleBlock(block,model);
+                this.simpleBlockItem(block,model);
+            }
+            if(block instanceof BrewingBarrel){
+                var model = getBlockModel(BrewingBarrel.NAME);
+                this.simpleBlock(block,model);
+                this.simpleBlockItem(block,model);
+            }
         }
     }
+    
     
     
     //已经由手写代替

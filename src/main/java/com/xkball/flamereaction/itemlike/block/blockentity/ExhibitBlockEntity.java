@@ -1,21 +1,15 @@
 package com.xkball.flamereaction.itemlike.block.blockentity;
 
 import com.mojang.logging.LogUtils;
-import com.xkball.flamereaction.eventhandler.BlockEntityRegister;
+import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.slf4j.Logger;
 
@@ -100,7 +94,8 @@ public class ExhibitBlockEntity extends EasyChangedBlockEntity {
     }
     
     public static void tick(Level level, BlockPos pos, BlockState state, ExhibitBlockEntity entity) {
-        entity.age++;
+        if(entity.age > 10000)entity.age++;
+        else entity.age = 0;
     }
     
     

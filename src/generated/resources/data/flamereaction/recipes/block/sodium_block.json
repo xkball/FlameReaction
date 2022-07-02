@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:sodium_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:sodium_block"
+  }
+}
