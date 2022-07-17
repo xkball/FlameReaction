@@ -1,8 +1,9 @@
 package com.xkball.flamereaction.itemlike.block.commonblocks;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.FRCBlock;
+import com.xkball.flamereaction.itemlike.block.FRCInfo;
 import com.xkball.flamereaction.itemlike.block.blockentity.ForgingTableBlockEntity;
 import com.xkball.flamereaction.itemlike.item.itemtags.ItemTags;
 import com.xkball.flamereaction.util.ItemList;
@@ -14,6 +15,7 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -45,9 +47,10 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ForgingTable extends BaseEntityBlock implements FRCBlock {
+public class ForgingTable extends BaseEntityBlock implements FRCBlock, FRCInfo {
     
     public static final String NAME = "forging_table";
+    public static final TranslatableComponent TOOLTIP = TranslateUtil.create("forging_table_tooltip","不能输出至漏斗","cannot put out items to hopper" );
     public static Item BLOCK_ITEM;
     
     public ForgingTable() {
@@ -61,11 +64,11 @@ public class ForgingTable extends BaseEntityBlock implements FRCBlock {
     }
     
     public void regItemBlock(){
-        var bi = new BlockItem(this,new Item.Properties().fireResistant().tab(Groups.FLAME_REACTION_GROUP)) {
+        var bi = new BlockItem(this,new Item.Properties().fireResistant().tab(CreativeModeTabs.FLAME_REACTION_GROUP)) {
             @Override
             public void appendHoverText(@Nonnull ItemStack p_41421_, @Nullable Level p_41422_,
                                         @Nonnull List<Component> components, @Nonnull TooltipFlag p_41424_) {
-                components.add(TranslateUtil.create("cannot put out items to hopper","不能输出至漏斗" ).withStyle(ChatFormatting.RED));
+                components.add(TOOLTIP.withStyle(ChatFormatting.RED));
         
             }
         };
@@ -157,5 +160,15 @@ public class ForgingTable extends BaseEntityBlock implements FRCBlock {
             }
         }
         return InteractionResult.SUCCESS;
+    }
+    
+    @Override
+    public @NotNull List<String> getInfo(ServerLevel level, BlockPos pos) {
+        var e = level.getBlockEntity(pos);
+        if(e instanceof ForgingTableBlockEntity entity){
+            String item = "内容物： "+entity.getItem(0);
+            return List.of(NAME,item);
+        }
+        return List.of(NAME);
     }
 }

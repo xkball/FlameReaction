@@ -2,9 +2,7 @@ package com.xkball.flamereaction.eventhandler.register;
 
 import com.mojang.datafixers.DSL;
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemlike.block.blockentity.BrewingBarrelBlockEntity;
-import com.xkball.flamereaction.itemlike.block.blockentity.ExhibitBlockEntity;
-import com.xkball.flamereaction.itemlike.block.blockentity.ForgingTableBlockEntity;
+import com.xkball.flamereaction.itemlike.block.blockentity.*;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
 import com.xkball.flamereaction.util.BlockList;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -32,6 +30,16 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<BrewingBarrelBlockEntity>> BREWING_BARREL_BLOCK_ENTITY=
             BLOCK_ENTITY_TYPES.register(BrewingBarrelBlockEntity.NAME,
                     () -> BlockEntityType.Builder.of(BrewingBarrelBlockEntity::new, FlameReaction.BREWING_BARREL)
+                            .build(DSL.remainderType()));
+    
+    public static final RegistryObject<BlockEntityType<AlcoholLampBlockEntity>> ALCOHOL_LAMP_BLOCK_ENTITY=
+            BLOCK_ENTITY_TYPES.register(AlcoholLampBlockEntity.NAME,
+                    () -> BlockEntityType.Builder.of(AlcoholLampBlockEntity::new, FlameReaction.ALCOHOL_LAMP)
+                            .build(DSL.remainderType()));
+    
+    public static final RegistryObject<BlockEntityType<DippingBlockEntity>> DIPPING_BLOCK_ENTITY=
+            BLOCK_ENTITY_TYPES.register(DippingBlockEntity.NAME,
+                    () -> BlockEntityType.Builder.of(DippingBlockEntity::new, FlameReaction.DIPPINGBLOCK)
                             .build(DSL.remainderType()));
     
 //    public static final RegistryObject<BlockEntityType<FlameFireBlockEntity>> FLAME_FIRE_BLOCK_ENTITY=

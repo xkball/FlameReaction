@@ -3,7 +3,7 @@ package com.xkball.flamereaction.eventhandler;
 
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
 import com.xkball.flamereaction.itemlike.block.blockentity.ExhibitBlockEntity;
-import com.xkball.flamereaction.itemlike.item.commonitem.ExhibitBlockKey;
+import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

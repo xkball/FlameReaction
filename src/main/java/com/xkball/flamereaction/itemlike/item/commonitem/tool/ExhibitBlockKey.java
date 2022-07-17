@@ -1,7 +1,7 @@
-package com.xkball.flamereaction.itemlike.item.commonitem;
+package com.xkball.flamereaction.itemlike.item.commonitem.tool;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.blockentity.ExhibitBlockEntity;
 import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
@@ -9,16 +9,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -30,13 +25,13 @@ public class ExhibitBlockKey extends Item implements FRCItem {
     
     public static final String NAME = "exhibit_block_key";
     
-    public static final TranslatableComponent TOOLTIP1 = new TranslatableComponent(TranslateUtil.PREFIX+"use in right hand to lock a exhibit_block");
-    public static final TranslatableComponent TOOLTIP2 = new TranslatableComponent(TranslateUtil.PREFIX+"press shift and use to change display state of a exhibit_lock");
+    public static final TranslatableComponent TOOLTIP1 = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_key_tooltip1");
+    public static final TranslatableComponent TOOLTIP2 = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_key_tooltip2");
     public ExhibitBlockKey() {
         super(new Item.Properties()
                 .fireResistant()
                 .setNoRepair()
-                .tab(Groups.FLAME_REACTION_GROUP));
+                .tab(CreativeModeTabs.FLAME_REACTION_GROUP));
         this.setRegistryName(FlameReaction.MOD_ID,NAME);
         add();
     }

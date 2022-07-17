@@ -3,18 +3,17 @@ package com.xkball.flamereaction.util;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.core.NonNullList;
+import com.google.gson.JsonPrimitive;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.lwjgl.system.CallbackI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +43,14 @@ public class JsonUtil {
         json.addProperty("fluid", Objects.requireNonNull(fluidStack.getFluid().getRegistryName()).toString());
         json.addProperty("amount",fluidStack.getAmount());
         return json;
+    }
+    
+    public static JsonArray integersToJson(IntList list){
+        var result = new JsonArray();
+        for(int i:list){
+            result.add(i);
+        }
+        return result;
     }
     
     public static List<Integer> integersFromJson(JsonObject json, String memberName){
@@ -103,4 +110,6 @@ public class JsonUtil {
         if(list.isEmpty()) throw new JsonParseException("json内无对应内容");
         return list;
     }
+    
+   
 }

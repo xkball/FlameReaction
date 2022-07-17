@@ -1,0 +1,41 @@
+{
+  "type": "flamereaction:glass_crafting_recipe",
+  "patten": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1
+  ],
+  "result": [
+    {
+      "item": "flamereaction:forging_table",
+      "count": 1
+    }
+  ],
+  "target": [
+    {
+      "block": "flamereaction:flame_fire_block"
+    }
+  ]
+}

@@ -94,8 +94,9 @@ public class ExhibitBlockEntity extends EasyChangedBlockEntity {
     }
     
     public static void tick(Level level, BlockPos pos, BlockState state, ExhibitBlockEntity entity) {
-        if(entity.age > 10000)entity.age++;
+        if(entity.age < 10000)entity.age++;
         else entity.age = 0;
+        
     }
     
     

@@ -3,7 +3,7 @@ package com.xkball.flamereaction.data;
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialItem;
 import com.xkball.flamereaction.util.ItemList;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.util.translateutil.MaterialChineseTranslate;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.data.DataGenerator;
@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Objects;
 
 import static com.xkball.flamereaction.util.translateutil.TranslateUtil.CHINESE_TRANSLATE_MAP;
+import static com.xkball.flamereaction.util.translateutil.TranslateUtil.ENGLISH_TRANSLATE_MAP;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LanguageGenerator extends LanguageProvider {
@@ -56,21 +57,21 @@ public class LanguageGenerator extends LanguageProvider {
     }
     
     public void addTranslatableComponent(){
-        for(TranslatableComponent translatableComponent:CHINESE_TRANSLATE_MAP.keySet()){
-            this.add(translatableComponent.getKey(),
+        for(String key:CHINESE_TRANSLATE_MAP.keySet()){
+            this.add(key,
             Objects.equals(this.locale, EN_US) ?
-                    TranslateUtil.keyToEN(translatableComponent.getKey()) : CHINESE_TRANSLATE_MAP.get(translatableComponent));
+                   ENGLISH_TRANSLATE_MAP.get(key) : CHINESE_TRANSLATE_MAP.get(key));
         }
     }
     
     public void addItemGroups(){
-        this.add(Groups.MATERIAL_GROUP.getDisplayName().getString(),
+        this.add(CreativeModeTabs.MATERIAL_GROUP.getDisplayName().getString(),
                 switch (this.locale){
                     default -> throw new IllegalStateException("Unexpected value: " + this.locale);
                     case EN_US -> "Flame_reaction_materials";
                     case ZH_CN -> "焰色反应——材料";
                 });
-        this.add(Groups.FLAME_REACTION_GROUP.getDisplayName().getString(),
+        this.add(CreativeModeTabs.FLAME_REACTION_GROUP.getDisplayName().getString(),
                 switch (this.locale){
                     default -> throw new IllegalStateException("Unexpected value: " + this.locale);
                     case EN_US -> "Flame_reaction";

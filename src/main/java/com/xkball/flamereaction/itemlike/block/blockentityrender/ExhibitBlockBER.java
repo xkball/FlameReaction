@@ -70,7 +70,10 @@ public class ExhibitBlockBER implements BlockEntityRenderer<ExhibitBlockEntity> 
         int j = this.getRenderAmount(itemstack);
         float f1 = Mth.sin(((float)exhibitBlockEntity.getAge() + p_115038_) / 10.0F + this.bobOffs) * 0.1F + 0.1F;
         float f2 = shouldBob() ? ItemTransforms.NO_TRANSFORMS.getTransform(ItemTransforms.TransformType.GROUND).scale.y() : 0;
-        poseStack.translate(0.5D, f1 + 0.55F * f2, 0.5D);
+        poseStack.translate(0.5D, f1 +
+                //注意此处参数可能要调
+                0.35F
+                        * f2, 0.5D);
         float f3 = this.getSpin(p_115038_,exhibitBlockEntity);
         poseStack.scale(1.3F, 1.3F,1.3F);
         poseStack.mulPose(Vector3f.YP.rotation(f3));

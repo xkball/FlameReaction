@@ -1,4 +1,4 @@
-package com.xkball.flamereaction.itemgroup;
+package com.xkball.flamereaction.creativemodetab;
 
 import com.xkball.flamereaction.util.ItemList;
 import net.minecraft.world.item.CreativeModeTab;
@@ -7,7 +7,7 @@ import net.minecraft.world.item.Items;
 
 import javax.annotation.Nonnull;
 
-public class Groups {
+public class CreativeModeTabs {
     
     public static final CreativeModeTab MATERIAL_GROUP = new MaterialGroup("material_group");
     public static final CreativeModeTab FLAME_REACTION_GROUP = new CreativeModeTab("flame_reaction_group") {

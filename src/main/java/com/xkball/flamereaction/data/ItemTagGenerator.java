@@ -1,7 +1,7 @@
 package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemlike.item.commonitem.HammerItem;
+import com.xkball.flamereaction.itemlike.item.commonitem.tool.Hammer;
 import com.xkball.flamereaction.itemlike.item.itemtags.ItemTags;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialItem;
 import com.xkball.flamereaction.util.ItemList;
@@ -23,7 +23,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         for(Item item : list.values()){
             addMaterialTag(item);
         }
-        this.tag(ItemTags.HAMMER).add(list.get(HammerItem.NAME));
+        this.tag(ItemTags.HAMMER).add(list.get(Hammer.NAME));
     }
     
     private void addMaterialTag(Item item) {

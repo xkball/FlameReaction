@@ -2,10 +2,11 @@ package com.xkball.flamereaction.itemlike.block.commonblocks;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.FRCBlock;
+import com.xkball.flamereaction.itemlike.block.FRCInfo;
 import com.xkball.flamereaction.itemlike.block.blockentity.ExhibitBlockEntity;
-import com.xkball.flamereaction.itemlike.item.commonitem.ExhibitBlockKey;
+import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.Util;
@@ -13,6 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -43,17 +45,18 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
-public class ExhibitBlock extends BaseEntityBlock implements FRCBlock {
+public class ExhibitBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
     
     public static final BooleanProperty IS_LOCKED = BooleanProperty.create("is_locked");
     public static final String NAME = "exhibit_block";
-    public static final TranslatableComponent EXHIBIT_SUCCEED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_succeed");
-    public static final TranslatableComponent EXHIBIT_CLEAR = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_clear");
-    public static final TranslatableComponent EXHIBIT_SET_INFO_SUCCEED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_set_info_succeed");
-    public static final TranslatableComponent EXHIBIT_SET_INFO_CLEAR = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_info_clear");
-    public static final TranslatableComponent EXHIBIT_LOCKED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_locked");
-    public static final TranslatableComponent EXHIBIT_UNLOCKED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_unlocked");
+    public static final TranslatableComponent EXHIBIT_SUCCEED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_tip1");
+    public static final TranslatableComponent EXHIBIT_CLEAR = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_tip2");
+    public static final TranslatableComponent EXHIBIT_SET_INFO_SUCCEED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_tip3");
+    public static final TranslatableComponent EXHIBIT_SET_INFO_CLEAR = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_tip4");
+    public static final TranslatableComponent EXHIBIT_LOCKED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_tip5");
+    public static final TranslatableComponent EXHIBIT_UNLOCKED = new TranslatableComponent(TranslateUtil.PREFIX+"exhibit_block_tip6");
     
     
     public ExhibitBlock() {
@@ -70,10 +73,11 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock {
     }
     
     public void regItemBlock(){
-        var bi = new BlockItem(this,new Item.Properties().fireResistant().tab(Groups.FLAME_REACTION_GROUP));
+        var bi = new BlockItem(this,new Item.Properties().fireResistant().tab(CreativeModeTabs.FLAME_REACTION_GROUP));
         bi.setRegistryName(FlameReaction.MOD_ID, NAME);
         ItemList.addItem(bi);
     }
+  
     
     @Override
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder){
@@ -178,5 +182,23 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock {
     @SuppressWarnings("deprecation")
     public @Nonnull VoxelShape getVisualShape(@Nonnull BlockState p_60479_, @Nonnull BlockGetter p_60480_,@Nonnull BlockPos  p_60481_,@Nonnull CollisionContext p_60482_) {
         return Shapes.empty();
+    }
+    
+    
+    @Override
+    public @NotNull List<String> getInfo(ServerLevel level, BlockPos pos) {
+        var bs = level.getBlockState(pos);
+        var entity = level.getBlockEntity(pos);
+        
+        if(entity instanceof ExhibitBlockEntity entity1){
+            String state = "是否上锁: "+ bs.getValue(IS_LOCKED);
+            String item = "展示物品: "+ entity1.getItem();
+            String axis = "显示轴向: "+ entity1.getAxis();
+            String mode =  "显示模式: " +(entity1.isLikeItemEntity()?"活动":"静止");
+            String info = "介绍信息: "+entity1.getIntroduction();
+            return List.of(NAME,state,item,axis,mode,info);
+        }
+        
+        return List.of(NAME);
     }
 }

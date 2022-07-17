@@ -6,10 +6,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class SimpleFluidHandler implements IFluidHandler {
+public abstract class SimpleFluidHandler implements IFluidHandler {
     
-    @Nonnull
-    protected FluidStack fluid = FluidStack.EMPTY;
+//    @Nonnull
+//    protected FluidStack fluid = FluidStack.EMPTY;
     protected int capacity;
     
     public SimpleFluidHandler(int capacity) {
@@ -28,9 +28,7 @@ public class SimpleFluidHandler implements IFluidHandler {
     
     @NotNull
     @Override
-    public FluidStack getFluidInTank(int tank) {
-        return tank==0?fluid:FluidStack.EMPTY;
-    }
+    public abstract FluidStack getFluidInTank(int tank);
     
     @Override
     public int getTankCapacity(int tank) {
@@ -45,6 +43,7 @@ public class SimpleFluidHandler implements IFluidHandler {
     //复制自FluidTank类
     @Override
     public int fill(FluidStack resource, FluidAction action) {
+        var fluid = getFluidInTank(0);
         if (resource.isEmpty() || !isFluidValid(0,resource))
         {
             return 0;
@@ -55,7 +54,7 @@ public class SimpleFluidHandler implements IFluidHandler {
             {
                 return Math.min(capacity, resource.getAmount());
             }
-            if (!fluid.isFluidEqual(resource))
+            if (!getFluidInTank(0).isFluidEqual(resource))
             {
                 return 0;
             }
@@ -90,7 +89,7 @@ public class SimpleFluidHandler implements IFluidHandler {
     @NotNull
     @Override
     public FluidStack drain(FluidStack resource, FluidAction action) {
-        if (resource.isEmpty() || !resource.isFluidEqual(fluid))
+        if (resource.isEmpty() || !resource.isFluidEqual(getFluidInTank(0)))
         {
             return FluidStack.EMPTY;
         }
@@ -101,6 +100,7 @@ public class SimpleFluidHandler implements IFluidHandler {
     @Override
     public FluidStack drain(int maxDrain, FluidAction action) {
         int drained = maxDrain;
+        var fluid = getFluidInTank(0);
         if (fluid.getAmount() < drained)
         {
             drained = fluid.getAmount();

@@ -1,7 +1,7 @@
 package com.xkball.flamereaction.itemlike.block.materialblock;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.itemlike.itemblock.MetalScaffoldingBlockItem;
 import com.xkball.flamereaction.part.material.IMaterial;
@@ -86,7 +86,7 @@ public class MetalScaffoldingBlock extends MaterialBlock implements SimpleWaterl
     }
     
     public void regItemBlock(){
-        var bi = new MetalScaffoldingBlockItem(this,new Item.Properties().fireResistant().tab(Groups.FLAME_REACTION_GROUP));
+        var bi = new MetalScaffoldingBlockItem(this,new Item.Properties().fireResistant().tab(CreativeModeTabs.FLAME_REACTION_GROUP));
         bi.setRegistryName(FlameReaction.MOD_ID,this.getMaterial().getName()+"_scaffolding_block");
         ItemList.addItem(bi);
     }

@@ -5,7 +5,7 @@ import com.xkball.flamereaction.crafting.ISingleToSingleRecipe;
 import com.xkball.flamereaction.crafting.SingleToFluidRecipe;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.FRCBlock;
 import com.xkball.flamereaction.itemlike.block.blockentity.BrewingBarrelBlockEntity;
 import com.xkball.flamereaction.util.ItemList;
@@ -19,7 +19,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -34,8 +33,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fluids.FluidUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.HashSet;
 
 public class BrewingBarrel extends BaseEntityBlock implements FRCBlock {
     
@@ -54,7 +51,7 @@ public class BrewingBarrel extends BaseEntityBlock implements FRCBlock {
     
     
     public void regItemBlock(){
-        var bi = new BlockItem(this,new Item.Properties().fireResistant().tab(Groups.FLAME_REACTION_GROUP));
+        var bi = new BlockItem(this,new Item.Properties().fireResistant().tab(CreativeModeTabs.FLAME_REACTION_GROUP));
         bi.setRegistryName(FlameReaction.MOD_ID, NAME);
         ItemList.addItem(bi);
     }
@@ -86,6 +83,9 @@ public class BrewingBarrel extends BaseEntityBlock implements FRCBlock {
             var list = recipe.stream().filter((r)-> r instanceof SingleToFluidRecipe).map(ISingleToSingleRecipe::getInput).toList();
             if(blockEntity instanceof Container container){
                 if(!FluidUtil.interactWithFluidHandler(player,hand,level,pos,null)){
+                    //装桶
+                    LevelUtil.fillBucket((ServerLevel) level,pos,player,player.getMainHandItem());
+                    //放物品
                     LevelUtil.containerInput((ServerLevel) level,pos,container,player.getOffhandItem(),player.getMainHandItem(), (i)->list.contains(i.getItem()));
                 }
             }

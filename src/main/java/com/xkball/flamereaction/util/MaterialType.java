@@ -5,7 +5,8 @@ public enum MaterialType {
     INGOT("ingot","锭"),
     PLATE("plates","板"),
     BLOCK("block","块"),
-    CHEMICAL("chemical","化学品");
+    CHEMICAL("chemical","化学品"),
+    STICK("stick","棍");
     
     private final String name;
     

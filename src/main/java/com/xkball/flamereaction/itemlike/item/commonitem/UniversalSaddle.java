@@ -1,7 +1,7 @@
 package com.xkball.flamereaction.itemlike.item.commonitem;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.ChatFormatting;
@@ -23,13 +23,13 @@ import java.util.List;
 public class UniversalSaddle extends Item implements FRCItem {
     
     public static final String NAME = "universal_saddle";
-    public static final TranslatableComponent UNIVERSAL_SADDLE_TOOLTIP = TranslateUtil.create("try left click any entity","试试左键实体");
+    public static final TranslatableComponent UNIVERSAL_SADDLE_TOOLTIP = TranslateUtil.create("universal_saddle_tooltip","试试左键实体","try left click any entity");
     
     public UniversalSaddle() {
         super(new Item.Properties()
                 .fireResistant()
                 .setNoRepair()
-                .tab(Groups.FLAME_REACTION_GROUP));
+                .tab(CreativeModeTabs.FLAME_REACTION_GROUP));
         this.setRegistryName(FlameReaction.MOD_ID,NAME);
         add();
     }

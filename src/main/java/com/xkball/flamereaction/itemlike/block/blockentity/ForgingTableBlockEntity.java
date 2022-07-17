@@ -1,6 +1,7 @@
 package com.xkball.flamereaction.itemlike.block.blockentity;
 
 import com.xkball.flamereaction.FlameReaction;
+import com.xkball.flamereaction.capability.item.SimpleItemStackHandler;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.item.itemtags.ItemTags;
@@ -22,7 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,7 +44,17 @@ public class ForgingTableBlockEntity extends EasyChangedBlockEntity implements I
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(side == Direction.UP &&cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return LazyOptional.of(() -> new ItemStackHandler(){
+            return LazyOptional.of(() -> new SimpleItemStackHandler(){
+                @Override
+                public @NotNull ItemStack getStackInSlot(int slot) {
+                    return slot == 0 ? item.get(0) : ItemStack.EMPTY;
+                }
+    
+                @Override
+                public void setStackInSlot(int slot, ItemStack stack) {
+                    if(slot == 0) item.set(0,stack);
+                }
+    
                 @NotNull
                 @Override
                 public ItemStack extractItem(int slot, int amount, boolean simulate) {
@@ -53,7 +63,7 @@ public class ForgingTableBlockEntity extends EasyChangedBlockEntity implements I
     
                 @Override
                 protected void onContentsChanged(int slot) {
-                    if(slot == 0) item = stacks;
+                    dirty();
                 }
             }).cast();
         }

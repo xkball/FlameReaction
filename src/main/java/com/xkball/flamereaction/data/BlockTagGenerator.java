@@ -22,8 +22,9 @@ public class BlockTagGenerator extends BlockTagsProvider {
     
     @Override
     public void addTags(){
-        this.tag(BlockTags.CLIMBABLE).add(BlockList.block_instance.get("iron_scaffolding_block"));
-        this.tag(BlockTags.FALL_DAMAGE_RESETTING).add(BlockList.block_instance.get("iron_scaffolding_block"));
+        var scaffolding = BlockList.block_instance.get("iron_scaffolding_block");
+        this.tag(BlockTags.CLIMBABLE).add(scaffolding);
+        this.tag(BlockTags.FALL_DAMAGE_RESETTING).add(scaffolding);
         this.tag(com.xkball.flamereaction.itemlike.block.blocktags.BlockTags.COLORED_FLAMMABLE)
                 .add(BlockList.block_instance.get("platinum_block"))
                 .add(Blocks.IRON_BLOCK);
@@ -31,6 +32,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
         for(Block block : materialList){
             addDigInPickAxe(block);
         }
+        this.tag(com.xkball.flamereaction.itemlike.block.blocktags.BlockTags.SCAFFOLDING).add(scaffolding);
+        this.tag(com.xkball.flamereaction.itemlike.block.blocktags.BlockTags.MINEABLE_WRENCH).add(scaffolding);
         
     }
     

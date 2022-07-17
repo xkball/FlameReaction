@@ -9,11 +9,18 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.EmptyFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
@@ -125,5 +132,28 @@ public class LevelUtil {
         fluidStack.setAmount(i);
         source.shrink(i);
         return fluidStack;
+    }
+    
+    
+    public static void fillBucket(ServerLevel level, BlockPos pos, Player player, ItemStack bucket){
+        if(bucket.is(Items.BUCKET)){
+            var blockEntity = level.getBlockEntity(pos);
+            if(blockEntity != null) {
+                var cap = blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(EmptyFluidHandler.INSTANCE);
+                if(!(cap instanceof EmptyFluidHandler)){
+                    var stimulate = cap.drain(1000, IFluidHandler.FluidAction.SIMULATE);
+                    if(stimulate.getAmount() == 1000){
+                        var result = cap.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+                        var resultItem = new ItemStack(result.getFluid().getBucket(),1);
+                        bucket.shrink(1);
+                        SoundEvent soundevent = result.getFluid().getAttributes().getFillSound();
+                        player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        if(!player.getInventory().add(resultItem)){
+                            player.drop(resultItem,false);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

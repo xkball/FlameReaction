@@ -1,24 +1,21 @@
 package com.xkball.flamereaction.itemlike.item.materialitem;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemgroup.Groups;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.commonblocks.FlameFireBlock;
 import com.xkball.flamereaction.itemlike.item.ColoredFlammableItem;
 import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.part.material.FlammableChemicalMaterials;
-import com.xkball.flamereaction.part.material.IMaterial;
 import com.xkball.flamereaction.util.MaterialType;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -34,12 +31,14 @@ import java.util.Objects;
 
 public class ColoredFlameItem extends Item implements ColoredFlammableItem, FRCItem {
     
+    public static final TranslatableComponent TOOLTIP = TranslateUtil.create("colored_flame_item_tooltip1","试着把它扔进火里吧！","try to throw it into fire!");
+    
     private final FlammableChemicalMaterials material;
     public ColoredFlameItem(FlammableChemicalMaterials material, String name) {
         super(new Item.Properties()
                 //.fireResistant()
                 .setNoRepair()
-                .tab(Groups.MATERIAL_GROUP));
+                .tab(CreativeModeTabs.MATERIAL_GROUP));
         this.material = material;
         this.setRegistryName(FlameReaction.MOD_ID,name);
         add();
@@ -56,8 +55,10 @@ public class ColoredFlameItem extends Item implements ColoredFlammableItem, FRCI
     @Override
     public void appendHoverText(@Nonnull ItemStack p_41421_, @Nullable Level p_41422_,
                                 @Nonnull List<Component> components, @Nonnull TooltipFlag p_41424_) {
-        components.add(TranslateUtil.create(this.getMaterialKind().getName()+": "+this.getMaterial().getSymbol(),this.getMaterialKind().getChinese()+": "+this.getMaterial().getSymbol() ).withStyle(ChatFormatting.GRAY));
-        components.add(TranslateUtil.create("try to throw it into fire!","试着把它扔进火里吧！" ).withStyle(ChatFormatting.GRAY));
+        components.add(TranslateUtil.create(this.getMaterialKind().getName()+"_"+this.getMaterial().getSymbol(),
+                this.getMaterialKind().getChinese()+": "+this.getMaterial().getSymbol(),
+                this.getMaterialKind().getName()+": "+this.getMaterial().getSymbol() ).withStyle(ChatFormatting.GRAY));
+        components.add(TOOLTIP.withStyle(ChatFormatting.GRAY));
         
     }
     

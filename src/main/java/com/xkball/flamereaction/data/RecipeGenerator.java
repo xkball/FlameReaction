@@ -1,6 +1,8 @@
 package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
+import com.xkball.flamereaction.crafting.recipebuilder.FuelRecipeBuilder;
+import com.xkball.flamereaction.crafting.recipebuilder.GlassCraftingRecipeBuilder;
 import com.xkball.flamereaction.crafting.recipebuilder.SingleToFluidRecipeBuilder;
 import com.xkball.flamereaction.crafting.recipebuilder.SingleToItemRecipeBuilder;
 import com.xkball.flamereaction.eventhandler.register.FluidRegister;
@@ -14,14 +16,18 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.system.CallbackI;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -57,5 +63,18 @@ public class RecipeGenerator extends RecipeProvider {
         }
         new SingleToFluidRecipeBuilder(new FluidStack(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),20), Items.SUGAR_CANE,FlameReaction.BREWING_BARREL,RecipeRegister.SINGLE_TO_FLUID_SERIALIZER.get())
                 .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item_to_fluid/"+ Objects.requireNonNull(Items.SUGAR_CANE.getRegistryName()).getPath()));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.SMITHING_TABLE),FlameReaction.FORGING_TABLE)
+                .unlockedBy(Objects.requireNonNull(FlameReaction.FORGING_TABLE.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(FlameReaction.FORGING_TABLE));
+        new GlassCraftingRecipeBuilder(new ItemStack(FlameReaction.FORGING_TABLE,1),FlameReaction.FLAME_FIRE_BLOCK,RecipeRegister.GLASS_CRAFTING_RECIPE_SERIALIZER.get())
+                .patten(0,0,0,0,0)
+                .patten(1,1,0,1,1)
+                .patten(1,1,0,1,1)
+                .patten(1,1,0,1,1)
+                .patten(1,1,0,1,1)
+                .save(consumer, new ResourceLocation(FlameReaction.MOD_ID,"glass_crafting/test"));
+        
+        new FuelRecipeBuilder(ItemStack.EMPTY,new FluidStack(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),1),10,200,RecipeRegister.FUEL_RECIPE_SERIALIZER.get())
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"fuel/impure_alcohol"));
     }
+    
 }

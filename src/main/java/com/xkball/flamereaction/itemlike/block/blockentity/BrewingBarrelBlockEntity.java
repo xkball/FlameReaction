@@ -2,6 +2,7 @@ package com.xkball.flamereaction.itemlike.block.blockentity;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.capability.fluid.SimpleFluidHandler;
+import com.xkball.flamereaction.capability.item.SimpleItemStackHandler;
 import com.xkball.flamereaction.crafting.ISingleToSingleRecipe;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
@@ -82,18 +83,33 @@ public class BrewingBarrelBlockEntity extends EasyChangedBlockEntity implements 
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return LazyOptional.of(() -> new ItemStackHandler(){
+            return LazyOptional.of(() -> new SimpleItemStackHandler(){
+                @Override
+                public @NotNull ItemStack getStackInSlot(int slot) {
+                    return slot == 0 ? item.get(0) : ItemStack.EMPTY;
+                }
+    
+                @Override
+                public void setStackInSlot(int slot, ItemStack stack) {
+                    if(slot==0) item.set(0,stack);
+                }
+    
                 @Override
                 protected void onContentsChanged(int slot) {
-                    if(slot == 0) item = stacks;
+                    dirty();
                 }
             }).cast();
         }
         if(cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
             return LazyOptional.of(()-> new SimpleFluidHandler(CAPACITY){
                 @Override
+                public @NotNull FluidStack getFluidInTank(int tank) {
+                    return fluids.get(0);
+                }
+    
+                @Override
                 public void onChanged() {
-                    fluids.set(0,fluid);
+                    dirty();
                 }
             }).cast();
         }
