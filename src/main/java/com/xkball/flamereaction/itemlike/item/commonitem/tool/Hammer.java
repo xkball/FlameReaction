@@ -5,6 +5,7 @@ import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.item.FRCItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import org.jetbrains.annotations.NotNull;
 
 public class Hammer extends Item implements FRCItem {
     
@@ -19,4 +20,8 @@ public class Hammer extends Item implements FRCItem {
         add();
     }
     
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "锤子";
+    }
 }

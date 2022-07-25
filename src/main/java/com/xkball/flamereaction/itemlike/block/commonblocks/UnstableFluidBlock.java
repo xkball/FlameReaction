@@ -39,7 +39,12 @@ public class UnstableFluidBlock extends LiquidBlock implements FRCBlock {
     public void tick(@NotNull BlockState blockState, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull Random p_60465_) {
         var fluid = level.getFluidState(pos);
         if(fluid.isSource()){
- //           level.setBlock(pos,FlameReaction.IMPURE_ALCOHOL_FLUID_BLOCK.defaultBlockState().setValue(LiquidBlock.LEVEL,14), Block.UPDATE_ALL);
+            level.setBlock(pos,FlameReaction.IMPURE_ALCOHOL_FLUID_BLOCK.defaultBlockState().setValue(LiquidBlock.LEVEL,14), Block.UPDATE_ALL);
         }
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "不稳定的流体方块";
     }
 }

@@ -10,7 +10,6 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -79,12 +78,17 @@ public class Wrench extends Item implements FRCItem {
             var player = context.getPlayer();
             if(block.getBlock() instanceof FRCInfo f && player != null){
                 for(String s : f.getInfo((ServerLevel) level,pos)){
-                    var c = new TextComponent(s);
+                    var c = Component.nullToEmpty(s);
                     ((ServerPlayer)player).sendMessage(c, ChatType.CHAT, Util.NIL_UUID);
                 }
                 
             }
         }
         return InteractionResult.SUCCESS;
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "扳手";
     }
 }

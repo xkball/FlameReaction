@@ -4,6 +4,7 @@ import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.crafting.GlassCraftingRecipe;
 import com.xkball.flamereaction.crafting.util.IntListContainer;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
+import com.xkball.flamereaction.util.LevelUtil;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.nbt.IntArrayTag;
@@ -46,25 +47,10 @@ public class GlassCraftingMessage {
                 LOGGER.info("get"+ Arrays.toString(message.recipe));
                 
                 if(player != null && player.isAlive() && player.getMainHandItem().is(FlameReaction.PLIERS)){
-                    var level = player.getLevel();
                     var item = player.getMainHandItem();
-                    var recipe = level.getRecipeManager().getAllRecipesFor(RecipeRegister.GLASS_CRAFTING_TYPE.get());
-                    for(GlassCraftingRecipe recipe1:recipe){
-                        if(recipe1.matches(new IntListContainer() {
-                            @Override
-                            public IntList getIntList() {
-                                return IntArrayList.wrap(message.recipe);
-                            }
-    
-                            @Override
-                            public Block getTarget() {
-                                return FlameReaction.FLAME_FIRE_BLOCK;
-                            }
-                        },level)){
-                            LOGGER.info("adknaoiejfcaiowngciahnecl vaskuec hao");
-                        }
-                    }
-                    item.addTagElement("hasGlass", IntTag.valueOf(1));
+                    
+                    //一为有物品
+                    LevelUtil.addBooleanTagToItem(item,"has_item",true);
                     item.addTagElement("list",new IntArrayTag(message.recipe));
                 }
             });

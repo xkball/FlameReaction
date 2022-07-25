@@ -8,9 +8,11 @@ import com.xkball.flamereaction.crafting.recipebuilder.SingleToItemRecipeBuilder
 import com.xkball.flamereaction.eventhandler.register.FluidRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlock;
+import com.xkball.flamereaction.itemlike.block.materialblock.MetalScaffoldingBlock;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialIngot;
 import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.util.ItemList;
+import jdk.jfr.MetadataDefinition;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -75,6 +77,19 @@ public class RecipeGenerator extends RecipeProvider {
         
         new FuelRecipeBuilder(ItemStack.EMPTY,new FluidStack(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),1),10,200,RecipeRegister.FUEL_RECIPE_SERIALIZER.get())
                 .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"fuel/impure_alcohol"));
+    
+        
+        var ironStick = ItemList.item_instance.get("iron_stick");
+        ShapedRecipeBuilder.shaped(BlockList.block_instance.get(MetalScaffoldingBlock.NAME))
+                .pattern("iei")
+                .pattern("eie")
+                .pattern("iei")
+                .define('i',ironStick)
+                .define('e',Ingredient.EMPTY)
+                .unlockedBy(MetalScaffoldingBlock.NAME, InventoryChangeTrigger.TriggerInstance.hasItems(ironStick))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"block/"+MetalScaffoldingBlock.NAME));
+        
+    
     }
     
 }

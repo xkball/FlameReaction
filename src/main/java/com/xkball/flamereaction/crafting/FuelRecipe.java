@@ -2,6 +2,7 @@ package com.xkball.flamereaction.crafting;
 
 import com.google.gson.JsonObject;
 import com.xkball.flamereaction.FlameReaction;
+import com.xkball.flamereaction.crafting.util.FuelContainer;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.util.JsonUtil;
 import net.minecraft.network.FriendlyByteBuf;
@@ -22,6 +23,14 @@ public class FuelRecipe implements Recipe<Container> {
     
     public static final String ID = "fuel_recipe";
     
+    public ItemStack getItemFuel() {
+        return itemFuel;
+    }
+    
+    public FluidStack getFluidFuel() {
+        return fluidFuel;
+    }
+    
     private final ItemStack itemFuel;
     private final FluidStack fluidFuel;
     private final int time;
@@ -38,7 +47,25 @@ public class FuelRecipe implements Recipe<Container> {
     
     
     @Override
-    public boolean matches(@NotNull Container p_44002_, @NotNull Level p_44003_) {
+    public boolean matches(@NotNull Container container, @NotNull Level p_44003_) {
+        if(container instanceof FuelContainer fuelContainer){
+            var item = fuelContainer.getItem();
+            var fluid = fuelContainer.getFluid();
+            if(fluidFuel.isEmpty()
+                    && !itemFuel.isEmpty()
+                    && item.sameItem(itemFuel)
+                    && item.getCount()>itemFuel.getCount()
+                    ) return true;
+            else if(!fluidFuel.isEmpty()
+                        && itemFuel.isEmpty()
+                    && fluid.containsFluid(fluidFuel)) return true;
+            else return !fluidFuel.isEmpty()
+                        && !itemFuel.isEmpty()
+                        &&fluid.containsFluid(fluidFuel)
+                        && item.sameItem(itemFuel)
+                        && item.getCount()>itemFuel.getCount();
+                
+        }
         return false;
     }
     

@@ -2,6 +2,7 @@ package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.item.ColoredFlammableItem;
+import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.Hammer;
@@ -65,6 +66,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         generatedItem("impure_alcohol_bucket");
         handheldItem(Pliers.NAME);
         handheldItem(Wrench.NAME);
+        generatedStampItem(CommonItem.WROUGHT_IRON_INGOT,"ingot");
+        generatedStampItem(CommonItem.WROUGHT_IRON_NUGGET,"nugget");
     }
     
     public ItemModelBuilder generatedItem(String name) {

@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -56,5 +57,10 @@ public class ExhibitBlockKey extends Item implements FRCItem {
             }
         }
         return super.useOn(useOnContext);
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "展览方块钥匙";
     }
 }

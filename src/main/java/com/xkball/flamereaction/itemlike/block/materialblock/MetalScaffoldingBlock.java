@@ -2,9 +2,11 @@ package com.xkball.flamereaction.itemlike.block.materialblock;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
+import com.xkball.flamereaction.itemlike.item.commonitem.tool.Wrench;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.itemlike.itemblock.MetalScaffoldingBlockItem;
 import com.xkball.flamereaction.part.material.IMaterial;
+import com.xkball.flamereaction.util.translateutil.ChineseTranslatable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -36,9 +38,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class MetalScaffoldingBlock extends MaterialBlock implements SimpleWaterloggedBlock {
+public class MetalScaffoldingBlock extends MaterialBlock implements SimpleWaterloggedBlock, ChineseTranslatable {
     
    // private static final Logger LOGGER = LogUtils.getLogger();
+    public static final String NAME = "iron_scaffolding_block";
     
     private static final VoxelShape BUTTON_SHAPE;
     private static final VoxelShape UNBUTTON_SHAPE;
@@ -128,7 +131,9 @@ public class MetalScaffoldingBlock extends MaterialBlock implements SimpleWaterl
    @Override
    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
        if(!level.isClientSide){
-           addNeighborDistance(1,level,pos);
+           if(player.getUseItem().getItem() instanceof Wrench){
+               addNeighborDistance(1,level,pos);
+           }
        }
        return super.onDestroyedByPlayer(state,level,pos,player,willHarvest,fluid);
    }
@@ -307,5 +312,10 @@ public class MetalScaffoldingBlock extends MaterialBlock implements SimpleWaterl
         } else {
             return Shapes.block();
         }
+    }
+    
+    @Override
+    public @Nonnull String getChineseTranslate() {
+        return "铁脚手架";
     }
 }

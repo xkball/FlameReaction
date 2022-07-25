@@ -6,6 +6,7 @@ import com.xkball.flamereaction.itemlike.block.FRCBlock;
 import com.xkball.flamereaction.itemlike.block.FRCInfo;
 import com.xkball.flamereaction.itemlike.block.blockentity.DippingBlockEntity;
 import com.xkball.flamereaction.util.ItemList;
+import com.xkball.flamereaction.util.LevelUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -70,17 +71,25 @@ public class DippingBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
     @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult result) {
+        if(!level.isClientSide){
+            if(LevelUtil.ioWithBlock((ServerLevel) level,pos,player,player.getItemInHand(hand),null)){
+                if(level.getBlockEntity(pos) instanceof DippingBlockEntity dp){
+                    dp.dirty();
+                }
+            }
+        }
         
-        //放液体
-        //放物品
-        //取物品
-        
-        return super.use(blockState, level, pos, player, hand, result);
+        return InteractionResult.SUCCESS;
     }
     
     @Override
     public @NotNull List<String> getInfo(ServerLevel level, BlockPos pos) {
         var entity = level.getBlockEntity(pos);
         return List.of(NAME);
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "浸洗盆";
     }
 }

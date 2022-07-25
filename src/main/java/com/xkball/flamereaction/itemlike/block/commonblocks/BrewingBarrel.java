@@ -84,7 +84,7 @@ public class BrewingBarrel extends BaseEntityBlock implements FRCBlock {
             if(blockEntity instanceof Container container){
                 if(!FluidUtil.interactWithFluidHandler(player,hand,level,pos,null)){
                     //装桶
-                    LevelUtil.fillBucket((ServerLevel) level,pos,player,player.getMainHandItem());
+                    LevelUtil.fillBucket((ServerLevel) level,pos,player,player.getMainHandItem(),null);
                     //放物品
                     LevelUtil.containerInput((ServerLevel) level,pos,container,player.getOffhandItem(),player.getMainHandItem(), (i)->list.contains(i.getItem()));
                 }
@@ -94,4 +94,8 @@ public class BrewingBarrel extends BaseEntityBlock implements FRCBlock {
     }
     
     
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "酿造桶";
+    }
 }

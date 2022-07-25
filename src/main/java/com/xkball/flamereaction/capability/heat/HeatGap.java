@@ -18,11 +18,12 @@ public class HeatGap {
         return g + heat.getHeatBuf();
     }
     
+    
     public static int standardLinearGap(int i){
         return (i-300)*20;
     }
     
-    public static int standardLinearGao(Heat heat){
+    public static int standardLinearGap(Heat heat){
         return standardLinearGap(heat.getDegree());
     }
 }

@@ -1,11 +1,15 @@
 package com.xkball.flamereaction;
 
 import com.mojang.logging.LogUtils;
+import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.FluidRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.block.blocktags.BlockTags;
 import com.xkball.flamereaction.itemlike.block.commonblocks.*;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
+import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.Hammer;
@@ -96,6 +100,9 @@ public class FlameReaction
     public static Pliers PLIERS;
     public static DippingBlock DIPPINGBLOCK;
     public static AlcoholLamp ALCOHOL_LAMP;
+    public static CommonItem WROUGHT_IRON_INGOT;
+    public static CommonItem WROUGHT_IRON_NUGGET;
+    public static SolidFuelBurningBox SOLID_FUEL_BURNING_BOX;
     
     public static void init(){
         BasicMaterial.loadList();
@@ -131,7 +138,9 @@ public class FlameReaction
             PLIERS = new Pliers();
             DIPPINGBLOCK = new DippingBlock();
             ALCOHOL_LAMP = new AlcoholLamp();
-           
+            WROUGHT_IRON_INGOT = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_INGOT,"锻铁锭");
+            WROUGHT_IRON_INGOT = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_NUGGET,"锻铁粒");
+            SOLID_FUEL_BURNING_BOX = new SolidFuelBurningBox();
             
             for(DyeColor dyeColor : DyeColor.values()){
                 new FlameDyeItem(dyeColor.getName(), dyeColor);

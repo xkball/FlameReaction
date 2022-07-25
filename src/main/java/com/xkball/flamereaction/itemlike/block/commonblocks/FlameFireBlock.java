@@ -29,8 +29,6 @@ import java.util.Random;
 
 public class FlameFireBlock extends BaseFireBlock implements FRCBlock {
     
-    
-    
     public static final String NAME = "flame_fire_block";
     
     public static final BooleanProperty IS_OBVIOUS_COLORED = BooleanProperty.create("is_obvious_colored");
@@ -102,4 +100,8 @@ public class FlameFireBlock extends BaseFireBlock implements FRCBlock {
         return InteractionResult.SUCCESS;
     }
     
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "焰色火焰方块";
+    }
 }

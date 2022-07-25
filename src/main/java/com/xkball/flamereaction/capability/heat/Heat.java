@@ -18,6 +18,18 @@ public class Heat {
         return new Heat(STANDARD_TEMPERATURE,0);
     }
     
+    public  void up(){
+        this.degree = degree+1;
+        this.heatBuf = 0;
+    }
+    
+    public void down(int buf){
+        if(degree>0) {
+            this.degree = degree - 1;
+            this.heatBuf = buf;
+        }
+    }
+    
     public static Heat upToTemp(Heat heat, int temp){
         heat.setDegree(temp);
         return heat;

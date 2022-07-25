@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -45,5 +46,10 @@ public class UniversalSaddle extends Item implements FRCItem {
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if(entity instanceof LivingEntity || entity instanceof AbstractMinecart) player.startRiding(entity,true);
         return true;
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "万用鞍";
     }
 }

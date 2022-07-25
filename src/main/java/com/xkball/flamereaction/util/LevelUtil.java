@@ -7,31 +7,39 @@ import net.minecraft.core.PositionImpl;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.EmptyFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.EmptyHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 
 public class LevelUtil {
     
-    public static void addParticles(Level level, BlockPos pos, ParticleOptions particle){
+    public static void addParticles(Level level, BlockPos pos, ParticleOptions particle,int times){
         var random = new Random();
-        for(int i=0;i<15;i++){
+        for(int i=0;i<times;i++){
             var p1 = pos.getX()+0.5D+MathUtil.randomDoubleToPosOrNeg( random.nextDouble()*0.7);
             var p2 = pos.getY()-0.4D+MathUtil.randomDoubleToPosOrNeg(random.nextDouble()+0.2);
             var p3 = pos.getZ()+0.5D+MathUtil.randomDoubleToPosOrNeg(random.nextDouble()*0.7);
@@ -40,10 +48,22 @@ public class LevelUtil {
         
     }
     
+    public static void addParticles(Level level, BlockPos pos, ParticleOptions particle){
+        addParticles(level,pos,particle,15);
+    }
+    
     public static ItemStack itemHandlerInput(@Nonnull ItemStack in, IItemHandler iItemHandler){
-        for(int i=0;i<iItemHandler.getSlots();i++){
-            if(iItemHandler.isItemValid(i,in)) in = iItemHandler.insertItem(i,in,false);
-            if(in.isEmpty()) return ItemStack.EMPTY;
+        if(!(iItemHandler instanceof EmptyHandler)) {
+            for (int i = 0; i < iItemHandler.getSlots(); i++) {
+                
+                if (iItemHandler.isItemValid(i, in)){
+                    var s = iItemHandler.insertItem(i, in, true);
+                    if(!s.isEmpty()){
+                        in = iItemHandler.insertItem(i,in,false);
+                    }
+                }
+                if (in.isEmpty()) return ItemStack.EMPTY;
+            }
         }
         return in;
     }
@@ -119,7 +139,7 @@ public class LevelUtil {
         for(int i = 0; i < listtag.size(); ++i) {
             CompoundTag compoundtag = listtag.getCompound(i);
             int j = compoundtag.getByte("Slot") & 255;
-            if (j >= 0 && j < fluidStacks.size()) {
+            if (j < fluidStacks.size()) {
                 fluidStacks.set(j, FluidStack.loadFluidStackFromNBT(compoundtag));
             }
         }
@@ -134,12 +154,102 @@ public class LevelUtil {
         return fluidStack;
     }
     
+    //startPos
+    //true就顺向遍历获得物品
+    public static boolean fillHand(ServerLevel level,BlockPos pos,Player player,ItemStack item,Direction side,boolean startPos){
+        if(item.isEmpty()){
+            var entity = level.getBlockEntity(pos);
+            if (entity != null) {
+                var cap = entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,side).orElse(EmptyHandler.INSTANCE);
+                if(!(cap instanceof EmptyHandler)) {
+                    var c = cap.getSlots();
+                    for (int i = 0; i < c; i++) {
+                        var s = startPos?i:c-i-1;
+                        var ch = cap.insertItem(s,item,true);
+                        if(!ch.isEmpty()) {
+                            if(!player.getInventory().add(ch)){
+                                player.drop(ch,false);
+                            }
+                            return true;
+                        }
+                    }
+                }
+            }
     
-    public static void fillBucket(ServerLevel level, BlockPos pos, Player player, ItemStack bucket){
+        }
+        return false;
+    }
+    
+    //与一个可以装物品与流体的方块交互
+    public static boolean ioWithBlock(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
+        var entity = level.getBlockEntity(pos);
+        //取出流体
+        if(emptyTank(level,pos,player,item,side)) return true;
+        //取出物品
+        if(fillHand(level,pos,player,item,side,false)) return true;
+        
+        if(fillTank(level,pos,player,item,side)) return true;
+    
+        return entity != null && itemHandlerInput(item, entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side).orElse(EmptyHandler.INSTANCE)).isEmpty();
+    
+    }
+    
+    //布尔为操作结果，true为成功
+    //把手上液体给罐子
+    public static boolean fillTank(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
+        
+        var b1 = FluidUtil.interactWithFluidHandler(player,player.getUsedItemHand(),level,pos,side);
+        if(!b1) {
+            //输出桶
+            //暂不支持手持储罐，只有桶
+            return LevelUtil.emptyBucket(level,pos,player,item,side);
+        }
+        return true;
+    }
+    
+    public static boolean emptyTank(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
+        
+        var b1 = FluidUtil.interactWithFluidHandler(player,player.getUsedItemHand(),level,pos,side);
+        if(!b1){
+                return LevelUtil.fillBucket(level, pos, player, item, side);
+        }
+        return true;
+    }
+    
+    public static boolean emptyBucket(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
+        if(item.getItem() instanceof BucketItem bucket){
+            var blockEntity = level.getBlockEntity(pos);
+            if(blockEntity != null){
+                AtomicBoolean flag = new AtomicBoolean(false);
+                var cap = blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY,side);
+                cap.ifPresent((iFluidHandler -> {
+                    var fluid = new FluidStack(bucket.getFluid(),1000);
+                    int c = iFluidHandler.getTanks();{
+                        for(int i=0;i<c;i++){
+                            if(iFluidHandler.isFluidValid(i,fluid)){
+                                var s = iFluidHandler.fill(fluid, IFluidHandler.FluidAction.SIMULATE);
+                                if(s == 1000){
+                                    flag.set(true);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }));
+                if(flag.get()){
+                    item = new ItemStack(Items.BUCKET,1);
+                }
+                return flag.get();
+            }
+        }
+        return false;
+    }
+    
+    public static boolean fillBucket(ServerLevel level, BlockPos pos, Player player, ItemStack bucket,@Nullable Direction side){
         if(bucket.is(Items.BUCKET)){
             var blockEntity = level.getBlockEntity(pos);
             if(blockEntity != null) {
-                var cap = blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(EmptyFluidHandler.INSTANCE);
+                var cap = blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY,side).orElse(EmptyFluidHandler.INSTANCE);
                 if(!(cap instanceof EmptyFluidHandler)){
                     var stimulate = cap.drain(1000, IFluidHandler.FluidAction.SIMULATE);
                     if(stimulate.getAmount() == 1000){
@@ -151,9 +261,22 @@ public class LevelUtil {
                         if(!player.getInventory().add(resultItem)){
                             player.drop(resultItem,false);
                         }
+                        return true;
                     }
                 }
             }
         }
+        return false;
+    }
+    
+    public static boolean hasBoolean(ItemStack itemStack,String s){
+        if (itemStack.getTag() != null) {
+            return itemStack.getTag().getInt(s) == 1;
+        }
+        return false;
+    }
+    
+    public static void addBooleanTagToItem(ItemStack itemStack,String tagName,boolean b){
+        itemStack.addTagElement(tagName, IntTag.valueOf(b?1:0));
     }
 }

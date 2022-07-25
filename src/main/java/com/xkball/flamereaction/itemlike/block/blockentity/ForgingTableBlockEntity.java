@@ -62,7 +62,7 @@ public class ForgingTableBlockEntity extends EasyChangedBlockEntity implements I
                 }
     
                 @Override
-                protected void onContentsChanged(int slot) {
+                public void onContentsChanged(int slot) {
                     dirty();
                 }
             }).cast();

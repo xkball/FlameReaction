@@ -3,7 +3,10 @@ package com.xkball.flamereaction.eventhandler.register;
 import com.mojang.datafixers.DSL;
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.block.blockentity.*;
+import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AlcoholLampBlockEntity;
+import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.SolidFuelBurningBoxBlockEntity;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.util.BlockList;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -40,6 +43,11 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<DippingBlockEntity>> DIPPING_BLOCK_ENTITY=
             BLOCK_ENTITY_TYPES.register(DippingBlockEntity.NAME,
                     () -> BlockEntityType.Builder.of(DippingBlockEntity::new, FlameReaction.DIPPINGBLOCK)
+                            .build(DSL.remainderType()));
+    
+    public static final RegistryObject<BlockEntityType<SolidFuelBurningBoxBlockEntity>> SOLID_FUEL_BURNING_BOX_BLOCK_ENTITY=
+            BLOCK_ENTITY_TYPES.register(SolidFuelBurningBox.NAME,
+                    () -> BlockEntityType.Builder.of(SolidFuelBurningBoxBlockEntity::new, FlameReaction.SOLID_FUEL_BURNING_BOX)
                             .build(DSL.remainderType()));
     
 //    public static final RegistryObject<BlockEntityType<FlameFireBlockEntity>> FLAME_FIRE_BLOCK_ENTITY=

@@ -21,7 +21,7 @@ public class DippingBlockBER implements BlockEntityRenderer<DippingBlockEntity> 
         var texture = FluidRenderFromMantle.getBlockSprite(FluidRegister.FLOWING_TEXTURE);
         var color = FluidRegister.IMPURE_ALCOHOL_COLOR.getRGB();
         var from = Vector3f.ZERO.copy();
-        var to = new Vector3f(1.0F,1.0F,3/16F);
-       // FluidRenderFromMantle.renderFluid(poseStack,buffer,texture, Direction.UP,from,to,color,1);
+        var to = new Vector3f(1.0F,3/16F,1.0F);
+        FluidRenderFromMantle.renderFluid(poseStack,buffer,texture, Direction.UP,from,to,color,1);
     }
 }

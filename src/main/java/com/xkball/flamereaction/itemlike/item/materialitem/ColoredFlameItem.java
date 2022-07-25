@@ -22,6 +22,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -103,6 +104,11 @@ public class ColoredFlameItem extends Item implements ColoredFlammableItem, FRCI
     @Override
     public Color getFlamedColor() {
         return material.getColor();
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "化合物:"+material.getSymbol();
     }
 }
 

@@ -2,13 +2,16 @@ package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialItem;
+import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
+import com.xkball.flamereaction.util.translateutil.ChineseTranslatable;
 import com.xkball.flamereaction.util.translateutil.MaterialChineseTranslate;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.common.Mod;
 
@@ -41,6 +44,11 @@ public class LanguageGenerator extends LanguageProvider {
                                 MaterialChineseTranslate.CHINESE_MAP.get((mi.getMaterial()))+mi.getMaterialKind().getChinese()
                 );
             }
+            
+            else if(item instanceof ChineseTranslatable c){
+                this.add(item,c.getChineseTranslate());
+            }
+            
             else {
                 this.add(item,
                         switch (this.locale){
@@ -51,6 +59,11 @@ public class LanguageGenerator extends LanguageProvider {
                 );
             }
             
+        }
+        for(Block block: BlockList.block_instance.values()){
+            if(block instanceof ChineseTranslatable c){
+                this.add(block,c.getChineseTranslate());
+            }
         }
         addItemGroups();
         addTranslatableComponent();

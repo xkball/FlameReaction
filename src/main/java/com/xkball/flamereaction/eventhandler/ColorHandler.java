@@ -2,6 +2,7 @@ package com.xkball.flamereaction.eventhandler;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.block.commonblocks.FlameFireBlock;
+import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.materialitem.ColoredFlameItem;
 import com.xkball.flamereaction.part.material.FlammableChemicalMaterials;
@@ -18,6 +19,9 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.awt.*;
+import java.util.Objects;
+
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ColorHandler {
     
@@ -28,6 +32,11 @@ public class ColorHandler {
             colorItemBlock(item,event);
             colorChemicalItem(item,event);
             colorFlameDyeItem(item,event);
+            if (item != null && (item == FlameReaction.WROUGHT_IRON_INGOT || item == FlameReaction.WROUGHT_IRON_NUGGET)) {
+                event.getItemColors().register((itemStack,iTintIndex) ->
+                    new Color(169,152,152).getRGB()
+                ,item);
+            }
         }
     }
     

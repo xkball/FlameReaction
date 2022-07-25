@@ -116,5 +116,5 @@ public abstract class SimpleItemStackHandler implements IItemHandler {
         return true;
     }
     
-    protected void onContentsChanged(int slot) {}
+    public void onContentsChanged(int slot) {}
 }

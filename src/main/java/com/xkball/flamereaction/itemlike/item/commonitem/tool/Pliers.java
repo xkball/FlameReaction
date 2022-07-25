@@ -64,4 +64,9 @@ public class Pliers extends Item implements FRCItem {
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         return state.is(BlockTags.MINEABLE_PLIERS);
     }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "钳子";
+    }
 }

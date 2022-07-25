@@ -2,7 +2,7 @@ package com.xkball.flamereaction.eventhandler;
 
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemlike.block.commonblocks.AlcoholLamp;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
 import com.xkball.flamereaction.util.MathUtil;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;

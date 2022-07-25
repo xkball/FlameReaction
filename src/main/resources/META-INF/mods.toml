@@ -29,9 +29,9 @@ displayName="Flame Reaction" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="flamereaction.png" #optional
 # A text field displayed in the mod UI
-credits="Thanks for this example mod goes to Java" #optional
+credits="oh yes" #optional
 # A text field displayed in the mod UI
-authors="Love, Cheese and small house plants" #optional
+authors="xkball" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 

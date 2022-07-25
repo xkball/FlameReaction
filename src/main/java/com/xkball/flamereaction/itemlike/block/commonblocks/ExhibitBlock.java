@@ -7,6 +7,7 @@ import com.xkball.flamereaction.itemlike.block.FRCBlock;
 import com.xkball.flamereaction.itemlike.block.FRCInfo;
 import com.xkball.flamereaction.itemlike.block.blockentity.ExhibitBlockEntity;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
+import com.xkball.flamereaction.itemlike.item.commonitem.tool.Wrench;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.Util;
@@ -138,6 +139,7 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
                     
                 }
                 if(blockState.getValue(IS_LOCKED)){
+                    if(item_input.getItem() instanceof Wrench) return InteractionResult.PASS;
                     var s = block_entity.getIntroduction();
                     if(s != null) ((ServerPlayer)player).sendMessage(Component.nullToEmpty(s), ChatType.CHAT, Util.NIL_UUID);
                     return InteractionResult.SUCCESS;
@@ -200,5 +202,10 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
         }
         
         return List.of(NAME);
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "展示方块";
     }
 }

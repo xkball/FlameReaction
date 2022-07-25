@@ -171,4 +171,9 @@ public class ForgingTable extends BaseEntityBlock implements FRCBlock, FRCInfo {
         }
         return List.of(NAME);
     }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return "锻造桌";
+    }
 }
