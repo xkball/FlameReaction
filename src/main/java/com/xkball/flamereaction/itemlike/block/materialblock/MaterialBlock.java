@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Block;
 
 public abstract class MaterialBlock extends Block implements FRCBlock {
     
-    private final IMaterial material;
+    protected final IMaterial material;
     public MaterialBlock(Block.Properties p_41383_, IMaterial material) {
         super(p_41383_);
         this.material = material;

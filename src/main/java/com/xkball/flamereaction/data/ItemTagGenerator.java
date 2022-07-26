@@ -24,6 +24,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
             addMaterialTag(item);
         }
         this.tag(ItemTags.HAMMER).add(list.get(Hammer.NAME));
+        this.tag(ItemTags.FLAMES).add(FlameReaction.ICON);
     }
     
     private void addMaterialTag(Item item) {

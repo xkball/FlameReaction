@@ -33,7 +33,9 @@ public class BlockTagGenerator extends BlockTagsProvider {
             addDigInPickAxe(block);
         }
         this.tag(com.xkball.flamereaction.itemlike.block.blocktags.BlockTags.SCAFFOLDING).add(scaffolding);
-        this.tag(com.xkball.flamereaction.itemlike.block.blocktags.BlockTags.MINEABLE_WRENCH).add(scaffolding);
+        this.tag(com.xkball.flamereaction.itemlike.block.blocktags.BlockTags.MINEABLE_WRENCH).add(scaffolding)
+                .add(FlameReaction.FLUID_FUEL_BURNING_BOX)
+                .add(FlameReaction.SOLID_FUEL_BURNING_BOX);
         
     }
     

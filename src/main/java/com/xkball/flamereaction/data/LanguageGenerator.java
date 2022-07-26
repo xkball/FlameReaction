@@ -65,6 +65,16 @@ public class LanguageGenerator extends LanguageProvider {
                 this.add(block,c.getChineseTranslate());
             }
         }
+        this.add("item.nocaet.flame_fire",switch (this.locale){
+            default -> throw new IllegalStateException("Unexpected value: " + this.locale);
+            case EN_US -> "flame_fire";
+            case ZH_CN -> "彩色的焰火";
+        });
+        this.add("item.nocaet.flame_fire.tooltip",switch (this.locale){
+            default -> throw new IllegalStateException("Unexpected value: " + this.locale);
+            case EN_US -> "what reaction brought us the flamboyant fireworks!?";
+            case ZH_CN -> "是什么反应给我们带来了绚丽的焰火!?";
+        });
         addItemGroups();
         addTranslatableComponent();
     }

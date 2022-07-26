@@ -8,6 +8,7 @@ import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.block.blocktags.BlockTags;
 import com.xkball.flamereaction.itemlike.block.commonblocks.*;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.FluidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
@@ -103,6 +104,8 @@ public class FlameReaction
     public static CommonItem WROUGHT_IRON_INGOT;
     public static CommonItem WROUGHT_IRON_NUGGET;
     public static SolidFuelBurningBox SOLID_FUEL_BURNING_BOX;
+    public static FluidFuelBurningBox FLUID_FUEL_BURNING_BOX;
+    public static CommonItem ICON;
     
     public static void init(){
         BasicMaterial.loadList();
@@ -141,6 +144,8 @@ public class FlameReaction
             WROUGHT_IRON_INGOT = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_INGOT,"锻铁锭");
             WROUGHT_IRON_INGOT = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_NUGGET,"锻铁粒");
             SOLID_FUEL_BURNING_BOX = new SolidFuelBurningBox();
+            FLUID_FUEL_BURNING_BOX = new FluidFuelBurningBox();
+            ICON = new CommonItem(CreativeModeTabs.FLAME_REACTION_GROUP,CommonItem.ICON,"焰火");
             
             for(DyeColor dyeColor : DyeColor.values()){
                 new FlameDyeItem(dyeColor.getName(), dyeColor);

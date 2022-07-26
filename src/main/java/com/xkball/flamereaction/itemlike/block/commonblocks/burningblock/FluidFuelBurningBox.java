@@ -5,8 +5,7 @@ import com.xkball.flamereaction.crafting.FuelRecipe;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
-import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AbstractBurningBlockEntity;
-import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.SolidFuelBurningBoxBlockEntity;
+import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.FluidFuelBurningBoxBlockEntity;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.LevelUtil;
 import net.minecraft.core.BlockPos;
@@ -33,6 +32,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,14 +40,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class SolidFuelBurningBox extends AbstractBurningBlock{
+public class FluidFuelBurningBox extends AbstractBurningBlock{
     
-    public static final String NAME = "solid_fuel_burning_box";
+    public static final String NAME = "fluid_fuel_burning_box";
     
     
     public static final DirectionProperty FACING = DirectionProperty.create("facing", List.of(Direction.EAST,Direction.SOUTH,Direction.WEST,Direction.NORTH));
     
-    public SolidFuelBurningBox() {
+    public FluidFuelBurningBox() {
         super(NAME, BlockBehaviour.Properties
                 .of(Material.STONE)
                 .strength(2f,8f)
@@ -91,15 +91,15 @@ public class SolidFuelBurningBox extends AbstractBurningBlock{
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
-        return level.isClientSide() ? null:createTickerHelper(blockEntityType, BlockEntityRegister.SOLID_FUEL_BURNING_BOX_BLOCK_ENTITY.get(),SolidFuelBurningBoxBlockEntity::serverTick);
+        return level.isClientSide() ? null:createTickerHelper(blockEntityType, BlockEntityRegister.FlUID_FUEL_BURNING_BOX_BLOCK_ENTITY.get(), FluidFuelBurningBoxBlockEntity::serverTick);
     }
     
     @Override
     public @NotNull List<String> getInfo(ServerLevel level, BlockPos pos) {
         var entity = level.getBlockEntity(pos);
-        if(entity instanceof SolidFuelBurningBoxBlockEntity solidFuelBurningBoxBlockEntity){
-            var fuel = solidFuelBurningBoxBlockEntity.getItems().toString();
-            var max = solidFuelBurningBoxBlockEntity.getMaxHeatProduce();
+        if(entity instanceof FluidFuelBurningBoxBlockEntity blockEntity){
+            var fuel = blockEntity.getFluid().toString();
+            var max = blockEntity.getMaxHeatProduce();
             return List.of(NAME,
                     "燃料: "+fuel,
                     "最大产热: "+max);
@@ -110,13 +110,13 @@ public class SolidFuelBurningBox extends AbstractBurningBlock{
     
     @Override
     public @NotNull String getChineseTranslate() {
-        return "固体燃烧室";
+        return "液体燃烧室";
     }
     
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
-        return new SolidFuelBurningBoxBlockEntity(blockPos,blockState);
+        return new FluidFuelBurningBoxBlockEntity(blockPos,blockState);
     }
     
     
@@ -132,14 +132,14 @@ public class SolidFuelBurningBox extends AbstractBurningBlock{
     @Override
     @SuppressWarnings("deprecation")
     public void neighborChanged(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block block, @NotNull BlockPos pos1, boolean b) {
-        var face = blockState.getValue(SolidFuelBurningBox.FACING);
+        var face = blockState.getValue(FluidFuelBurningBox.FACING);
         if(!level.isClientSide&&
-                blockState.is(FlameReaction.SOLID_FUEL_BURNING_BOX)&&
+                blockState.is(FlameReaction.FLUID_FUEL_BURNING_BOX)&&
                 pos.relative(face).equals(pos1)
         ){
-           var entity = level.getBlockEntity(pos);
-            if(entity instanceof SolidFuelBurningBoxBlockEntity entity1
-                && level.getBlockState(pos1).isFaceSturdy(level,pos1,face.getOpposite())){
+            var entity = level.getBlockEntity(pos);
+            if(entity instanceof FluidFuelBurningBoxBlockEntity entity1
+                    && level.getBlockState(pos1).isFaceSturdy(level,pos1,face.getOpposite())){
                 var i = entity1.getTimeLast();
                 if (!level.isClientSide()) {
                     level.scheduleTick(pos, this, i);
@@ -154,22 +154,23 @@ public class SolidFuelBurningBox extends AbstractBurningBlock{
     @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult blockHitResult) {
-        if(!level.isClientSide && state.is(FlameReaction.SOLID_FUEL_BURNING_BOX)){
+        if(!level.isClientSide && state.is(FlameReaction.FLUID_FUEL_BURNING_BOX)){
             var item = player.getItemInHand(hand);
             //点火
             if(item.is(Items.FLINT_AND_STEEL) ){
                 item.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(hand));
                 level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
-                level.setBlock(pos, state.setValue(SolidFuelBurningBox.FIRED, true), 11);
+                level.setBlock(pos, state.setValue(FluidFuelBurningBox.FIRED, true), 11);
                 level.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
             }
             //塞东西
             else {
-                if( blockHitResult.getDirection() == state.getValue(SolidFuelBurningBox.FACING)){
+                if( blockHitResult.getDirection() == state.getValue(FluidFuelBurningBox.FACING)
+                && item.getItem() instanceof BucketItem bucketItem){
                     var recipe = level.getRecipeManager().getAllRecipesFor(RecipeRegister.FUEL_RECIPE_TYPE.get());
-                    var list = recipe.stream().filter(Objects::nonNull).map(FuelRecipe::getItemFuel).map(ItemStack::getItem).toList();
-                    if(list.contains(item.getItem())){
-                        LevelUtil.ioWithBlock((ServerLevel) level,pos,player,item,state.getValue(SolidFuelBurningBox.FACING));
+                    var list = recipe.stream().filter(Objects::nonNull).map(FuelRecipe::getFluidFuel).map(FluidStack::getFluid).toList();
+                    if(list.contains(bucketItem.getFluid())){
+                        LevelUtil.ioWithBlock((ServerLevel) level,pos,player,item,state.getValue(FluidFuelBurningBox.FACING));
                     }
                 }
             }

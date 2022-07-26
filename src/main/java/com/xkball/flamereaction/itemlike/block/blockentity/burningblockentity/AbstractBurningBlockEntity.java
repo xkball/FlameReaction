@@ -40,6 +40,7 @@ public abstract class AbstractBurningBlockEntity extends EasyChangedBlockEntity 
     }
     
     //若有燃料返回true
+    //没有燃料改变bs
     abstract public boolean updateFuel(BlockState bs);
     
     @Override

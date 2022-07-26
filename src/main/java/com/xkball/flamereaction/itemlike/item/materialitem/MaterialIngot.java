@@ -5,6 +5,7 @@ import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.part.material.IMaterial;
 import com.xkball.flamereaction.util.MaterialType;
 import net.minecraft.world.item.Item;
+import org.jetbrains.annotations.NotNull;
 
 
 public class MaterialIngot extends MaterialItem{
@@ -22,5 +23,10 @@ public class MaterialIngot extends MaterialItem{
     
     public MaterialType getMaterialKind() {
         return MaterialType.INGOT;
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return this.material.getSymbol()+"锭";
     }
 }

@@ -3,7 +3,9 @@ package com.xkball.flamereaction.itemlike.block.commonblocks.burningblock;
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.block.FRCBlock;
 import com.xkball.flamereaction.itemlike.block.FRCInfo;
+import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -17,6 +19,14 @@ import org.jetbrains.annotations.NotNull;
 public abstract class AbstractBurningBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
     
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
+    
+    public static final TranslatableComponent tooltip1 = TranslateUtil.create("tooltip.burning_box",
+            "使用打火石或火柴点燃",
+            "use flint_and_steel to fire");
+    public static final TranslatableComponent tooltip2 = TranslateUtil.create("tooltip.burning_box",
+            "在面前放置固体方块熄灭",
+            "place a stable block before it to melt down"
+    );
     
     protected AbstractBurningBlock(String name,Properties p) {
         super(p);

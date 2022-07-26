@@ -15,7 +15,7 @@ public class BlockTags {
     public static final HashMap<String, TagKey<Block>> blockTagsList = new HashMap<>();
     public static final TagKey<Block> COLORED_FLAMMABLE = tag("flammable");
     public static final TagKey<Block> MINEABLE_PLIERS = tag("mineable/pliers");
-    public static final TagKey<Block> MINEABLE_WRENCH = tag("mineable_wrench");
+    public static final TagKey<Block> MINEABLE_WRENCH = tag("mineable/wrench");
     public static final TagKey<Block> SCAFFOLDING = tag(FlameReaction.MOD_ID,"scaffolding");
     
     

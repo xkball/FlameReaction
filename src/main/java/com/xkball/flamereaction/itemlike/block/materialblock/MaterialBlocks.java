@@ -16,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -52,5 +53,10 @@ public class MaterialBlocks extends MaterialBlock{
     @Override
     public MaterialType getMaterialKind(){
         return MaterialType.BLOCK;
+    }
+    
+    @Override
+    public @NotNull String getChineseTranslate() {
+        return material.getSymbol()+"块";
     }
 }

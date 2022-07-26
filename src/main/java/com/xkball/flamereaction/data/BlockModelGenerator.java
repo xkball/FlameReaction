@@ -4,6 +4,7 @@ import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.block.commonblocks.BrewingBarrel;
 import com.xkball.flamereaction.itemlike.block.commonblocks.DippingBlock;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ForgingTable;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.FluidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
@@ -16,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.lwjgl.system.CallbackI;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -64,7 +66,11 @@ public class BlockModelGenerator extends BlockStateProvider {
             }
             if(block instanceof SolidFuelBurningBox){
                 var model = getBlockModel(SolidFuelBurningBox.NAME);
-                this.horizontalBlock(block,model);
+               // this.horizontalBlock(block,model);
+                this.simpleBlockItem(block,model);
+            }
+            if(block instanceof FluidFuelBurningBox){
+                var model = getBlockModel(FluidFuelBurningBox.NAME);
                 this.simpleBlockItem(block,model);
             }
         }

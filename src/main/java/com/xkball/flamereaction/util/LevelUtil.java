@@ -1,5 +1,6 @@
 package com.xkball.flamereaction.util;
 
+import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AbstractBurningBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -183,15 +184,21 @@ public class LevelUtil {
     //与一个可以装物品与流体的方块交互
     public static boolean ioWithBlock(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
         var entity = level.getBlockEntity(pos);
+        var result = false;
         //取出流体
-        if(emptyTank(level,pos,player,item,side)) return true;
+        if(emptyTank(level,pos,player,item,side)) result = true;
         //取出物品
-        if(fillHand(level,pos,player,item,side,false)) return true;
+        else if(fillHand(level,pos,player,item,side,false)) result = true;
         
-        if(fillTank(level,pos,player,item,side)) return true;
+        else if(fillTank(level,pos,player,item,side)) result = true;
+        
+         result = result || entity != null && itemHandlerInput(item, entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side).orElse(EmptyHandler.INSTANCE)).isEmpty();
     
-        return entity != null && itemHandlerInput(item, entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side).orElse(EmptyHandler.INSTANCE)).isEmpty();
-    
+        if(result && entity instanceof AbstractBurningBlockEntity entity1){
+            entity1.dirty();
+        }
+        
+        return result;
     }
     
     //布尔为操作结果，true为成功
@@ -237,7 +244,11 @@ public class LevelUtil {
                     }
                 }));
                 if(flag.get()){
-                    item = new ItemStack(Items.BUCKET,1);
+                    item.shrink(1);
+                    var resultItem = new ItemStack(Items.BUCKET,1);
+                    if(!player.getInventory().add(resultItem)){
+                        player.drop(resultItem,false);
+                    }
                 }
                 return flag.get();
             }

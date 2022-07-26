@@ -95,7 +95,7 @@ public class BrewingBarrelBlockEntity extends EasyChangedBlockEntity implements 
                 }
     
                 @Override
-                protected void onContentsChanged(int slot) {
+                public void onContentsChanged(int slot) {
                     dirty();
                 }
             }).cast();

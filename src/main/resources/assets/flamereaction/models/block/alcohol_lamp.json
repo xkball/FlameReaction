@@ -759,6 +759,12 @@
 			}
 		}
 	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 46, 0],
+			"scale": [0.7, 0.7, 0.7]
+		}
+	},
 	"groups": [
 		{
 			"name": "buttom",

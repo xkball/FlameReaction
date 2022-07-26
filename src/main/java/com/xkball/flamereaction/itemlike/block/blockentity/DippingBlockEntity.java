@@ -152,8 +152,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
     public @NotNull CompoundTag getUpdateTag() {
         var compoundTag =  super.getUpdateTag();
         ContainerHelper.saveAllItems(compoundTag,items,true);
-        LevelUtil.saveAllFluids(compoundTag,fluid,true);
-        return compoundTag;
+        return LevelUtil.saveAllFluids(compoundTag,fluid,true);
     }
     
     @Override
