@@ -15,6 +15,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,7 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.awt.*;
 import java.util.Objects;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD,value = Dist.CLIENT)
 public class ColorHandler {
     
     @SubscribeEvent
