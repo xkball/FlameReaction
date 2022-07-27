@@ -61,6 +61,7 @@ public class ItemModelGenerator extends ItemModelProvider {
             if(item instanceof Hammer){
                 generatedItem("hammer");
             }
+            generatedItem(CommonItem.ICON);
             
         }
         generatedItem("impure_alcohol_bucket");
