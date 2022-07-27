@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "flamereaction:iron_scaffolding_block",
+    "minecraft:air",
+    "minecraft:air"
+  ]
+}

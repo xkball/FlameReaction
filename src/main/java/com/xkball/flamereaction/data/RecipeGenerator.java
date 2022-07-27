@@ -75,17 +75,17 @@ public class RecipeGenerator extends RecipeProvider {
                 .patten(1,1,0,1,1)
                 .save(consumer, new ResourceLocation(FlameReaction.MOD_ID,"glass_crafting/test"));
         
-        new FuelRecipeBuilder(ItemStack.EMPTY,new FluidStack(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),1),10,200,RecipeRegister.FUEL_RECIPE_SERIALIZER.get())
+        new FuelRecipeBuilder(new ItemStack(FlameReaction.ICON,0),new FluidStack(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),1),10,200,RecipeRegister.FUEL_RECIPE_SERIALIZER.get())
                 .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"fuel/impure_alcohol"));
     
         
         var ironStick = ItemList.item_instance.get("iron_stick");
         ShapedRecipeBuilder.shaped(BlockList.block_instance.get(MetalScaffoldingBlock.NAME))
-                .pattern("iei")
-                .pattern("eie")
-                .pattern("iei")
+                .pattern("i i")
+                .pattern(" i ")
+                .pattern("i i")
                 .define('i',ironStick)
-                .define('e',Ingredient.EMPTY)
+                //.define('e',Ingredient.EMPTY)
                 .unlockedBy(MetalScaffoldingBlock.NAME, InventoryChangeTrigger.TriggerInstance.hasItems(ironStick))
                 .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"block/"+MetalScaffoldingBlock.NAME));
         

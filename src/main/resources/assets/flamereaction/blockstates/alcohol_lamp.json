@@ -1,0 +1,22 @@
+{
+  "multipart":[
+    {
+      "apply": {"model":"flamereaction:block/alcohol_lamp"}
+    },
+
+    {
+      "when": {"fired":"true"},
+      "apply": {"model": "flamereacion:block/alcohol_lamp_fire"}
+    },
+
+    {
+      "when": {"fired": "false"},
+      "apply": {"model": "flamereaction:block/alcohol_lamp_hat"}
+    },
+
+    {
+      "when": {"has_iron_stand": "true"},
+      "apply": {"model": "flamereaction:block/iron_stand"}
+    }
+  ]
+}

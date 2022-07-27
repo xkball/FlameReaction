@@ -1,5 +1,6 @@
 package com.xkball.flamereaction.util;
 
+import com.xkball.flamereaction.capability.heat.Heat;
 import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AbstractBurningBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -146,6 +147,18 @@ public class LevelUtil {
         }
         
     }
+    
+    public static CompoundTag saveHeat(CompoundTag compoundTag, Heat heat){
+        compoundTag.putInt("heat_degree",heat.getDegree());
+        compoundTag.putInt("heat_buf",heat.getHeatBuf());
+        return compoundTag;
+    }
+    
+    public static void loadHeat(CompoundTag compoundTag,Heat heat){
+        heat.setDegree(compoundTag.getInt("heat_degree"));
+        heat.setHeatBuf(compoundTag.getInt("heat_buf"));
+    }
+    
     
     public static FluidStack split(FluidStack source,int amount){
         int i = Math.min(amount, source.getAmount());

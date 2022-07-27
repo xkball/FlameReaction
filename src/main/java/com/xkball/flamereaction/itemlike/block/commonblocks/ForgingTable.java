@@ -157,9 +157,10 @@ public class ForgingTable extends BaseEntityBlock implements FRCBlock, FRCInfo {
                         new ItemParticleOption(ParticleTypes.ITEM,in.copy())
                         : new BlockParticleOption(ParticleTypes.BLOCK,blockState);
                 LevelUtil.addParticles(level,pos,particle);
+                return InteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.PASS;
     }
     
     @Override

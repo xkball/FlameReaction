@@ -56,6 +56,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
                 .lightLevel((blockState) -> blockState.getValue(FIRED)?15:0));
         this.registerDefaultState(this.getStateDefinition().any().setValue(FIRED,Boolean.FALSE).setValue(FACING,Direction.EAST));
         regItemBlock();
+        add();
     }
     
     public void regItemBlock(){

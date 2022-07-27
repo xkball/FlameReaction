@@ -30,6 +30,10 @@ public class Heat {
         }
     }
     
+    public Heat copy(){
+        return new Heat(this.degree,this.heatBuf);
+    }
+    
     public static Heat upToTemp(Heat heat, int temp){
         heat.setDegree(temp);
         return heat;
@@ -63,4 +67,8 @@ public class Heat {
         this.degree = degree;
     }
     
+    @Override
+    public String toString() {
+        return "温度: "+degree+" 热量缓存: "+heatBuf;
+    }
 }

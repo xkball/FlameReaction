@@ -20,10 +20,10 @@ public abstract class AbstractBurningBlock extends BaseEntityBlock implements FR
     
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
     
-    public static final TranslatableComponent tooltip1 = TranslateUtil.create("tooltip.burning_box",
+    public static final TranslatableComponent tooltip1 = TranslateUtil.create("tooltip.burning_box1",
             "使用打火石或火柴点燃",
             "use flint_and_steel to fire");
-    public static final TranslatableComponent tooltip2 = TranslateUtil.create("tooltip.burning_box",
+    public static final TranslatableComponent tooltip2 = TranslateUtil.create("tooltip.burning_box2",
             "在面前放置固体方块熄灭",
             "place a stable block before it to melt down"
     );

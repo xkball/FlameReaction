@@ -2,11 +2,10 @@ package com.xkball.flamereaction.capability.heat;
 
 public interface SimpleHeatHandler extends IHeatHandler{
     
-    
     @Override
     default void addToTemperature(int temperature){
         setHeat(Heat.upToTemp(getHeat(),temperature));
-    };
+    }
     
     @Override
     default void addHeat(int amount){
@@ -18,7 +17,7 @@ public interface SimpleHeatHandler extends IHeatHandler{
         boolean f = true;
         if(amount >= 0) {
             while (f) {
-                var i = HeatGap.getNextGap(heat);
+                var i = HeatGap.getNextGap(heat)*getSpecificHeatCapacity();
                 if (amount < i) {
                     f = false;
                 }
@@ -40,16 +39,16 @@ public interface SimpleHeatHandler extends IHeatHandler{
                 else {
                     temp = temp-1;
                     heat.setDegree(temp);
-                    buf = buf + HeatGap.getForeGap(heat);
+                    buf = buf + HeatGap.getForeGap(heat)*getSpecificHeatCapacity();
                 }
             }
         }
-    };
+    }
     
     @Override
     default HeatGap.GapKind getGapKind(){
         return HeatGap.GapKind.LINEAR;
-    };
+    }
     
     @Override
     int maxChangeSpeed();

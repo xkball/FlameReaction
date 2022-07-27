@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:block/iron_scaffolding_block"
+    ]
+  },
+  "criteria": {
+    "iron_scaffolding_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:iron_stick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:block/iron_scaffolding_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "iron_scaffolding_block",
+      "has_the_recipe"
+    ]
+  ]
+}

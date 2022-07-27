@@ -1,5 +1,6 @@
 package com.xkball.flamereaction.data;
 
+import com.mojang.logging.LogUtils;
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialItem;
 import com.xkball.flamereaction.util.BlockList;
@@ -10,11 +11,17 @@ import com.xkball.flamereaction.util.translateutil.MaterialChineseTranslate;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import static com.xkball.flamereaction.util.translateutil.TranslateUtil.CHINESE_TRANSLATE_MAP;
@@ -23,7 +30,8 @@ import static com.xkball.flamereaction.util.translateutil.TranslateUtil.ENGLISH_
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LanguageGenerator extends LanguageProvider {
     
-    
+    private final List<String> keys = new LinkedList<>();
+    private static final Logger LOGGER = LogUtils.getLogger();
     
     private final String locale;
     public static final String EN_US = "en_us";
@@ -32,6 +40,19 @@ public class LanguageGenerator extends LanguageProvider {
     public LanguageGenerator(DataGenerator gen, String locale) {
         super(gen, FlameReaction.MOD_ID, locale);
         this.locale = locale;
+    }
+    
+    @Override
+    public void add(@NotNull String key, @NotNull String value) {
+        if(keys.contains(key)){
+            LOGGER.warn("焰色反应:语言文件生成:重复的键 这应该被处理(但是我懒");
+            LOGGER.warn("键: "+key);
+            LOGGER.warn("值: "+value);
+        }
+        else {
+            keys.add(key);
+            super.add(key, value);
+        }
     }
     
     @Override
@@ -50,13 +71,15 @@ public class LanguageGenerator extends LanguageProvider {
             }
             
             else {
-                this.add(item,
-                        switch (this.locale){
-                            default -> throw new IllegalStateException("Unexpected value: " + this.locale);
-                            case EN_US -> Objects.requireNonNull(item.getRegistryName()).getPath();
-                            case ZH_CN -> Objects.requireNonNull(item.getRegistryName()).getPath()+" need translate";
-                        }
-                );
+                if(!(item instanceof BlockItem)) {
+                    this.add(item,
+                            switch (this.locale) {
+                                default -> throw new IllegalStateException("Unexpected value: " + this.locale);
+                                case EN_US -> Objects.requireNonNull(item.getRegistryName()).getPath();
+                                case ZH_CN -> Objects.requireNonNull(item.getRegistryName()).getPath() + " need translate";
+                            }
+                    );
+                }
             }
             
         }

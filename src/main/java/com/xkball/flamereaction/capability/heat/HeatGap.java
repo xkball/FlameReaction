@@ -3,7 +3,7 @@ package com.xkball.flamereaction.capability.heat;
 public class HeatGap {
     
     public enum GapKind{
-        LINEAR;
+        LINEAR
     }
     
     public static int getNextGap(Heat heat){
@@ -17,6 +17,15 @@ public class HeatGap {
         var g = standardLinearGap(i);
         return g + heat.getHeatBuf();
     }
+    
+    public static Heat tick(IHeatHandler heatHandler){
+        var heat = heatHandler.getHeat();
+        var s = heatHandler.getSpecificHeatCapacity();
+        var d = heat.getDegree();
+        heatHandler.addHeat((int) (-d*s*0.9));
+        return heatHandler.getHeat();
+    }
+    
     
     
     public static int standardLinearGap(int i){

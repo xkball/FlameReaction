@@ -177,7 +177,7 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
                 //LogUtils.getLogger().info("233  "+ item_input.toString());
             }
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.PASS;
     }
     
     @Override

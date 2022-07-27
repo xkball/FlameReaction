@@ -22,18 +22,4 @@ public interface IHeatHandler {
     HeatGap.GapKind getGapKind();
     
     boolean haveFluid();
-    
-    default void tick(){
-        spreadHeat();
-        natureCost();
-        
-    }
-    
-    default void spreadHeat(){
-    
-    }
-    
-    default void natureCost(){
-    
-    }
 }

@@ -1,24 +1,27 @@
 package com.xkball.flamereaction.capability.heat;
 
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraftforge.common.capabilities.*;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.items.IItemHandler;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CapabilityHeatHandler {
+public class CapabilityHeatHandler  {
     
-    public static final Capability<IHeatHandler> HEAT_HANDLER_CAPABILITY = CapabilityManager.get(new CapabilityToken<IHeatHandler>() {});
+    public static final Capability<IHeatHandler> HEAT_HANDLER_CAPABILITY =
+            CapabilityManager.get(new CapabilityToken<>() {
+            });
     
     @SubscribeEvent
     public static void register(RegisterCapabilitiesEvent event) {
-        event.register(IItemHandler.class);
+        event.register(IHeatHandler.class);
     }
+    
 }
