@@ -80,13 +80,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
     @Nullable
     @Override
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
-        var direction = context.getNearestLookingDirection();
-        direction = (direction==Direction.DOWN||direction==Direction.UP) ? Direction.EAST:direction;
-        var bs = super.getStateForPlacement(context);
-        if (bs != null) {
-            bs.setValue(FACING,direction);
-        }
-        return bs;
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
     
     @Nullable

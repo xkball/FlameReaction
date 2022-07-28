@@ -1,11 +1,6 @@
 {
   "type": "flamereaction:fuel_recipe",
-  "input_item": [
-    {
-      "item": "minecraft:air",
-      "count": 0
-    }
-  ],
+  "input_item": [],
   "input_fluid": [
     {
       "fluid": "flamereaction:impure_alcohol_fluid",

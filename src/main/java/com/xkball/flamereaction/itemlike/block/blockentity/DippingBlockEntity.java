@@ -129,7 +129,12 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
                 public void setStackInSlot(int slot, ItemStack stack) {
                      items.set(slot,stack);
                 }
-                
+    
+                @Override
+                public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                    return slot == 0 && items.get(0).isEmpty();
+                }
+    
                 @Override
                 public int getSlots() {
                     return 2;

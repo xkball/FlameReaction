@@ -75,7 +75,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .patten(1,1,0,1,1)
                 .save(consumer, new ResourceLocation(FlameReaction.MOD_ID,"glass_crafting/test"));
         
-        new FuelRecipeBuilder(new ItemStack(FlameReaction.ICON,0),new FluidStack(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),1),10,200,RecipeRegister.FUEL_RECIPE_SERIALIZER.get())
+        new FuelRecipeBuilder(null,new FluidStack(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),1),10,200,RecipeRegister.FUEL_RECIPE_SERIALIZER.get())
                 .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"fuel/impure_alcohol"));
     
         

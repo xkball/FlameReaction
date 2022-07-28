@@ -6,7 +6,7 @@
 
     {
       "when": {"fired":"true"},
-      "apply": {"model": "flamereacion:block/alcohol_lamp_fire"}
+      "apply": {"model": "flamereaction:block/alcohol_lamp_fire"}
     },
 
     {

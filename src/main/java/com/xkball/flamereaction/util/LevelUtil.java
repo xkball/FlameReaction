@@ -1,6 +1,7 @@
 package com.xkball.flamereaction.util;
 
 import com.xkball.flamereaction.capability.heat.Heat;
+import com.xkball.flamereaction.itemlike.block.blockentity.EasyChangedBlockEntity;
 import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AbstractBurningBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -60,8 +61,10 @@ public class LevelUtil {
                 
                 if (iItemHandler.isItemValid(i, in)){
                     var s = iItemHandler.insertItem(i, in, true);
-                    if(!s.isEmpty()){
-                        in = iItemHandler.insertItem(i,in,false);
+                    if(s.isEmpty()){
+                        var left = iItemHandler.insertItem(i,in.copy(),false);
+                        in.shrink(in.getCount());
+                        in.grow(left.getCount());
                     }
                 }
                 if (in.isEmpty()) return ItemStack.EMPTY;
@@ -179,11 +182,12 @@ public class LevelUtil {
                     var c = cap.getSlots();
                     for (int i = 0; i < c; i++) {
                         var s = startPos?i:c-i-1;
-                        var ch = cap.insertItem(s,item,true);
+                        var ch = cap.extractItem(s,64,false);
                         if(!ch.isEmpty()) {
-                            if(!player.getInventory().add(ch)){
-                                player.drop(ch,false);
-                            }
+//                            if(!player.getInventory().add(ch)){
+//                                player.drop(ch,false);
+//                            }
+                            addItem(level,pos,ch);
                             return true;
                         }
                     }
@@ -207,7 +211,7 @@ public class LevelUtil {
         
          result = result || entity != null && itemHandlerInput(item, entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side).orElse(EmptyHandler.INSTANCE)).isEmpty();
     
-        if(result && entity instanceof AbstractBurningBlockEntity entity1){
+        if(result && entity instanceof EasyChangedBlockEntity entity1){
             entity1.dirty();
         }
         
@@ -244,17 +248,18 @@ public class LevelUtil {
                 var cap = blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY,side);
                 cap.ifPresent((iFluidHandler -> {
                     var fluid = new FluidStack(bucket.getFluid(),1000);
-                    int c = iFluidHandler.getTanks();{
+                    int c = iFluidHandler.getTanks();
                         for(int i=0;i<c;i++){
                             if(iFluidHandler.isFluidValid(i,fluid)){
                                 var s = iFluidHandler.fill(fluid, IFluidHandler.FluidAction.SIMULATE);
                                 if(s == 1000){
+                                    iFluidHandler.fill(fluid, IFluidHandler.FluidAction.EXECUTE);
                                     flag.set(true);
                                     break;
                                 }
                             }
                         }
-                    }
+                    
                 }));
                 if(flag.get()){
                     item.shrink(1);

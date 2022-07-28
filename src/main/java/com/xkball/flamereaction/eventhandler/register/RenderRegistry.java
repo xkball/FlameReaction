@@ -25,6 +25,7 @@ public class RenderRegistry {
             ItemBlockRenderTypes.setRenderLayer(FlameReaction.FLAME_FIRE_BLOCK,RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(FluidRegister.IMPURE_ALCOHOL_FLUID.get(),RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(FluidRegister.IMPURE_ALCOHOL_FLUID_FLOWING.get(),RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(FlameReaction.ALCOHOL_LAMP,RenderType.translucent());
         });
     }
     

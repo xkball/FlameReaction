@@ -62,12 +62,16 @@ public class JsonUtil {
     
     public static List<ItemStack> itemsFromJson(JsonObject json, String memberName) {
         List<ItemStack> list = new ArrayList<>();
-        json.getAsJsonArray(memberName).forEach((jsonElement -> {
-            ItemStack itemStack = CraftingHelper.getItemStack(jsonElement.getAsJsonObject(), false, true);
-            list.add(itemStack);
-        }));
-        if(list.isEmpty()) throw new JsonParseException("json内无对应内容");
-        return list;
+        var array = json.getAsJsonArray(memberName);
+        if(array.size()>0) {
+            array.forEach((jsonElement -> {
+                ItemStack itemStack = CraftingHelper.getItemStack(jsonElement.getAsJsonObject(), false, true);
+                list.add(itemStack);
+            }));
+            if (list.isEmpty()) throw new JsonParseException("json内无对应内容");
+            return list;
+        }
+        return List.of(ItemStack.EMPTY);
     }
     
     

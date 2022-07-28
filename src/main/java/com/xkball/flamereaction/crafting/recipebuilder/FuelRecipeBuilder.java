@@ -77,10 +77,10 @@ public class FuelRecipeBuilder implements RecipeBuilder {
         public void serializeRecipeData(@NotNull JsonObject json) {
     
             JsonArray inputItem = new JsonArray();
-            inputItem.add(JsonUtil.itemToJsonWithoutNBT(itemFuel));
+            if(itemFuel != null)    inputItem.add(JsonUtil.itemToJsonWithoutNBT(itemFuel));
             json.add("input_item",inputItem);
             JsonArray inputFluid = new JsonArray();
-            inputFluid.add(JsonUtil.fluidToJson(fluidFuel));
+            if(fluidFuel != null) inputFluid.add(JsonUtil.fluidToJson(fluidFuel));
             json.add("input_fluid",inputFluid);
             json.add("time",JsonUtil.integersToJson(IntList.of(time)));
             json.add("max_heat",JsonUtil.integersToJson(IntList.of(maxHeat)));

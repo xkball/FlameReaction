@@ -1,15 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "iei",
-    "eie",
-    "iei"
+    "i i",
+    " i ",
+    "i i"
   ],
   "key": {
     "i": {
       "item": "flamereaction:iron_stick"
-    },
-    "e": []
+    }
   },
   "result": {
     "item": "flamereaction:iron_scaffolding_block"

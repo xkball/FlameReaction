@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=east,fired=false": {
-      "model": "flamereaction/block/solid_fuel_burning_box",
+      "model": "flamereaction:block/solid_fuel_burning_box",
       "y": 90
     },
     "facing=east,fired=true": {
-      "model": "flamereaction/block/solid_fuel_burning_box_on",
+      "model": "flamereaction:block/solid_fuel_burning_box_on",
       "y": 90
     },
     "facing=north,fired=false": {
-      "model": "flamereaction/block/solid_fuel_burning_box"
+      "model": "flamereaction:block/solid_fuel_burning_box"
     },
     "facing=north,fired=true": {
-      "model": "flamereaction/block/solid_fuel_burning_box_on"
+      "model": "flamereaction:block/solid_fuel_burning_box_on"
     },
     "facing=south,fired=false": {
-      "model": "flamereaction/block/solid_fuel_burning_box",
+      "model": "flamereaction:block/solid_fuel_burning_box",
       "y": 180
     },
     "facing=south,fired=true": {
-      "model": "flamereaction/block/solid_fuel_burning_box_on",
+      "model": "flamereaction:block/solid_fuel_burning_box_on",
       "y": 180
     },
     "facing=west,fired=false": {
-      "model": "flamereaction/block/solid_fuel_burning_box",
+      "model": "flamereaction:block/solid_fuel_burning_box",
       "y": 270
     },
     "facing=west,fired=true": {
-      "model": "flamereaction/block/solid_fuel_burning_box_on",
+      "model": "flamereaction:block/solid_fuel_burning_box_on",
       "y": 270
     }
   }

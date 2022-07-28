@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "flamereaction:iron_scaffolding_block",
-    "minecraft:air",
-    "minecraft:air"
+    "flamereaction:fluid_fuel_burning_box",
+    "flamereaction:solid_fuel_burning_box"
   ]
 }

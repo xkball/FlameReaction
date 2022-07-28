@@ -21,7 +21,7 @@ public class HeatGap {
     public static Heat tick(IHeatHandler heatHandler){
         var heat = heatHandler.getHeat();
         var s = heatHandler.getSpecificHeatCapacity();
-        var d = heat.getDegree();
+        var d = heat.getDegree()-300;
         heatHandler.addHeat((int) (-d*s*0.9));
         return heatHandler.getHeat();
     }

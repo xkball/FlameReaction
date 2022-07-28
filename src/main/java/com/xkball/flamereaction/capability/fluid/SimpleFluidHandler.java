@@ -37,7 +37,7 @@ public abstract class SimpleFluidHandler implements IFluidHandler {
     
     @Override
     public boolean isFluidValid(int tank, @NotNull FluidStack stack) {
-        return false;
+        return true;
     }
     
     //复制自FluidTank类
