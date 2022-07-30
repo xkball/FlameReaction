@@ -15,6 +15,9 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.Map;
@@ -45,12 +48,11 @@ public abstract class FireworkStarRecipeMixin extends CustomRecipe {
         super(p_43833_);
     }
     
-    /**
-     * @author xkball
-     * @reason 使得配方只能匹配焰色颜料
-     */
-    @Overwrite
-    public boolean matches(@NotNull CraftingContainer craftingContainer, @NotNull Level p_44003_) {
+    //使得配方只能匹配焰色染料
+    @Inject(method = "matches(Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/level/Level;)Z",
+        at = @At("HEAD"),
+        cancellable = true)
+    public void onMatches(CraftingContainer craftingContainer, Level pLevel, CallbackInfoReturnable<Boolean> cir) {
         boolean flag = false;
         boolean flag1 = false;
         boolean flag2 = false;
@@ -62,69 +64,47 @@ public abstract class FireworkStarRecipeMixin extends CustomRecipe {
             if (!itemstack.isEmpty()) {
                 if (SHAPE_INGREDIENT.test(itemstack)) {
                     if (flag2) {
-                        return false;
+                        cir.setReturnValue(false);
+                        cir.cancel();
+                        return;
                     }
                 
                     flag2 = true;
                 } else if (FLICKER_INGREDIENT.test(itemstack)) {
                     if (flag4) {
-                        return false;
+                        cir.setReturnValue(false);
+                        cir.cancel();
+                        return;
                     }
                 
                     flag4 = true;
                 } else if (TRAIL_INGREDIENT.test(itemstack)) {
                     if (flag3) {
-                        return false;
+                        cir.setReturnValue(false);
+                        cir.cancel();
+                        return;
                     }
                 
                     flag3 = true;
                 } else if (GUNPOWDER_INGREDIENT.test(itemstack)) {
                     if (flag) {
-                        return false;
+                        cir.setReturnValue(false);
+                        cir.cancel();
+                        return;
                     }
                 
                     flag = true;
                 } else {
                     if (!(itemstack.getItem() instanceof FlameDyeItem)) {
-                        return false;
+                        cir.setReturnValue(false);
+                        cir.cancel();
+                        return;
                     }
                 
                     flag1 = true;
                 }
             }
         }
-    
-        return flag && flag1;
-    }
-    
-    /**
-     * @author xkball
-     * @reason 使得配方只能匹配焰色颜料
-     */
-    @Overwrite
-    public @NotNull ItemStack assemble(@NotNull CraftingContainer craftingContainer) {
-        ItemStack itemstack = new ItemStack(Items.FIREWORK_STAR);
-        CompoundTag compoundtag = itemstack.getOrCreateTagElement("Explosion");
-        FireworkRocketItem.Shape fireworkrocketitem$shape = FireworkRocketItem.Shape.SMALL_BALL;
-        List<Integer> list = Lists.newArrayList();
-    
-        for(int i = 0; i < craftingContainer.getContainerSize(); ++i) {
-            ItemStack itemstack1 = craftingContainer.getItem(i);
-            if (!itemstack1.isEmpty()) {
-                if (SHAPE_INGREDIENT.test(itemstack1)) {
-                    fireworkrocketitem$shape = SHAPE_BY_ITEM.get(itemstack1.getItem());
-                } else if (FLICKER_INGREDIENT.test(itemstack1)) {
-                    compoundtag.putBoolean("Flicker", true);
-                } else if (TRAIL_INGREDIENT.test(itemstack1)) {
-                    compoundtag.putBoolean("Trail", true);
-                } else if (itemstack1.getItem() instanceof FlameDyeItem) {
-                    list.add(((DyeItem)itemstack1.getItem()).getDyeColor().getFireworkColor());
-                }
-            }
-        }
-    
-        compoundtag.putIntArray("Colors", list);
-        compoundtag.putByte("Type", (byte)fireworkrocketitem$shape.getId());
-        return itemstack;
+        cir.setReturnValue(flag && flag1);
     }
 }

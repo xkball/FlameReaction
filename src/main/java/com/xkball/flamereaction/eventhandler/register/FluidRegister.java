@@ -29,7 +29,7 @@ public class FluidRegister {
     public static final DeferredRegister<Item> FLUID_BUCKETS = DeferredRegister.create(ForgeRegistries.ITEMS,FlameReaction.MOD_ID);
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, FlameReaction.MOD_ID);
     public static RegistryObject<LiquidBlock> IMPURE_ALCOHOL_FLUID_BLOCK = FLUID_BLOCKS.register(UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME+"_block",() -> new UnstableFluidBlock(FluidRegister.IMPURE_ALCOHOL_FLUID,UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME));
-    public static RegistryObject<Item> IMPURE_ALCOHOL_FLUID_BUCKET = FLUID_BUCKETS.register(UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME+"_bucket",() -> new BucketItem(FluidRegister.IMPURE_ALCOHOL_FLUID,new Item.Properties().tab(CreativeModeTabs.FLAME_REACTION_GROUP).craftRemainder(BUCKET).fireResistant()));
+    public static RegistryObject<Item> IMPURE_ALCOHOL_FLUID_BUCKET = FLUID_BUCKETS.register(UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME+"_bucket",() -> new BucketItem(FluidRegister.IMPURE_ALCOHOL_FLUID,new Item.Properties().tab(CreativeModeTabs.FLAME_REACTION_GROUP).craftRemainder(BUCKET).fireResistant().stacksTo(1)));
     public static RegistryObject<FlowingFluid> IMPURE_ALCOHOL_FLUID = FLUIDS.register("impure_alcohol_fluid", () -> new ForgeFlowingFluid.Source(FluidRegister.IMPURE_ALCOHOL_FLUID_PROPERTIES));
     public static RegistryObject<FlowingFluid> IMPURE_ALCOHOL_FLUID_FLOWING = FLUIDS.register("impure_obsidian_fluid_flowing", () -> new ForgeFlowingFluid.Flowing(FluidRegister.IMPURE_ALCOHOL_FLUID_PROPERTIES));
     public static ForgeFlowingFluid.Properties IMPURE_ALCOHOL_FLUID_PROPERTIES

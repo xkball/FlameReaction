@@ -175,5 +175,6 @@
   "item.nocaet.flame_fire": "flame_fire",
   "item.nocaet.flame_fire.tooltip": "what reaction brought us the flamboyant fireworks!?",
   "itemGroup.flame_reaction_group": "Flame_reaction",
-  "itemGroup.material_group": "Flame_reaction_materials"
+  "itemGroup.material_group": "Flame_reaction_materials",
+  "flamereaction.null": ""
 }

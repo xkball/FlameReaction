@@ -20,6 +20,7 @@ public class AlcoholLampBlockEntity extends AbstractBurningBlockEntity implement
     public static final String NAME = "alcohol_lamp_block_entity";
     private NonNullList<FluidStack> fluidStack = NonNullList.withSize(1,FluidStack.EMPTY);
     
+    private int color = 0;
     
     public AlcoholLampBlockEntity( BlockPos p_155229_, BlockState p_155230_) {
         super(BlockEntityRegister.ALCOHOL_LAMP_BLOCK_ENTITY.get(), p_155229_, p_155230_);
@@ -30,18 +31,21 @@ public class AlcoholLampBlockEntity extends AbstractBurningBlockEntity implement
         super.load(compoundTag);
         fluidStack = NonNullList.withSize(1,FluidStack.EMPTY);
         LevelUtil.loadAllFluids(compoundTag,fluidStack);
+        color = compoundTag.getInt("color");
     }
     
     @Override
     protected void saveAdditional(@NotNull CompoundTag compoundTag) {
         super.saveAdditional(compoundTag);
         LevelUtil.saveAllFluids(compoundTag,fluidStack,true);
+        compoundTag.putInt("color",color);
     }
     
     @Override
     public @NotNull CompoundTag getUpdateTag() {
         var compoundTag =  super.getUpdateTag();
         LevelUtil.saveAllFluids(compoundTag,fluidStack,true);
+        compoundTag.putInt("color",color);
         return compoundTag;
     }
     
@@ -50,6 +54,7 @@ public class AlcoholLampBlockEntity extends AbstractBurningBlockEntity implement
         super.handleUpdateTag(compoundTag);
         fluidStack = NonNullList.withSize(1,FluidStack.EMPTY);
         LevelUtil.loadAllFluids(compoundTag,fluidStack);
+        color = compoundTag.getInt("color");
     }
     
     @NotNull
@@ -67,4 +72,18 @@ public class AlcoholLampBlockEntity extends AbstractBurningBlockEntity implement
     public boolean updateFuel(BlockState bs) {
         return false;
     }
+    
+    public int getColor() {
+        return color;
+    }
+    
+    public void cleanColor(){
+        color = 0;
+    }
+    
+    
+    public void setColor(int color) {
+        this.color = color;
+    }
+    
 }

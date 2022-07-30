@@ -6,6 +6,7 @@
 		"1": "flamereaction:block/alcohol_lamp_center",
 		"particle": "flamereaction:block/alcohol_lamp_1"
 	},
+	"ambientocclusion": false,
 	"elements": [
 		{
 			"name": "b",

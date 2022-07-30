@@ -1,0 +1,16 @@
+{
+  "type": "flamereaction:fuel_recipe",
+  "input_item": [
+    {
+      "item": "minecraft:coal",
+      "count": 1
+    }
+  ],
+  "input_fluid": [],
+  "time": [
+    10
+  ],
+  "max_heat": [
+    200
+  ]
+}

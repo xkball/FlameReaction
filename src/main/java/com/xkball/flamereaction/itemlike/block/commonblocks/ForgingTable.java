@@ -116,7 +116,7 @@ public class ForgingTable extends BaseEntityBlock implements FRCBlock, FRCInfo {
     public @NotNull InteractionResult use(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(!level.isClientSide){
             var EBlockEntity = level.getBlockEntity(pos);
-            if(EBlockEntity instanceof ForgingTableBlockEntity blockEntity){
+            if(EBlockEntity instanceof ForgingTableBlockEntity blockEntity && blockEntity.getCoolDown()<=0){
                 var left = player.getItemInHand(InteractionHand.OFF_HAND);
                 var right = player.getMainHandItem();
                 //放物品

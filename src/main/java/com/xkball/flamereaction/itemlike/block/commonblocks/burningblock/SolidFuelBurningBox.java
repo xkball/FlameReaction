@@ -5,7 +5,6 @@ import com.xkball.flamereaction.crafting.FuelRecipe;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
-import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AbstractBurningBlockEntity;
 import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.SolidFuelBurningBoxBlockEntity;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.LevelUtil;
@@ -80,13 +79,7 @@ public class SolidFuelBurningBox extends AbstractBurningBlock{
     @Nullable
     @Override
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
-        var direction = context.getNearestLookingDirection();
-        direction = (direction==Direction.DOWN||direction==Direction.UP) ? Direction.EAST:direction;
-        var bs = super.getStateForPlacement(context);
-        if (bs != null) {
-            bs.setValue(FACING,direction);
-        }
-        return bs;
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
     
     @Nullable
@@ -155,7 +148,11 @@ public class SolidFuelBurningBox extends AbstractBurningBlock{
     @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult blockHitResult) {
-        if(!level.isClientSide && state.is(FlameReaction.SOLID_FUEL_BURNING_BOX)){
+        if(!level.isClientSide &&
+                state.is(FlameReaction.SOLID_FUEL_BURNING_BOX) &&
+                level.getBlockEntity(pos) instanceof SolidFuelBurningBoxBlockEntity sB &&
+                sB.getCoolDown()<=0)
+        {
             var item = player.getItemInHand(hand);
             //点火
             if(item.is(Items.FLINT_AND_STEEL) ){

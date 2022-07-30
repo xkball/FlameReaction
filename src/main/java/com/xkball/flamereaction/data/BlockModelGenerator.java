@@ -4,6 +4,7 @@ import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.block.commonblocks.BrewingBarrel;
 import com.xkball.flamereaction.itemlike.block.commonblocks.DippingBlock;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ForgingTable;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.FluidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.util.BlockList;
@@ -73,6 +74,7 @@ public class BlockModelGenerator extends BlockStateProvider {
                 var model = getBlockModel(FluidFuelBurningBox.NAME);
                 this.simpleBlockItem(block,model);
             }
+            this.simpleBlockItem(FlameReaction.ALCOHOL_LAMP,getBlockModel(AlcoholLamp.NAME));
         }
     }
     

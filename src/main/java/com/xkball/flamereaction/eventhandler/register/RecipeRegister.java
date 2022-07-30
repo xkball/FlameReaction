@@ -2,10 +2,12 @@ package com.xkball.flamereaction.eventhandler.register;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.crafting.*;
+import com.xkball.flamereaction.crafting.recipe.StickColorRecipe;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -28,6 +30,7 @@ public class RecipeRegister {
     public static final RegistryObject<ChemicalItemRecipe.Serializer> CHEMICAL_ITEM_RECIPE_SERIALIZER = SERIALIZER.register(serializerName(ChemicalItemRecipe.Serializer.NAME),ChemicalItemRecipe.Serializer::new);
     public static final RegistryObject<GlassCraftingRecipe.Serializer> GLASS_CRAFTING_RECIPE_SERIALIZER = SERIALIZER.register(serializerName(GlassCraftingRecipe.Serializer.NAME),GlassCraftingRecipe.Serializer::new);
     public static final RegistryObject<FuelRecipe.Serializer> FUEL_RECIPE_SERIALIZER = SERIALIZER.register(serializerName(FuelRecipe.Serializer.NAME),FuelRecipe.Serializer::new);
+    public static final RegistryObject<SimpleRecipeSerializer<StickColorRecipe>> STICK_COLOR_SERIALIZER = SERIALIZER.register("stick_color_recipe",() -> new SimpleRecipeSerializer<>(StickColorRecipe::new));
     
     public static String serializerName(String name){
         return name.substring(FlameReaction.MOD_ID.length()+1);

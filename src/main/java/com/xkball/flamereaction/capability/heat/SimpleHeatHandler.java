@@ -29,17 +29,19 @@ public interface SimpleHeatHandler extends IHeatHandler{
             }
         }
         else {
-            while (f) {
+            var w = 0;
+            while (w<100) {
                 if(buf >= 0){
                     heat.setDegree(temp);
                     heat.setHeatBuf(buf);
                     this.setHeat(heat);
-                    f = false;
+                    break;
                 }
                 else {
                     temp = temp-1;
                     heat.setDegree(temp);
                     buf = buf + HeatGap.getForeGap(heat)*getSpecificHeatCapacity();
+                    w++;
                 }
             }
         }

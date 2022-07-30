@@ -15,6 +15,9 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
@@ -27,13 +30,11 @@ public abstract class FireworkStarFadeRecipeMixin extends CustomRecipe {
         super(p_43833_);
     }
     
-    
-    /**
-     * @author xkball
-     * @reason 使得配方只能匹配焰色颜料
-     */
-    @Overwrite
-    public boolean matches(CraftingContainer craftingContainer, @NotNull Level level) {
+    //使得配方只能匹配焰色染料
+    @Inject(method = "matches(Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/level/Level;)Z",
+        at = @At("HEAD"),
+        cancellable = true)
+    public void onMatches(CraftingContainer craftingContainer, Level pLevel, CallbackInfoReturnable<Boolean> cir) {
         boolean flag = false;
         boolean flag1 = false;
     
@@ -45,46 +46,21 @@ public abstract class FireworkStarFadeRecipeMixin extends CustomRecipe {
                     flag = true;
                 } else {
                     if (!STAR_INGREDIENT.test(itemstack)) {
-                        return false;
+                        cir.setReturnValue(false);
+                        cir.cancel();
+                        return;
                     }
                 
                     if (flag1) {
-                        return false;
+                        cir.setReturnValue(false);
+                        cir.cancel();
+                        return;
                     }
                 
                     flag1 = true;
                 }
             }
         }
-    
-        return flag1 && flag;
-    }
-    
-    /**
-     * @author xkball
-     * @reason 改变配方
-     */
-    @Overwrite
-    public @NotNull ItemStack assemble(CraftingContainer craftingContainer) {
-        List<Integer> list = Lists.newArrayList();
-        ItemStack itemstack = null;
-    
-        for(int i = 0; i < craftingContainer.getContainerSize(); ++i) {
-            ItemStack itemstack1 = craftingContainer.getItem(i);
-            Item item = itemstack1.getItem();
-            if (item instanceof FlameDyeItem) {
-                list.add(((DyeItem)item).getDyeColor().getFireworkColor());
-            } else if (STAR_INGREDIENT.test(itemstack1)) {
-                itemstack = itemstack1.copy();
-                itemstack.setCount(1);
-            }
-        }
-    
-        if (itemstack != null && !list.isEmpty()) {
-            itemstack.getOrCreateTagElement("Explosion").putIntArray("FadeColors", list);
-            return itemstack;
-        } else {
-            return ItemStack.EMPTY;
-        }
+        cir.setReturnValue( flag1 && flag);
     }
 }

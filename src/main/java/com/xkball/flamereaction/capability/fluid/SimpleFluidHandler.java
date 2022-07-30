@@ -63,6 +63,7 @@ public abstract class SimpleFluidHandler implements IFluidHandler {
         if (fluid.isEmpty())
         {
             fluid = new FluidStack(resource, Math.min(capacity, resource.getAmount()));
+            setFluidInTank(0,fluid);
             onChanged();
             return fluid.getAmount();
         }
@@ -113,6 +114,8 @@ public abstract class SimpleFluidHandler implements IFluidHandler {
         }
         return stack;
     }
+    
+    protected abstract void setFluidInTank(int shot,FluidStack fluidStack);
     
     public void onChanged(){
     

@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fluids.FluidStack;
@@ -93,7 +94,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
     public @NotNull List<String> getInfo(ServerLevel level, BlockPos pos) {
         var entity = level.getBlockEntity(pos);
         if(entity instanceof FluidFuelBurningBoxBlockEntity blockEntity){
-            var fuel = blockEntity.getFluid().toString();
+            var fuel = getFluidInfo(blockEntity.getFluid());
             var max = blockEntity.getMaxHeatProduce();
             return List.of(NAME,
                     "燃料: "+fuel,
@@ -137,7 +138,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
                     && level.getBlockState(pos1).isFaceSturdy(level,pos1,face.getOpposite())){
                 var i = entity1.getTimeLast();
                 if (!level.isClientSide()) {
-                    level.scheduleTick(pos, this, i);
+                    level.scheduleTick(pos, this, Math.min(i, 1));
                 }
             }
         }
@@ -163,7 +164,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
                 if( blockHitResult.getDirection() == state.getValue(FluidFuelBurningBox.FACING)
                 && item.getItem() instanceof BucketItem bucketItem){
                     var recipe = level.getRecipeManager().getAllRecipesFor(RecipeRegister.FUEL_RECIPE_TYPE.get());
-                    var list = recipe.stream().filter(Objects::nonNull).map(FuelRecipe::getFluidFuel).map(FluidStack::getFluid).toList();
+                    var list = recipe.stream().filter(Objects::nonNull).map(FuelRecipe::getFluidFuel).map(FluidStack::getFluid).filter((i) -> !(i == Fluids.EMPTY)).toList();
                     if(list.contains(bucketItem.getFluid())){
                         LevelUtil.ioWithBlock((ServerLevel) level,pos,player,item,state.getValue(FluidFuelBurningBox.FACING));
                     }

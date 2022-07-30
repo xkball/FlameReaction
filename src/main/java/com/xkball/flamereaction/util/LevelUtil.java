@@ -221,23 +221,23 @@ public class LevelUtil {
     //布尔为操作结果，true为成功
     //把手上液体给罐子
     public static boolean fillTank(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
-        
-        var b1 = FluidUtil.interactWithFluidHandler(player,player.getUsedItemHand(),level,pos,side);
-        if(!b1) {
+        //todo 完善流体交互
+        //var b1 = FluidUtil.interactWithFluidHandler(player,player.getUsedItemHand(),level,pos,side);
+        //if(!b1) {
             //输出桶
             //暂不支持手持储罐，只有桶
             return LevelUtil.emptyBucket(level,pos,player,item,side);
-        }
-        return true;
+        //}
+        //return true;
     }
     
     public static boolean emptyTank(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
-        
-        var b1 = FluidUtil.interactWithFluidHandler(player,player.getUsedItemHand(),level,pos,side);
-        if(!b1){
+        //todo 完善流体交互
+        //var b1 = FluidUtil.interactWithFluidHandler(player,player.getUsedItemHand(),level,pos,side);
+        //if(!b1){
                 return LevelUtil.fillBucket(level, pos, player, item, side);
-        }
-        return true;
+        //}
+        //return true;
     }
     
     public static boolean emptyBucket(ServerLevel level,BlockPos pos,Player player, ItemStack item,Direction side){
@@ -249,24 +249,25 @@ public class LevelUtil {
                 cap.ifPresent((iFluidHandler -> {
                     var fluid = new FluidStack(bucket.getFluid(),1000);
                     int c = iFluidHandler.getTanks();
-                        for(int i=0;i<c;i++){
-                            if(iFluidHandler.isFluidValid(i,fluid)){
-                                var s = iFluidHandler.fill(fluid, IFluidHandler.FluidAction.SIMULATE);
-                                if(s == 1000){
-                                    iFluidHandler.fill(fluid, IFluidHandler.FluidAction.EXECUTE);
-                                    flag.set(true);
-                                    break;
-                                }
+                    for(int i=0;i<c;i++){
+                        if(iFluidHandler.isFluidValid(i,fluid)){
+                            var s = iFluidHandler.fill(fluid, IFluidHandler.FluidAction.SIMULATE);
+                            if(s == 1000){
+                                iFluidHandler.fill(fluid, IFluidHandler.FluidAction.EXECUTE);
+                                flag.set(true);
+                                break;
                             }
                         }
+                    }
                     
                 }));
                 if(flag.get()){
                     item.shrink(1);
                     var resultItem = new ItemStack(Items.BUCKET,1);
-                    if(!player.getInventory().add(resultItem)){
-                        player.drop(resultItem,false);
-                    }
+//                    if(!player.getInventory().add(resultItem)){
+//                        player.drop(resultItem,false);
+//                    }
+                    addItem(level,pos,resultItem);
                 }
                 return flag.get();
             }
@@ -287,9 +288,10 @@ public class LevelUtil {
                         bucket.shrink(1);
                         SoundEvent soundevent = result.getFluid().getAttributes().getFillSound();
                         player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        if(!player.getInventory().add(resultItem)){
-                            player.drop(resultItem,false);
-                        }
+//                        if(!player.getInventory().add(resultItem)){
+//                            player.drop(resultItem,false);
+//                        }
+                        addItem(level,pos,resultItem);
                         return true;
                     }
                 }

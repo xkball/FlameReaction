@@ -108,6 +108,11 @@ public class BrewingBarrelBlockEntity extends EasyChangedBlockEntity implements 
                 }
     
                 @Override
+                protected void setFluidInTank(int shot, FluidStack fluidStack) {
+                    fluids.set(0,fluidStack);
+                }
+    
+                @Override
                 public void onChanged() {
                     dirty();
                 }

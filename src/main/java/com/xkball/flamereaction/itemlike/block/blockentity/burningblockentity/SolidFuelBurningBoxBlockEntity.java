@@ -1,20 +1,26 @@
 package com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity;
 
 import com.xkball.flamereaction.FlameReaction;
+import com.xkball.flamereaction.capability.item.SimpleItemStackHandler;
 import com.xkball.flamereaction.crafting.util.FuelContainer;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.block.blockentity.ITargetBlockEntity;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.CapabilityItemHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class SolidFuelBurningBoxBlockEntity extends AbstractBurningBlockEntity implements ITargetBlockEntity {
     
@@ -23,6 +29,31 @@ public class SolidFuelBurningBoxBlockEntity extends AbstractBurningBlockEntity i
     
     public SolidFuelBurningBoxBlockEntity( BlockPos p_155229_, BlockState p_155230_) {
         super(BlockEntityRegister.SOLID_FUEL_BURNING_BOX_BLOCK_ENTITY.get(), p_155229_, p_155230_);
+    }
+    
+    
+    @NotNull
+    @Override
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+            return LazyOptional.of(() -> new SimpleItemStackHandler() {
+                @Override
+                public @NotNull ItemStack getStackInSlot(int slot) {
+                    return items.get(slot);
+                }
+    
+                @Override
+                public void setStackInSlot(int slot, ItemStack stack) {
+                    items.set(slot,stack);
+                }
+    
+                @Override
+                public void onContentsChanged(int slot) {
+                    dirty();
+                }
+            }).cast();
+        }
+        return super.getCapability(cap, side);
     }
     
     @Override

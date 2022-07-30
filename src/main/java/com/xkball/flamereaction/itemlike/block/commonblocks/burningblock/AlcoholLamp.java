@@ -92,7 +92,19 @@ public class AlcoholLamp extends AbstractBurningBlock implements FRCBlock {
         //染色
         //取出铁架（用钳子
         //点火
-        
+        if(!level.isClientSide){
+            var item = player.getItemInHand(hand);
+            var entity = level.getBlockEntity(pos);
+            
+            if(entity instanceof AlcoholLampBlockEntity alcoholLampBlockEntity){
+                if (item.getTag() != null) {
+                    if(item.getTag().contains("color")){
+                        var color = item.getTag().getInt("color");
+                        alcoholLampBlockEntity.setColor(color);
+                    }
+                }
+            }
+        }
         
         return super.use(blockState, level, pos, player, hand, result);
     }

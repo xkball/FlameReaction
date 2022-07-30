@@ -18,6 +18,7 @@
     "flamereaction:strontium_block",
     "flamereaction:zinc_block",
     "flamereaction:platinum_block",
-    "flamereaction:iron_scaffolding_block"
+    "flamereaction:iron_scaffolding_block",
+    "flamereaction:dipping_block"
   ]
 }

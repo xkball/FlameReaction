@@ -64,6 +64,7 @@ public class ForgingTableBlockEntity extends EasyChangedBlockEntity implements I
                 @Override
                 public void onContentsChanged(int slot) {
                     dirty();
+                    coolDown = 10;
                 }
             }).cast();
         }

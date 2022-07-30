@@ -23,6 +23,7 @@ import java.util.Objects;
 //复制并修改自FireCrafting模组
 //其实就是抄的，好吧
 //好吧现在多少有点自己写的
+//好吧现在修改幅度有点大了
 public class JsonUtil {
     
     public static JsonObject itemToJsonWithoutNBT(ItemStack stack){
@@ -101,11 +102,14 @@ public class JsonUtil {
     //只能获得单个流体，不是列表
     public static List<FluidStack> fluidFromJson(JsonObject json, String memberName) {
         JsonArray object = json.get(memberName).getAsJsonArray();
-        var in = object.get(0).getAsJsonObject();
-        String fluid = in.get("fluid").getAsString();
-        int amount = in.get("amount").getAsInt();
-        Fluid value = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluid));
-        return List.of(new FluidStack(Objects.requireNonNull(value), amount));
+        if(object.size()>0) {
+            var in = object.get(0).getAsJsonObject();
+            String fluid = in.get("fluid").getAsString();
+            int amount = in.get("amount").getAsInt();
+            Fluid value = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluid));
+            return List.of(new FluidStack(Objects.requireNonNull(value), amount));
+        }
+        return List.of(FluidStack.EMPTY.copy());
     }
     
     public static List<EntityType<?>> entityTypesFromJson(JsonObject json, String memberName) {

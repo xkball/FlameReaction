@@ -33,6 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DippingBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
@@ -79,9 +80,10 @@ public class DippingBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
     public @NotNull InteractionResult use(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult result) {
         if(!level.isClientSide){
-            if(LevelUtil.ioWithBlock((ServerLevel) level,pos,player,player.getItemInHand(hand),null)){
-                if(level.getBlockEntity(pos) instanceof DippingBlockEntity dp){
-                    dp.dirty();
+            if(level.getBlockEntity(pos) instanceof DippingBlockEntity dp){
+                if(dp.getCoolDown()<0 && LevelUtil.ioWithBlock((ServerLevel) level,pos,player,player.getItemInHand(hand),null)){
+               
+                   //dp.dirty();
                     return InteractionResult.SUCCESS;
                 }
             }
@@ -94,10 +96,15 @@ public class DippingBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
     public @NotNull List<String> getInfo(ServerLevel level, BlockPos pos) {
         var entity = level.getBlockEntity(pos);
         if(entity instanceof DippingBlockEntity dippingBlockEntity){
-            var item = dippingBlockEntity.getItem().toString();
+            var item = getItemInfo(dippingBlockEntity);
             var heat = dippingBlockEntity.getHeat().toString();
-            var fluid = dippingBlockEntity.getFluid().toString();
-            return List.of(NAME,item,fluid,heat);
+            var fluid = getFluidInfo(dippingBlockEntity.getFluid());
+            var result = new ArrayList<String>();
+            result.add(NAME);
+            result.addAll(item);
+            result.add(heat);
+            result.add(fluid);
+            return result;
         }
         return List.of(NAME);
     }

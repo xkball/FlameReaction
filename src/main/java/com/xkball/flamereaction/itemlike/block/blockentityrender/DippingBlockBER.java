@@ -28,7 +28,7 @@ public class DippingBlockBER implements BlockEntityRenderer<DippingBlockEntity> 
         var color = fluidAttributes.getColor();
         var from = Vector3f.ZERO.copy();
         var item = entity.getItem();
-        var to = new Vector3f(1.0F,fluid.getAmount()/3000F,1.0F);
+        var to = new Vector3f(1.0F,(fluid.getAmount()/1000F)*(2/16F)-0.01F,1.0F);
         FluidRenderFromMantle.renderFluid(poseStack,buffer,texture, Direction.UP,from,to,color,1);
     
         poseStack.pushPose();

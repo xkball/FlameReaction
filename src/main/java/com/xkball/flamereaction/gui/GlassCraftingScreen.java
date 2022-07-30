@@ -33,7 +33,7 @@ public class GlassCraftingScreen extends Screen {
             int textureWidth = 256;
             int textureHeight = 256;
             blit(poseStack, (this.width/2) -88, (this.height/2) -83, 0, 0, 176, 166, textureWidth, textureHeight);
-            drawString(poseStack, this.font, NAME, this.width / 2 - 10, this.height/2-80, new Color(0,0,0).getRGB());
+            drawString(poseStack, this.font, NAME.getString(), this.width / 2 - 10, this.height/2-80, new Color(0,0,0).getRGB());
             
             for(ImageCheckBox imageCheckBox: imageCheckBoxes) {
                 imageCheckBox.render(poseStack, mouseX, mouseY, p_96565_);

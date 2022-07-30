@@ -3,6 +3,7 @@ package com.xkball.flamereaction.itemlike.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,4 +28,9 @@ public interface FRCInfo {
         result.add("无");
         return result;
     }
+    
+    default String getFluidInfo(FluidStack fluidStack){
+        return "液体:"+fluidStack.getDisplayName().getString()+" 量:"+fluidStack.getAmount();
+    }
+    
 }

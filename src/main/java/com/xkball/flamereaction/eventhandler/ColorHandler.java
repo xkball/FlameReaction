@@ -1,7 +1,9 @@
 package com.xkball.flamereaction.eventhandler;
 
 import com.xkball.flamereaction.FlameReaction;
+import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AlcoholLampBlockEntity;
 import com.xkball.flamereaction.itemlike.block.commonblocks.FlameFireBlock;
+import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
 import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.materialitem.ColoredFlameItem;
@@ -130,6 +132,20 @@ public class ColorHandler {
             event.getBlockColors().register(
                     (blockState,batg,blockPos,tint) -> blockState.getValue(FlameFireBlock.MATERIAL).getColor().getRGB(),
                     block);
+        }
+        if(block instanceof AlcoholLamp){
+            event.getBlockColors().register((blockState,batg,blockPos,tint) ->
+            {
+                if(batg!=null && blockPos!= null){
+                    var entity = batg.getBlockEntity(blockPos);
+                    if( entity instanceof AlcoholLampBlockEntity alcoholLampBlockEntity){
+                        var color = alcoholLampBlockEntity.getColor();
+                        if(color != 0) return color;
+                    }
+                    
+                }
+                return new Color(255,255,255,0).getRGB();
+            });
         }
     }
 }

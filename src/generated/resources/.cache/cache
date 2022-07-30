@@ -38,6 +38,7 @@ a12720ba8b349ec8d2aa46260396fcb8fb5f7b69 assets/flamereaction/blockstates/stront
 735292206a54014f89b2a63b0ec452a634ad6331 assets/flamereaction/models/block/sodium_block.json
 735292206a54014f89b2a63b0ec452a634ad6331 assets/flamereaction/models/block/strontium_block.json
 735292206a54014f89b2a63b0ec452a634ad6331 assets/flamereaction/models/block/zinc_block.json
+429e5224d7a98b4792653e89f66c4cda6caf73e0 assets/flamereaction/models/item/alcohol_lamp.json
 f58d651f7053d9847b8a29ad8bcb96b83d2c52d9 assets/flamereaction/models/item/antimony_block.json
 654a022cfbf868ef96d712091a8ae7755ed4abeb assets/flamereaction/models/item/antimony_ingot.json
 86c29cda205a375eeea6d65ff9a1e1bac5815616 assets/flamereaction/models/item/antimony_plate.json
@@ -222,6 +223,7 @@ b27628b591c47a169a18b177d896066ef9777970 data/flamereaction/recipes/block/rubidi
 22e9faf8921a3f57e8262fd8e17973d396412dc5 data/flamereaction/recipes/block/sodium_block.json
 7c0ed1e639ac5cd71e7b04faabe89722cc9e6345 data/flamereaction/recipes/block/strontium_block.json
 149fa2522fa6aa1019bbf3d83567f28925b15032 data/flamereaction/recipes/block/zinc_block.json
+5664eb32d60566965c0eedc2d985e3fedb9092a6 data/flamereaction/recipes/fuel/coal.json
 d7e0c26b179d3750f6f7bf00238dad23ae820aba data/flamereaction/recipes/fuel/impure_alcohol.json
 c3ce4d43e38420f9111577eb585688876d883412 data/flamereaction/recipes/glass_crafting/test.json
 1ae38c0df38d13d096761c0dc0a59b0a6b5075f3 data/flamereaction/recipes/item/antimony_plate.json
@@ -244,7 +246,7 @@ fc3b929f9fccd8acbb21861ece9fab135111f299 data/flamereaction/recipes/item/stronti
 8477cc0040031c69ec7f4331d174ee02cca2d601 data/flamereaction/recipes/item_to_fluid/sugar_cane.json
 610060e16c4e9a0821560bf002d9aa5c4337cfe9 data/flamereaction/tags/blocks/scaffolding.json
 6ba9650ff0636123c3ca2b6c0a4bcd528ffe2fb0 data/forge/tags/blocks/flammable.json
-3223f4fd6c9b88ca2ad25b5cd31f803c0a48ca8c data/forge/tags/blocks/mineable/wrench.json
+4e36d59aab85f8894ef1223523796dd652a88dcd data/forge/tags/blocks/mineable/wrench.json
 f4a92b6ded0864fe63ec602e97bdd88097807e53 data/forge/tags/items/ingot/antimony.json
 1222911e56769becfd5c3860764ae61ed9958a15 data/forge/tags/items/ingot/barium.json
 40af2d0cac0c57f425d1e840bc9489ff7732236a data/forge/tags/items/ingot/boron.json
@@ -303,6 +305,6 @@ d64646c49495039b8db3ed2f5d87308abedc1c94 data/forge/tags/items/stick/strontium.j
 cbc3e5f83bdfc78712c28f11081de8c3a0d83822 data/forge/tags/items/tool/hammer.json
 610060e16c4e9a0821560bf002d9aa5c4337cfe9 data/minecraft/tags/blocks/climbable.json
 610060e16c4e9a0821560bf002d9aa5c4337cfe9 data/minecraft/tags/blocks/fall_damage_resetting.json
-c0d976f25c0533069fd2e907b3fb915a3e95f710 data/minecraft/tags/blocks/mineable/pickaxe.json
+3f6b95ce8da8301bbe0b8dde8502fe60d0743484 data/minecraft/tags/blocks/mineable/pickaxe.json
 7de18fc237be4a49984f75999920352a6c89e2f7 data/minecraft/tags/fluids/water.json
 d7a2e55cc68d01665f5f45e70180640dc4187144 data/nocaet/tags/items/flames.json

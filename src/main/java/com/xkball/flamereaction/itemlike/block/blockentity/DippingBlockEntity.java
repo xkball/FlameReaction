@@ -45,6 +45,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
     private Heat heat = Heat.defaultHeat();
     private int timeCount = 0;
     
+   
     public DippingBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
         super(BlockEntityRegister.DIPPING_BLOCK_ENTITY.get(), p_155229_, p_155230_);
     }
@@ -72,6 +73,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
     }
     public static void tick(Level level, BlockPos pos, BlockState state, DippingBlockEntity entity) {
         entity.timeCount++;
+        entity.coolDown--;
         var heatH =entity.getCapability(CapabilityHeatHandler.HEAT_HANDLER_CAPABILITY).resolve();
         if(heatH.isPresent()){
             var heatHandler = heatH.get();
@@ -143,11 +145,13 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
                 @Override
                 public void onContentsChanged(int slot) {
                     dirty();
+                    coolDown = 10;
                 }
             }).cast();
         }
         if(cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
             return LazyOptional.of(() -> new SimpleFluidHandler(3000) {
+                
                 @Override
                 public @NotNull FluidStack getFluidInTank(int tank) {
                     return fluid.get(0);
@@ -156,6 +160,12 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
                 @Override
                 public void onChanged() {
                     dirty();
+                    coolDown = 10;
+                }
+    
+                @Override
+                protected void setFluidInTank(int shot,FluidStack fluidStack) {
+                    fluid.set(0,fluidStack);
                 }
             }).cast();
         }
@@ -201,6 +211,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
         fluid = NonNullList.withSize(1,FluidStack.EMPTY);
         items = NonNullList.withSize(2,ItemStack.EMPTY);
         heat = Heat.defaultHeat();
+        
         ContainerHelper.loadAllItems(compoundTag,items);
         LevelUtil.loadAllFluids(compoundTag,fluid);
         LevelUtil.loadHeat(compoundTag,heat);
@@ -212,6 +223,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
         ContainerHelper.saveAllItems(compoundTag,items,true);
         LevelUtil.saveAllFluids(compoundTag,fluid,true);
         LevelUtil.saveHeat(compoundTag,heat);
+        
     }
     
     @Override
@@ -219,6 +231,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
         var compoundTag =  super.getUpdateTag();
         ContainerHelper.saveAllItems(compoundTag,items,true);
         LevelUtil.saveHeat(compoundTag,heat);
+        
         return LevelUtil.saveAllFluids(compoundTag,fluid,true);
     }
     
@@ -228,6 +241,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
         fluid = NonNullList.withSize(1,FluidStack.EMPTY);
         items = NonNullList.withSize(2,ItemStack.EMPTY);
         heat = Heat.defaultHeat();
+        
         ContainerHelper.loadAllItems(compoundTag,items);
         LevelUtil.loadAllFluids(compoundTag,fluid);
         LevelUtil.loadHeat(compoundTag,heat);
