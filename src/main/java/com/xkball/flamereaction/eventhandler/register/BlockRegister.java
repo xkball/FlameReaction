@@ -2,8 +2,6 @@ package com.xkball.flamereaction.eventhandler.register;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.util.BlockList;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

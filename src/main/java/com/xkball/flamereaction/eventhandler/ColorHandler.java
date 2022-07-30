@@ -4,7 +4,6 @@ import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.AlcoholLampBlockEntity;
 import com.xkball.flamereaction.itemlike.block.commonblocks.FlameFireBlock;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
-import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.materialitem.ColoredFlameItem;
 import com.xkball.flamereaction.part.material.FlammableChemicalMaterials;
@@ -23,7 +22,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.awt.*;
-import java.util.Objects;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD,value = Dist.CLIENT)
 public class ColorHandler {

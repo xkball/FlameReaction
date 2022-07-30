@@ -1,8 +1,6 @@
 package com.xkball.flamereaction.crafting.recipe;
 
-import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
-import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.itemlike.item.materialitem.ColoredFlameItem;
 import com.xkball.flamereaction.util.ItemList;
 import net.minecraft.nbt.IntTag;

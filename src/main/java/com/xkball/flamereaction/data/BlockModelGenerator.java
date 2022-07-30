@@ -18,14 +18,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import org.lwjgl.system.CallbackI;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
 public class BlockModelGenerator extends BlockStateProvider {
     
-    ExistingFileHelper helper;
+    final ExistingFileHelper helper;
     
     public BlockModelGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, FlameReaction.MOD_ID, exFileHelper);

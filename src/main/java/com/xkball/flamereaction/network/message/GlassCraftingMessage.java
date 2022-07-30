@@ -1,18 +1,9 @@
 package com.xkball.flamereaction.network.message;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.crafting.GlassCraftingRecipe;
-import com.xkball.flamereaction.crafting.util.IntListContainer;
-import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.util.LevelUtil;
-import it.unimi.dsi.fastutil.ints.IntArrayList;
-import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.nbt.IntArrayTag;
-import net.minecraft.nbt.IntTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.network.NetworkEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -3,7 +3,6 @@ package com.xkball.flamereaction.util;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;

@@ -1,10 +1,8 @@
 package com.xkball.flamereaction.itemlike.block.commonblocks;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.eventhandler.register.FluidRegister;
 import com.xkball.flamereaction.itemlike.block.FRCBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;

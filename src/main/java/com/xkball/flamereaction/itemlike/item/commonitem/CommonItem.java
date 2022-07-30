@@ -1,7 +1,6 @@
 package com.xkball.flamereaction.itemlike.item.commonitem;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.item.FRCItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;

@@ -11,9 +11,7 @@ import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.lwjgl.system.CallbackI;
 
-import javax.print.StreamPrintServiceFactory;
 import java.util.Objects;
 
 public class RecipeRegister {

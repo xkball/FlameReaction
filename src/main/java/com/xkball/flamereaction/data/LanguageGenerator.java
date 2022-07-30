@@ -8,9 +8,7 @@ import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.util.translateutil.ChineseTranslatable;
 import com.xkball.flamereaction.util.translateutil.MaterialChineseTranslate;
-import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +19,6 @@ import org.slf4j.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import static com.xkball.flamereaction.util.translateutil.TranslateUtil.CHINESE_TRANSLATE_MAP;

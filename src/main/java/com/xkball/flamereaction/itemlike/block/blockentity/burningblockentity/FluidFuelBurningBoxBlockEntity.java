@@ -6,7 +6,6 @@ import com.xkball.flamereaction.crafting.util.FuelContainer;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.block.blockentity.ITargetBlockEntity;
-import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.FluidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.util.LevelUtil;
 import net.minecraft.core.BlockPos;

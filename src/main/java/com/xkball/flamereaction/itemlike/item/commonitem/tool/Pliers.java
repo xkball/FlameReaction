@@ -2,27 +2,21 @@ package com.xkball.flamereaction.itemlike.item.commonitem.tool;
 
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
-import com.xkball.flamereaction.gui.GlassCraftingScreen;
 import com.xkball.flamereaction.itemlike.block.blocktags.BlockTags;
 import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.network.NetworkHandler;
 import com.xkball.flamereaction.network.message.OpenGlassCraftingGUIMessage;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
 import org.jetbrains.annotations.NotNull;
 
 public class Pliers extends Item implements FRCItem {

@@ -1,7 +1,6 @@
 package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
 import com.xkball.flamereaction.itemlike.item.ColoredFlammableItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
@@ -21,7 +20,6 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import static com.xkball.flamereaction.FlameReaction.ALCOHOL_LAMP;
 import static com.xkball.flamereaction.FlameReaction.getItemName;
 
 

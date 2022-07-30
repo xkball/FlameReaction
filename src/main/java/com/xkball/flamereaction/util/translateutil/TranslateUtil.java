@@ -1,15 +1,12 @@
 package com.xkball.flamereaction.util.translateutil;
 
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
-import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlocks;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
-import com.xkball.flamereaction.itemlike.item.materialitem.ColoredFlameItem;
 import com.xkball.flamereaction.part.material.BasicMaterial;
 import com.xkball.flamereaction.part.material.FlammableChemicalMaterials;
 import com.xkball.flamereaction.part.material.IMaterial;
 import com.xkball.flamereaction.util.MaterialType;
 import com.xkball.flamereaction.util.PeriodicTableOfElements;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.HashMap;

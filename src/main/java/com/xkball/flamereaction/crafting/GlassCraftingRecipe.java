@@ -24,7 +24,7 @@ import java.util.Objects;
 @SuppressWarnings("ClassCanBeRecord")
 public class GlassCraftingRecipe implements Recipe<IntListContainer> {
     
-    public static String ID = "glass_crafting_recipe";
+    public static final String ID = "glass_crafting_recipe";
     
     protected final ResourceLocation id;
     protected final IntList intList;

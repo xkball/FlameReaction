@@ -2,7 +2,6 @@ package com.xkball.flamereaction.util;
 
 import com.xkball.flamereaction.capability.item.SimpleItemStackHandler;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class CapabilityUtil {
