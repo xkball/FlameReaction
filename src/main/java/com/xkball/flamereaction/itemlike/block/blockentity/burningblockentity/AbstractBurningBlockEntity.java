@@ -23,7 +23,7 @@ public abstract class AbstractBurningBlockEntity extends EasyChangedBlockEntity 
     public static void serverTick(Level level, BlockPos pos, BlockState state, AbstractBurningBlockEntity entity) {
         if(!level.isClientSide){
             if(entity.updateFuel(state)){
-                entity.setTimeLast(entity.getTimeLast()-1);
+                //entity.setTimeLast(entity.getTimeLast()-1);
                 var entityUp = level.getBlockEntity(pos.above());
                 if (entityUp != null) {
                     var cap = entityUp.getCapability(CapabilityHeatHandler.HEAT_HANDLER_CAPABILITY, Direction.DOWN);
@@ -34,9 +34,8 @@ public abstract class AbstractBurningBlockEntity extends EasyChangedBlockEntity 
                     }));
                 }
             }
-            
+            entity.setTimeLast(entity.getTimeLast()-1);
         }
-        
     }
     
     //若有燃料返回true
