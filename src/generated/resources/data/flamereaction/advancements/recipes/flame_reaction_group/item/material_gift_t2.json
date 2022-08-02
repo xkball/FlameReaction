@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/material_gift_t2"
+    ]
+  },
+  "criteria": {
+    "material_gift_t2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:material_gift_t1"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/material_gift_t2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "material_gift_t2",
+      "has_the_recipe"
+    ]
+  ]
+}

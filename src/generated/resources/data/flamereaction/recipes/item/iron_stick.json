@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": []
+  },
+  "result": {
+    "item": "flamereaction:iron_stick",
+    "count": 2
+  }
+}

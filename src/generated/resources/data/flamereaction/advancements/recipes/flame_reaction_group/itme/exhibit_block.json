@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:itme/exhibit_block"
+    ]
+  },
+  "criteria": {
+    "exhibit_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:tinted_glass"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:itme/exhibit_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "exhibit_block",
+      "has_the_recipe"
+    ]
+  ]
+}

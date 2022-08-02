@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:calcium_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:calcium_stick",
+    "count": 2
+  }
+}

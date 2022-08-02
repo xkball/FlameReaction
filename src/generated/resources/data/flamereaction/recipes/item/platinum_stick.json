@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:platinum_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:platinum_stick",
+    "count": 2
+  }
+}

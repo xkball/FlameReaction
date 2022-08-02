@@ -20,13 +20,15 @@ public class HeatGap {
     
     public static Heat tick(IHeatHandler heatHandler){
         var heat = heatHandler.getHeat();
-        var s = heatHandler.getSpecificHeatCapacity();
-        var d = heat.getDegree()-300;
-        heatHandler.addHeat((int) (-d*s*0.9));
+        var i = getTickChange(heat,heatHandler.getSpecificHeatCapacity());
+        heatHandler.addHeat(i);
         return heatHandler.getHeat();
     }
     
-    
+    public static int getTickChange(Heat heat,int sp){
+        var d = Math.abs(heat.getDegree()-300);
+        return (int) (heat.getDegree()>300?-(d*sp*1.4*((d/100)+1)):(d*sp*2*((d/100)+1)));
+    }
     
     public static int standardLinearGap(int i){
         return (i-300)*20;

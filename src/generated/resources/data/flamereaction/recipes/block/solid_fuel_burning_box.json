@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "qwq",
+    "qeq"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:copper_plate"
+    },
+    "q": {
+      "item": "minecraft:stone_bricks"
+    },
+    "w": {
+      "item": "minecraft:furnace"
+    },
+    "e": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "flamereaction:solid_fuel_burning_box"
+  }
+}

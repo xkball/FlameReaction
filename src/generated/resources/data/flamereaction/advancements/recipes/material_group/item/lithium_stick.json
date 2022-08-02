@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/lithium_stick"
+    ]
+  },
+  "criteria": {
+    "lithium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:lithium_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/lithium_stick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "lithium_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

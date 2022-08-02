@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:antimony_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:antimony_stick",
+    "count": 2
+  }
+}

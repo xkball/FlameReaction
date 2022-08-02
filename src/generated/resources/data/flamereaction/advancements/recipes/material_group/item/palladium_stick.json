@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/palladium_stick"
+    ]
+  },
+  "criteria": {
+    "palladium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:palladium_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/palladium_stick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "palladium_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

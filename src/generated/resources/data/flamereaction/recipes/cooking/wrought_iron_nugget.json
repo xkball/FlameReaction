@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:iron_nugget"
+  },
+  "result": "flamereaction:wrought_iron_nugget",
+  "experience": 20.0,
+  "cookingtime": 500
+}

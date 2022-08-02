@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:molybdenum_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:molybdenum_stick",
+    "count": 2
+  }
+}

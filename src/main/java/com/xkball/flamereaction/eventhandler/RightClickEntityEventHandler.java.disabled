@@ -1,0 +1,32 @@
+package com.xkball.flamereaction.eventhandler;
+
+import com.xkball.flamereaction.itemlike.item.materialitem.ColoredFlameItem;
+import com.xkball.flamereaction.util.ItemList;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+public class RightClickEntityEventHandler {
+    
+    @SubscribeEvent
+    public static void onRightClickEntity(PlayerInteractEvent.EntityInteract event){
+        var item = event.getPlayer().getItemInHand(event.getHand());
+        var e = event.getTarget();
+        var level = !event.getWorld().isClientSide;
+        if((item.is(ItemList.item_instance.get("iron_stick")) ||
+                item.is(ItemList.item_instance.get("platinum_stick")))
+            && e instanceof ItemEntity entity
+            && level){
+            var i2 = entity.getItem();
+            if(i2.getItem() instanceof ColoredFlameItem cfi){
+                item.addTagElement("color", IntTag.valueOf(cfi.getFlamedColor().getRGB()));
+                entity.setPickUpDelay(20);
+                i2.shrink(1);
+                entity.setItem(i2);
+            }
+        }
+    }
+}

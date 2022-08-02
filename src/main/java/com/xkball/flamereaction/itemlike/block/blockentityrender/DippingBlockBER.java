@@ -2,9 +2,9 @@ package com.xkball.flamereaction.itemlike.block.blockentityrender;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.eventhandler.register.FluidRegister;
 import com.xkball.flamereaction.itemlike.block.blockentity.DippingBlockEntity;
+import com.xkball.flamereaction.itemlike.item.commonitem.tool.Pliers;
 import com.xkball.flamereaction.render.FluidRenderFromMantle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -16,7 +16,9 @@ import net.minecraft.world.item.BlockItem;
 import org.jetbrains.annotations.NotNull;
 
 public class DippingBlockBER implements BlockEntityRenderer<DippingBlockEntity> {
-    public DippingBlockBER(BlockEntityRendererProvider.Context context) {
+    public DippingBlockBER(
+            @SuppressWarnings("unused")
+            BlockEntityRendererProvider.Context context) {
     }
     
     @Override
@@ -33,9 +35,13 @@ public class DippingBlockBER implements BlockEntityRenderer<DippingBlockEntity> 
     
         poseStack.pushPose();
         poseStack.translate(0.5,0.374,0.5);
+        poseStack.scale(0.9f,0.9f,0.9f);
         
-        if(!item.is(FlameReaction.PLIERS) || !(item.getItem() instanceof BlockItem)){
+        if(!(item.getItem() instanceof Pliers )|| !(item.getItem() instanceof BlockItem)){
             poseStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+        }
+        if(item.getItem() instanceof Pliers){
+            poseStack.mulPose(Vector3f.ZP.rotationDegrees(180F));
         }
         Minecraft.getInstance().getItemRenderer().renderStatic(item, ItemTransforms.TransformType.FIXED,combinedLightIn,combinedOverlayIn,poseStack,multiBufferSource,1);
         poseStack.popPose();

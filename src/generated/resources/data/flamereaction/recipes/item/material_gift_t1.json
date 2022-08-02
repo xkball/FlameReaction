@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iwi",
+    "iii"
+  ],
+  "key": {
+    "i": [
+      {
+        "item": "minecraft:stone"
+      },
+      {
+        "item": "minecraft:deepslate"
+      },
+      {
+        "item": "minecraft:granite"
+      },
+      {
+        "item": "minecraft:diorite"
+      },
+      {
+        "item": "minecraft:andesite"
+      }
+    ],
+    "w": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "flamereaction:material_gift_t1"
+  }
+}

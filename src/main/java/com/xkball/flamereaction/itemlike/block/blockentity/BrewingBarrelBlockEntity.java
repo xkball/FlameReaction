@@ -208,4 +208,9 @@ public class BrewingBarrelBlockEntity extends EasyChangedBlockEntity implements 
     public void clearContent() {
         this.item.clear();
     }
+    
+    
+    public FluidStack getFluid(){
+        return fluids.get(0);
+    }
 }

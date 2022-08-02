@@ -54,7 +54,7 @@ public class FuelRecipe implements Recipe<Container> {
             if(fluidFuel.isEmpty()
                     && !itemFuel.isEmpty()
                     && item.sameItem(itemFuel)
-                    && item.getCount()>itemFuel.getCount()
+                    && item.getCount()>=itemFuel.getCount()
                     ) return true;
             else if(!fluidFuel.isEmpty()
                         && itemFuel.isEmpty()
@@ -63,7 +63,7 @@ public class FuelRecipe implements Recipe<Container> {
                         && !itemFuel.isEmpty()
                         &&fluid.containsFluid(fluidFuel)
                         && item.sameItem(itemFuel)
-                        && item.getCount()>itemFuel.getCount();
+                        && item.getCount()>=itemFuel.getCount();
                 
         }
         return false;
@@ -93,6 +93,15 @@ public class FuelRecipe implements Recipe<Container> {
     public @NotNull RecipeSerializer<?> getSerializer() {
         return RecipeRegister.FUEL_RECIPE_SERIALIZER.get();
     }
+    
+    public int getTime() {
+        return time;
+    }
+    
+    public int getMaxHeat() {
+        return maxHeat;
+    }
+    
     
     @Override
     public @NotNull RecipeType<?> getType() {

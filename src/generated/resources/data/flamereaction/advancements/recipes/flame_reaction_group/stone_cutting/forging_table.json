@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:stone_cutting/forging_table"
+    ]
+  },
+  "criteria": {
+    "forging_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:forging_table"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:stone_cutting/forging_table"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "forging_table",
+      "has_the_recipe"
+    ]
+  ]
+}

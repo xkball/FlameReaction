@@ -4,6 +4,7 @@
     "flamereaction:iron_scaffolding_block",
     "flamereaction:fluid_fuel_burning_box",
     "flamereaction:solid_fuel_burning_box",
-    "flamereaction:dipping_block"
+    "flamereaction:dipping_block",
+    "flamereaction:forging_table"
   ]
 }

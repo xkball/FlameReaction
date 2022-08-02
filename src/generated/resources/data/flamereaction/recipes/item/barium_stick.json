@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:barium_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:barium_stick",
+    "count": 2
+  }
+}

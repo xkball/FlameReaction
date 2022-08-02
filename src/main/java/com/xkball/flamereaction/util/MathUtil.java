@@ -14,6 +14,10 @@ public class MathUtil {
         return randomBoolean(1);
     }
     
+    public static boolean randomBoolean(float trueRate){
+        return random.nextFloat(1f)<=trueRate;
+    }
+    
     public static double randomDoubleToPosOrNeg(double f){
         return random.nextBoolean()?f:-f;
     }

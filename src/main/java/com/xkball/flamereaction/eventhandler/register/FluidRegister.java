@@ -3,6 +3,7 @@ package com.xkball.flamereaction.eventhandler.register;
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.commonblocks.UnstableFluidBlock;
+import com.xkball.flamereaction.itemlike.item.commonitem.FRCBucketItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -15,6 +16,7 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
@@ -28,8 +30,20 @@ public class FluidRegister {
     public static final DeferredRegister<Block> FLUID_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,FlameReaction.MOD_ID);
     public static final DeferredRegister<Item> FLUID_BUCKETS = DeferredRegister.create(ForgeRegistries.ITEMS,FlameReaction.MOD_ID);
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, FlameReaction.MOD_ID);
-    public static final RegistryObject<LiquidBlock> IMPURE_ALCOHOL_FLUID_BLOCK = FLUID_BLOCKS.register(UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME+"_block",() -> new UnstableFluidBlock(FluidRegister.IMPURE_ALCOHOL_FLUID,UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME));
-    public static final RegistryObject<Item> IMPURE_ALCOHOL_FLUID_BUCKET = FLUID_BUCKETS.register(UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME+"_bucket",() -> new BucketItem(FluidRegister.IMPURE_ALCOHOL_FLUID,new Item.Properties().tab(CreativeModeTabs.FLAME_REACTION_GROUP).craftRemainder(BUCKET).fireResistant().stacksTo(1)));
+    public static final RegistryObject<LiquidBlock> IMPURE_ALCOHOL_FLUID_BLOCK = FLUID_BLOCKS.register(UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME+"_block",() -> new UnstableFluidBlock(FluidRegister.IMPURE_ALCOHOL_FLUID,UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME){
+        @Override
+        public @NotNull String getChineseTranslate() {
+            return "不纯的酒精";
+        }
+    });
+    public static final RegistryObject<Item> IMPURE_ALCOHOL_FLUID_BUCKET = FLUID_BUCKETS.register(FRCBucketItem.IMPURE_ALCOHOL_BUCKET,() -> new FRCBucketItem(FluidRegister.IMPURE_ALCOHOL_FLUID
+            , new Item.Properties().tab(CreativeModeTabs.FLAME_REACTION_GROUP).craftRemainder(BUCKET).fireResistant().stacksTo(1),
+            FRCBucketItem.IMPURE_ALCOHOL_BUCKET) {
+        @Override
+        public @NotNull String getChineseTranslate() {
+            return "不纯的酒精桶";
+        }
+    });
     public static final RegistryObject<FlowingFluid> IMPURE_ALCOHOL_FLUID = FLUIDS.register("impure_alcohol_fluid", () -> new ForgeFlowingFluid.Source(FluidRegister.IMPURE_ALCOHOL_FLUID_PROPERTIES));
     public static final RegistryObject<FlowingFluid> IMPURE_ALCOHOL_FLUID_FLOWING = FLUIDS.register("impure_obsidian_fluid_flowing", () -> new ForgeFlowingFluid.Flowing(FluidRegister.IMPURE_ALCOHOL_FLUID_PROPERTIES));
     public static final ForgeFlowingFluid.Properties IMPURE_ALCOHOL_FLUID_PROPERTIES

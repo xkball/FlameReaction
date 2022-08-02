@@ -22,6 +22,8 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class SolidFuelBurningBoxBlockEntity extends AbstractBurningBlockEntity implements ITargetBlockEntity {
     
     private NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
@@ -50,6 +52,7 @@ public class SolidFuelBurningBoxBlockEntity extends AbstractBurningBlockEntity i
                 @Override
                 public void onContentsChanged(int slot) {
                     dirty();
+                    coolDown = 10;
                 }
             }).cast();
         }
@@ -64,27 +67,35 @@ public class SolidFuelBurningBoxBlockEntity extends AbstractBurningBlockEntity i
     @Override
     public boolean updateFuel(BlockState bs) {
         if(bs.is(FlameReaction.SOLID_FUEL_BURNING_BOX) && bs.getValue(SolidFuelBurningBox.FIRED) && this.level != null ){
-            if(this.timeLast>0 && this.timeLast<5  ) {
-                var item = this.items.get(0);
-                level.getRecipeManager().getRecipeFor(RecipeRegister.FUEL_RECIPE_TYPE.get(), new FuelContainer() {
-                    @Override
-                    public ItemStack getItem() {
-                        return item;
-                    }
-        
-                    @Override
-                    public FluidStack getFluid() {
-                        return FluidStack.EMPTY;
-                    }
-                }, level).ifPresent(recipe -> item.shrink(recipe.getItemFuel().getCount()));
+            var item = this.items.get(0);
+            if(timeLast>=5) return true;
+            AtomicInteger time = new AtomicInteger();
+            level.getRecipeManager().getRecipeFor(RecipeRegister.FUEL_RECIPE_TYPE.get(), new FuelContainer() {
+                @Override
+                public ItemStack getItem() {
+                    return item;
+                }
     
-                this.items.set(0, item);
-                dirty();
-                return true;
-            }
-            else if(this.timeLast == 0){
-                bs.setValue(SolidFuelBurningBox.FIRED,Boolean.FALSE);
+                @Override
+                public FluidStack getFluid() {
+                    return FluidStack.EMPTY;
+                }
+            }, level).ifPresent(recipe -> {
+                        item.shrink(recipe.getItemFuel().getCount());
+                        time.set(recipe.getTime());
+                        this.setMaxHeatProduce(recipe.getMaxHeat());
+                    }
+            );
+            this.timeLast = timeLast+ time.get();
+            this.items.set(0, item);
+            dirty();
+            if(timeLast>0) return true;
+            if(item.isEmpty() && this.timeLast <=0 ){
+                bs = bs.setValue(SolidFuelBurningBox.FIRED,Boolean.FALSE);
                 this.level.setBlock(this.getBlockPos(),bs,Block.UPDATE_ALL);
+                this.setMaxHeatProduce(0);
+                this.timeLast = 0;
+                dirty();
             }
         }
         else {

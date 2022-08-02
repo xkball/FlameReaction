@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:zinc_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:zinc_stick",
+    "count": 2
+  }
+}

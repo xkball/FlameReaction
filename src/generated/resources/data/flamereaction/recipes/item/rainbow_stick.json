@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:rainbow_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:rainbow_stick",
+    "count": 2
+  }
+}

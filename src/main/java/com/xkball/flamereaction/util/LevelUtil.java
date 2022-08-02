@@ -31,6 +31,7 @@ import net.minecraftforge.items.wrapper.EmptyHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
@@ -298,7 +299,7 @@ public class LevelUtil {
     }
     
     public static boolean hasBoolean(ItemStack itemStack,String s){
-        if (itemStack.getTag() != null) {
+        if (itemStack.hasTag() && Objects.requireNonNull(itemStack.getTag()).contains(s)) {
             return itemStack.getTag().getInt(s) == 1;
         }
         return false;

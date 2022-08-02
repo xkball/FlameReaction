@@ -3,6 +3,7 @@ package com.xkball.flamereaction.data;
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.itemlike.item.ColoredFlammableItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
+import com.xkball.flamereaction.itemlike.item.commonitem.Gift;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.Hammer;
@@ -61,14 +62,24 @@ public class ItemModelGenerator extends ItemModelProvider {
             if(item instanceof Hammer){
                 generatedItem("hammer");
             }
-            generatedItem(CommonItem.ICON);
+            
             
         }
         generatedItem("impure_alcohol_bucket");
-        handheldItem(Pliers.NAME);
+        //handheldItem(Pliers.NAME);
         handheldItem(Wrench.NAME);
         generatedStampItem(CommonItem.WROUGHT_IRON_INGOT,"ingot");
         generatedStampItem(CommonItem.WROUGHT_IRON_NUGGET,"nugget");
+        generatedItem(CommonItem.ICON);
+        generatedStampItem(CommonItem.WROUGHT_IRON_STICK,"stick");
+        withExistingParent(CommonItem.IRON_STAND,new ResourceLocation(FlameReaction.MOD_ID,"block/iron_stand"));
+        generatedItem(Gift.NAME1);
+        generatedItem(Gift.NAME2);
+        generatedItem(Gift.NAME3);
+    }
+    
+    public void spGEN(String name,String loc){
+    
     }
     
     public ItemModelBuilder generatedItem(String name) {

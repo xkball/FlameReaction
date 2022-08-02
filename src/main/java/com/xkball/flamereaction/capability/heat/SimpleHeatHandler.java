@@ -20,6 +20,8 @@ public interface SimpleHeatHandler extends IHeatHandler{
                 var i = HeatGap.getNextGap(heat)*getSpecificHeatCapacity();
                 if (amount < i) {
                     f = false;
+                    heat.setHeatBuf(buf);
+                    this.setHeat(heat);
                 }
                 else {
                     amount = amount - i;

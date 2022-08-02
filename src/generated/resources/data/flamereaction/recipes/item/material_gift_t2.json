@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iwi",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:netherrack"
+    },
+    "w": {
+      "item": "flamereaction:material_gift_t1"
+    }
+  },
+  "result": {
+    "item": "flamereaction:material_gift_t2"
+  }
+}

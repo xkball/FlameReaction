@@ -33,10 +33,20 @@ public class ColorHandler {
             colorItemBlock(item,event);
             colorChemicalItem(item,event);
             colorFlameDyeItem(item,event);
-            if (item != null && (item == FlameReaction.WROUGHT_IRON_INGOT || item == FlameReaction.WROUGHT_IRON_NUGGET)) {
+            if (item != null && item == FlameReaction.WROUGHT_IRON_NUGGET) {
                 event.getItemColors().register((itemStack,iTintIndex) ->
                     new Color(169,152,152).getRGB()
                 ,item);
+            }
+            if (item != null && item == FlameReaction.WROUGHT_IRON_INGOT) {
+                event.getItemColors().register((itemStack,iTintIndex) ->
+                                new Color(169,152,152).getRGB()
+                        ,item);
+            }
+            if (item != null && item == FlameReaction.WROUGHT_IRON_STICK) {
+                event.getItemColors().register((itemStack,iTintIndex) ->
+                                new Color(169,152,152).getRGB()
+                        ,item);
             }
         }
     }

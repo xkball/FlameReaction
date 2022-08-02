@@ -28,13 +28,13 @@ public abstract class AbstractBurningBlockEntity extends EasyChangedBlockEntity 
                 if (entityUp != null) {
                     var cap = entityUp.getCapability(CapabilityHeatHandler.HEAT_HANDLER_CAPABILITY, Direction.DOWN);
                     cap.ifPresent((iHeatHandler -> {
-                        if(iHeatHandler.isValid(Direction.DOWN)){
+                        if(iHeatHandler.isValid(Direction.DOWN) && entity.canProduceHeat(state)){
                             iHeatHandler.addHeat(entity.maxHeatProduce);
                         }
                     }));
                 }
             }
-            entity.setTimeLast(entity.getTimeLast()-1);
+            if(entity.getTimeLast()>0)entity.setTimeLast(entity.getTimeLast()-1);
         }
     }
     
@@ -85,5 +85,9 @@ public abstract class AbstractBurningBlockEntity extends EasyChangedBlockEntity 
     
     public void setTimeLast(int timeLast) {
         this.timeLast = timeLast;
+    }
+    
+    public boolean canProduceHeat(BlockState blockState){
+        return true;
     }
 }

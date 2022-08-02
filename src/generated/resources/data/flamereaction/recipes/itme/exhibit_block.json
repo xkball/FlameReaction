@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "q q",
+    " i ",
+    "q q"
+  ],
+  "key": {
+    "q": {
+      "item": "flamereaction:wrought_iron_ingot"
+    },
+    "i": {
+      "item": "minecraft:tinted_glass"
+    }
+  },
+  "result": {
+    "item": "flamereaction:exhibit_block"
+  }
+}

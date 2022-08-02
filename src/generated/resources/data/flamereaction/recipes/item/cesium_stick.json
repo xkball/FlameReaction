@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:cesium_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:cesium_stick",
+    "count": 2
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:smithing_table"
+  },
+  "result": "flamereaction:forging_table",
+  "count": 1
+}

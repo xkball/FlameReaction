@@ -2,24 +2,24 @@
   "type": "flamereaction:glass_crafting_recipe",
   "patten": [
     0,
-    0,
-    0,
-    0,
-    0,
-    1,
     1,
     0,
     1,
+    0,
+    0,
     1,
-    1,
+    0,
     1,
     0,
     1,
     1,
+    0,
+    1,
     1,
     1,
     0,
-    1,
+    0,
+    0,
     1,
     1,
     1,
@@ -29,13 +29,13 @@
   ],
   "result": [
     {
-      "item": "flamereaction:forging_table",
+      "item": "flamereaction:alcohol_lamp",
       "count": 1
     }
   ],
   "target": [
     {
-      "block": "flamereaction:flame_fire_block"
+      "block": "flamereaction:dipping_block"
     }
   ]
 }

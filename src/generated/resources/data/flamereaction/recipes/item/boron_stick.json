@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:boron_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:boron_stick",
+    "count": 2
+  }
+}

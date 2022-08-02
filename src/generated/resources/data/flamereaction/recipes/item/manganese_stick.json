@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:manganese_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:manganese_stick",
+    "count": 2
+  }
+}

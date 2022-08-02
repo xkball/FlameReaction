@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ii",
+    "qw"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:iron_plate"
+    },
+    "q": {
+      "item": "flamereaction:iron_stick"
+    },
+    "w": {
+      "item": "minecraft:saddle"
+    }
+  },
+  "result": {
+    "item": "flamereaction:universal_saddle"
+  }
+}

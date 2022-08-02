@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:block/brewing_barrel"
+    ]
+  },
+  "criteria": {
+    "brewing_barrel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:composter"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:block/brewing_barrel"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "brewing_barrel",
+      "has_the_recipe"
+    ]
+  ]
+}

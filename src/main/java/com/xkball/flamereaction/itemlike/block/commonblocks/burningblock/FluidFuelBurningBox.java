@@ -8,6 +8,7 @@ import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.FluidFuelBurningBoxBlockEntity;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.LevelUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -65,8 +66,8 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
             @Override
             public void appendHoverText(@NotNull ItemStack p_40572_, @Nullable Level p_40573_, @NotNull List<Component> components, @NotNull TooltipFlag p_40575_) {
                 super.appendHoverText(p_40572_, p_40573_, components, p_40575_);
-                components.add(AbstractBurningBlock.tooltip1);
-                components.add(AbstractBurningBlock.tooltip2);
+                components.add(AbstractBurningBlock.tooltip1.withStyle(ChatFormatting.GRAY));
+                components.add(AbstractBurningBlock.tooltip2.withStyle(ChatFormatting.GRAY));
             }
         };
         bi.setRegistryName(FlameReaction.MOD_ID, NAME);
@@ -119,9 +120,9 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
     @Override
     @SuppressWarnings("deprecation")
     public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull Random random) {
-        if(state.is(FlameReaction.SOLID_FUEL_BURNING_BOX)){
-            state.setValue(FIRED,Boolean.FALSE);
-            level.setBlock(pos,state,Block.UPDATE_ALL_IMMEDIATE);
+        if(state.is(FlameReaction.FLUID_FUEL_BURNING_BOX)){
+            state = state.setValue(FIRED,Boolean.FALSE);
+            level.setBlock(pos,state,Block.UPDATE_ALL);
         }
     }
     
@@ -143,7 +144,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
             }
         }
         
-        super.neighborChanged(blockState, level, pos, block, pos1, b);
+        //super.neighborChanged(blockState, level, pos, block, pos1, b);
     }
     
     @Override
@@ -158,6 +159,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
                 level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
                 level.setBlock(pos, state.setValue(FluidFuelBurningBox.FIRED, true), 11);
                 level.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
+                return InteractionResult.SUCCESS;
             }
             //塞东西
             else {
@@ -166,7 +168,7 @@ public class FluidFuelBurningBox extends AbstractBurningBlock{
                     var recipe = level.getRecipeManager().getAllRecipesFor(RecipeRegister.FUEL_RECIPE_TYPE.get());
                     var list = recipe.stream().filter(Objects::nonNull).map(FuelRecipe::getFluidFuel).map(FluidStack::getFluid).filter((i) -> !(i == Fluids.EMPTY)).toList();
                     if(list.contains(bucketItem.getFluid())){
-                        LevelUtil.ioWithBlock((ServerLevel) level,pos,player,item,state.getValue(FluidFuelBurningBox.FACING));
+                        if(LevelUtil.ioWithBlock((ServerLevel) level,pos,player,item,state.getValue(FluidFuelBurningBox.FACING))) return InteractionResult.SUCCESS;
                     }
                 }
             }

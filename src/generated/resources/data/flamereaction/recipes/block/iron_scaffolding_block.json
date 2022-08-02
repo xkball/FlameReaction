@@ -11,6 +11,7 @@
     }
   },
   "result": {
-    "item": "flamereaction:iron_scaffolding_block"
+    "item": "flamereaction:iron_scaffolding_block",
+    "count": 4
   }
 }

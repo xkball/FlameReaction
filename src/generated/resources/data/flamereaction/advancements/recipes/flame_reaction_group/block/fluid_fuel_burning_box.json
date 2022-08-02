@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:block/fluid_fuel_burning_box"
+    ]
+  },
+  "criteria": {
+    "fluid_fuel_burning_box": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:furnace"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:block/fluid_fuel_burning_box"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "fluid_fuel_burning_box",
+      "has_the_recipe"
+    ]
+  ]
+}

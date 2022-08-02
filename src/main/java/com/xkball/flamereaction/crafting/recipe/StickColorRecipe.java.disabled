@@ -70,11 +70,16 @@ public class StickColorRecipe extends CustomRecipe {
     
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
-        return true;
+        return pHeight*pWidth>=2;
     }
     
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
         return RecipeRegister.STICK_COLOR_SERIALIZER.get();
+    }
+    
+    @Override
+    public @NotNull ItemStack getResultItem() {
+        return new ItemStack(ItemList.item_instance.get("iron_stick"));
     }
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/copper_stick"
+    ]
+  },
+  "criteria": {
+    "air": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:air"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/copper_stick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "air",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -77,6 +77,19 @@ public class DippingBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
     
     @Override
     @SuppressWarnings("deprecation")
+    public void onRemove(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pNewState, boolean pIsMoving) {
+        if(!pLevel.isClientSide && !pIsMoving && pState.getBlock() != pNewState.getBlock()){
+            var e = pLevel.getBlockEntity(pPos);
+            if(e instanceof DippingBlockEntity entity){
+                LevelUtil.addItem((ServerLevel) pLevel,pPos,entity.getItem());
+            }
+            
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+    
+    @Override
+    @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos pos,
                                           @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult result) {
         if(!level.isClientSide){

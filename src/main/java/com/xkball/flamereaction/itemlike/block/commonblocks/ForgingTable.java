@@ -96,7 +96,7 @@ public class ForgingTable extends BaseEntityBlock implements FRCBlock, FRCInfo {
     @Override
     @SuppressWarnings("deprecation")
     public void onRemove(@NotNull BlockState bs1, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState bs2, boolean p_60519_) {
-        if (!bs1.is(bs2.getBlock())) {
+        if (!level.isClientSide && !bs1.is(bs2.getBlock())) {
             BlockEntity blockentity = level.getBlockEntity(pos);
             if (blockentity instanceof ForgingTableBlockEntity) {
                 Containers.dropContents(level, pos, (Container) blockentity);

@@ -6,6 +6,7 @@ import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.network.NetworkHandler;
 import com.xkball.flamereaction.network.message.GlassCraftingMessage;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -16,11 +17,13 @@ import java.awt.*;
 
 public class GlassCraftingScreen extends Screen {
     
-    private  ImageCheckBox[] imageCheckBoxes;
+    private ImageCheckBox[] imageCheckBoxes;
+    private final int[] intList;
     
     public static final TranslatableComponent NAME = TranslateUtil.create("glass_crafting_screen","玻璃处理界面","glass crafting screen");
-    public GlassCraftingScreen() {
+    public GlassCraftingScreen(IntList intList) {
         super(NAME);
+        this.intList = intList.toIntArray();
     }
     
     @Override
@@ -33,7 +36,7 @@ public class GlassCraftingScreen extends Screen {
             int textureWidth = 256;
             int textureHeight = 256;
             blit(poseStack, (this.width/2) -88, (this.height/2) -83, 0, 0, 176, 166, textureWidth, textureHeight);
-            drawString(poseStack, this.font, NAME.getString(), this.width / 2 - 10, this.height/2-80, new Color(0,0,0).getRGB());
+            drawString(poseStack, this.font, "玻璃合成", this.width / 2 - 10, this.height/2-80, new Color(0,0,0).getRGB());
             
             for(ImageCheckBox imageCheckBox: imageCheckBoxes) {
                 imageCheckBox.render(poseStack, mouseX, mouseY, p_96565_);
@@ -54,6 +57,7 @@ public class GlassCraftingScreen extends Screen {
                                 20,20,new TranslatableComponent("flamereaction.null"),
                                 true,new ResourceLocation(FlameReaction.MOD_ID,"textures/gui/white_glass_checkbox.png"),false,
                                 new ResourceLocation(FlameReaction.MOD_ID,"textures/gui/light_gray_glass_checkbox.png"),0,0,1,20,20);
+                if(intList[i] == 1 && !imageCheckBoxes[i].selected()) imageCheckBoxes[i].onPress();
                 this.addRenderableWidget(imageCheckBoxes[i]);
                 i++;
             }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:rubidium_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:rubidium_stick",
+    "count": 2
+  }
+}

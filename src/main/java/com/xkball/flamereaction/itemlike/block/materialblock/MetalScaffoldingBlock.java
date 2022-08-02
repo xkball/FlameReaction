@@ -10,6 +10,7 @@ import com.xkball.flamereaction.util.translateutil.ChineseTranslatable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -131,7 +132,7 @@ public class MetalScaffoldingBlock extends MaterialBlock implements SimpleWaterl
    @Override
    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
        if(!level.isClientSide){
-           if(player.getUseItem().getItem() instanceof Wrench){
+           if(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof Wrench){
                addNeighborDistance(1,level,pos);
            }
        }

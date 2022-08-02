@@ -11,6 +11,7 @@ import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.Alcohol
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.FluidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.item.commonitem.CommonItem;
+import com.xkball.flamereaction.itemlike.item.commonitem.Gift;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.ExhibitBlockKey;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.Hammer;
@@ -36,6 +37,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -105,7 +107,13 @@ public class FlameReaction
     public static CommonItem WROUGHT_IRON_NUGGET;
     public static SolidFuelBurningBox SOLID_FUEL_BURNING_BOX;
     public static FluidFuelBurningBox FLUID_FUEL_BURNING_BOX;
+    public static CommonItem WROUGHT_IRON_STICK;
     public static CommonItem ICON;
+    public static CommonItem IRON_STAND;
+    public static Hammer HAMMER;
+    public static Gift GIFT1;
+    public static Gift GIFT2;
+    public static Gift GIFT3;
     
     public static void init(){
         BasicMaterial.loadList();
@@ -142,16 +150,25 @@ public class FlameReaction
             DIPPINGBLOCK = new DippingBlock();
             ALCOHOL_LAMP = new AlcoholLamp();
             WROUGHT_IRON_INGOT = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_INGOT,"锻铁锭");
-            WROUGHT_IRON_INGOT = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_NUGGET,"锻铁粒");
+            WROUGHT_IRON_NUGGET = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_NUGGET,"锻铁粒");
+            WROUGHT_IRON_STICK = new CommonItem(CreativeModeTabs.MATERIAL_GROUP,CommonItem.WROUGHT_IRON_STICK,"锻铁棍");
             SOLID_FUEL_BURNING_BOX = new SolidFuelBurningBox();
             FLUID_FUEL_BURNING_BOX = new FluidFuelBurningBox();
             ICON = new CommonItem(CreativeModeTabs.FLAME_REACTION_GROUP,CommonItem.ICON,"焰火");
+            IRON_STAND = new CommonItem(CreativeModeTabs.FLAME_REACTION_GROUP,CommonItem.IRON_STAND,"铁架台");
             
             for(DyeColor dyeColor : DyeColor.values()){
                 new FlameDyeItem(dyeColor.getName(), dyeColor);
             }
             
-            new Hammer();
+            HAMMER = new Hammer();
+            
+            
+            
+            //这几个一定要在底端
+            GIFT1 = new Gift(Gift.NAME1,"原材料抽奖包,一级",Gift.gift1);
+            GIFT2 = new Gift(Gift.NAME2,"原材料抽奖包,二级",Gift.gift2);
+            GIFT3 = new Gift(Gift.NAME3,"原材料抽奖包,三级",Gift.gift3);
         }
     }
 }

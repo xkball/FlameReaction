@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "iwi",
+    " i "
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:iron_plate"
+    },
+    "w": {
+      "item": "minecraft:composter"
+    }
+  },
+  "result": {
+    "item": "flamereaction:brewing_barrel"
+  }
+}

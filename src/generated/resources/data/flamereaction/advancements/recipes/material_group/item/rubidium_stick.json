@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/rubidium_stick"
+    ]
+  },
+  "criteria": {
+    "rubidium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "flamereaction:rubidium_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/rubidium_stick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rubidium_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

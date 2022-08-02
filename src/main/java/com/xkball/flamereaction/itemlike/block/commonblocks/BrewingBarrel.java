@@ -7,7 +7,9 @@ import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.FRCBlock;
+import com.xkball.flamereaction.itemlike.block.FRCInfo;
 import com.xkball.flamereaction.itemlike.block.blockentity.BrewingBarrelBlockEntity;
+import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.LevelUtil;
 import net.minecraft.core.BlockPos;
@@ -34,7 +36,10 @@ import net.minecraftforge.fluids.FluidUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BrewingBarrel extends BaseEntityBlock implements FRCBlock {
+import java.util.LinkedList;
+import java.util.List;
+
+public class BrewingBarrel extends BaseEntityBlock implements FRCBlock, FRCInfo {
     
     public static final String NAME = "brewing_barrel";
     public BrewingBarrel() {
@@ -97,5 +102,20 @@ public class BrewingBarrel extends BaseEntityBlock implements FRCBlock {
     @Override
     public @NotNull String getChineseTranslate() {
         return "酿造桶";
+    }
+    
+    @Override
+    public @NotNull List<String> getInfo(ServerLevel level, BlockPos pos) {
+        var entity = level.getBlockEntity(pos);
+        if(entity instanceof BrewingBarrelBlockEntity blockEntity){
+            var item = getItemInfo(entity);
+            var fluid = getFluidInfo(blockEntity.getFluid());
+            var result = new LinkedList<String>();
+            result.add(NAME);
+            result.addAll(item);
+            result.add(fluid);
+            return result;
+        }
+        return List.of(NAME);
     }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "qqq",
+    "qqq",
+    "qqq"
+  ],
+  "key": {
+    "q": {
+      "item": "flamereaction:wrought_iron_nugget"
+    }
+  },
+  "result": {
+    "item": "flamereaction:wrought_iron_ingot"
+  }
+}

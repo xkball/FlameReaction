@@ -35,7 +35,11 @@ public class FlameFireBlock extends BaseFireBlock implements FRCBlock {
     public static final EnumProperty<FlammableChemicalMaterials> MATERIAL = EnumProperty.create("material",FlammableChemicalMaterials.class);
     
     public FlameFireBlock() {
-        super(BlockBehaviour.Properties.of(Material.FIRE).noCollission().instabreak().lightLevel((blockState) -> 15).sound(SoundType.WOOL),0F);
+        super(BlockBehaviour.Properties.of(Material.FIRE)
+                .noCollission()
+                .instabreak()
+                .lightLevel((blockState) -> 15)
+                .sound(SoundType.WOOL),0F);
         this.setRegistryName(FlameReaction.MOD_ID,NAME);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(MATERIAL,FlammableChemicalMaterials.SODIUM_CHLORIDE)
@@ -95,9 +99,10 @@ public class FlameFireBlock extends BaseFireBlock implements FRCBlock {
                 
                 level.setBlock(blockPos,blockState,Block.UPDATE_CLIENTS);
                 level.scheduleTick(blockPos,this,1);
+                return InteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.PASS;
     }
     
     @Override

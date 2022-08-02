@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:potassium_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:potassium_stick",
+    "count": 2
+  }
+}

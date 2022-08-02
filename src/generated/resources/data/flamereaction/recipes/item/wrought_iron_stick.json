@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:wrought_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:wrought_iron_stick",
+    "count": 2
+  }
+}

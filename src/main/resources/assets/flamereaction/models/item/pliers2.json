@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "flamereaction:item/pliers"
+    "layer0": "flamereaction:item/pliers2"
   }
 }

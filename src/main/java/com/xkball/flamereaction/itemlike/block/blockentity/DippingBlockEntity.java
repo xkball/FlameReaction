@@ -94,7 +94,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
             
                         @Override
                         public Block getTarget() {
-                            return FlameReaction.FLAME_FIRE_BLOCK;
+                            return FlameReaction.DIPPINGBLOCK;
                         }
                     }, level)) {
                         if(MathUtil.randomBoolean(6) && fluid.getFluid() == Fluids.WATER && !fluid.isEmpty()){
@@ -162,6 +162,16 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
                 protected void setFluidInTank(int shot,FluidStack fluidStack) {
                     fluid.set(0,fluidStack);
                 }
+    
+                @Override
+                public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
+                    if(action.execute()){
+                        var i = fluid.get(0).getAmount();
+                        float f = i==0?1:1-(float)(maxDrain/i);
+                        heat.setHeatBuf((int) (heat.getHeatBuf()*f));
+                    }
+                    return super.drain(maxDrain, action);
+                }
             }).cast();
         }
         if(cap == CapabilityHeatHandler.HEAT_HANDLER_CAPABILITY){
@@ -173,7 +183,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
     
                 @Override
                 public int getSpecificHeatCapacity() {
-                    return 1+fluid.get(0).getAmount()/1000;
+                    return 1+fluid.get(0).getAmount()/10;
                 }
     
                 @Override
@@ -188,7 +198,7 @@ public class DippingBlockEntity extends EasyChangedBlockEntity{
     
                 @Override
                 public boolean isValid(Direction direction) {
-                    return direction == Direction.UP;
+                    return direction == Direction.DOWN;
                 }
     
                 @Override

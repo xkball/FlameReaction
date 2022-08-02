@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "flamereaction:item/pliers"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "flamereaction:has_item":1
+      },
+      "model": "flamereaction:item/pliers2"
+    }
+  ]
+}
