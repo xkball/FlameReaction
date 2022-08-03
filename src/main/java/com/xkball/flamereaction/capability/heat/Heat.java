@@ -18,7 +18,7 @@ public class Heat {
         return new Heat(STANDARD_TEMPERATURE,0);
     }
     
-    public  void up(){
+    public void up(){
         this.degree = degree+1;
         this.heatBuf = 0;
     }

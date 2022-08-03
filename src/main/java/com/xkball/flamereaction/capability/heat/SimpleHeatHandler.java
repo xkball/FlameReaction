@@ -17,16 +17,16 @@ public interface SimpleHeatHandler extends IHeatHandler{
         boolean f = true;
         if(amount >= 0) {
             while (f) {
-                var i = HeatGap.getNextGap(heat)*getSpecificHeatCapacity();
-                if (amount < i) {
+                var i = HeatGap.getNextGap(heat,getSpecificHeatCapacity());
+                if (buf < i) {
                     f = false;
                     heat.setHeatBuf(buf);
                     this.setHeat(heat);
                 }
                 else {
-                    amount = amount - i;
+                    buf = buf - i;
                     heat.up();
-                    this.setHeat(heat);
+                    //this.setHeat(heat);
                 }
             }
         }
@@ -41,8 +41,9 @@ public interface SimpleHeatHandler extends IHeatHandler{
                 }
                 else {
                     temp = temp-1;
+                    heat.setHeatBuf(0);
+                    buf = buf + HeatGap.getForeGap(heat,getSpecificHeatCapacity());
                     heat.setDegree(temp);
-                    buf = buf + HeatGap.getForeGap(heat)*getSpecificHeatCapacity();
                     w++;
                 }
             }

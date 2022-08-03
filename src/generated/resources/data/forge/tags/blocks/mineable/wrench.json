@@ -5,6 +5,11 @@
     "flamereaction:fluid_fuel_burning_box",
     "flamereaction:solid_fuel_burning_box",
     "flamereaction:dipping_block",
-    "flamereaction:forging_table"
+    "flamereaction:forging_table",
+    "flamereaction:brewing_barrel",
+    "flamereaction:solar_reflector",
+    "flamereaction:solar_collector_tower_center",
+    "flamereaction:alcohol_lamp",
+    "flamereaction:heat_fe_generator"
   ]
 }

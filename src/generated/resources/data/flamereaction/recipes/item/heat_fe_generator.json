@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iei",
+    "www",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:copper_plate"
+    },
+    "w": {
+      "item": "minecraft:redstone_block"
+    },
+    "e": {
+      "item": "flamereaction:iron_plate"
+    }
+  },
+  "result": {
+    "item": "flamereaction:heat_fe_generator"
+  }
+}

@@ -45,7 +45,7 @@ public class AlcoholLampBlockEntity extends AbstractBurningBlockEntity implement
     
     @Override
     public boolean updateFuel(BlockState bs) {
-        if(bs.is(FlameReaction.FLUID_FUEL_BURNING_BOX) && bs.getValue(SolidFuelBurningBox.FIRED) && this.level != null ){
+        if(bs.is(FlameReaction.ALCOHOL_LAMP) && bs.getValue(AlcoholLamp.FIRED) && this.level != null ){
             var fluidStack1 = this.fluidStack.get(0);
             if(timeLast>=5) return true;
             AtomicInteger time = new AtomicInteger();
@@ -68,8 +68,8 @@ public class AlcoholLampBlockEntity extends AbstractBurningBlockEntity implement
             this.fluidStack.set(0, fluidStack1);
             dirty();
             if(timeLast>0) return true;
-            if(fluidStack.isEmpty()){
-                bs = bs.setValue(FluidFuelBurningBox.FIRED,Boolean.FALSE);
+            if(fluidStack.get(0).isEmpty()){
+                bs = bs.setValue(AlcoholLamp.FIRED,Boolean.FALSE);
                 this.level.setBlock(this.getBlockPos(),bs,Block.UPDATE_ALL);
                 this.setMaxHeatProduce(0);
                 this.timeLast = 0;
@@ -148,10 +148,12 @@ public class AlcoholLampBlockEntity extends AbstractBurningBlockEntity implement
     
     public void cleanColor(){
         color = 0;
+        dirty();
     }
     
     public void setColor(int color) {
         this.color = color;
+        dirty();
     }
     
     public FluidStack getFluid(){

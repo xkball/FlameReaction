@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "qqq",
+    "www"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "q": {
+      "item": "minecraft:glass_pane"
+    },
+    "w": {
+      "item": "flamereaction:iron_plate"
+    }
+  },
+  "result": {
+    "item": "flamereaction:reflector",
+    "count": 3
+  }
+}

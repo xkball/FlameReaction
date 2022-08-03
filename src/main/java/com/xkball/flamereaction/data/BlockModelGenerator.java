@@ -1,14 +1,11 @@
 package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.itemlike.block.commonblocks.BrewingBarrel;
-import com.xkball.flamereaction.itemlike.block.commonblocks.DippingBlock;
-import com.xkball.flamereaction.itemlike.block.commonblocks.ForgingTable;
+import com.xkball.flamereaction.itemlike.block.commonblocks.*;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.AlcoholLamp;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.FluidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.util.BlockList;
-import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
 import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlock;
 import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlocks;
 import com.xkball.flamereaction.itemlike.block.materialblock.MetalScaffoldingBlock;
@@ -74,6 +71,22 @@ public class BlockModelGenerator extends BlockStateProvider {
                 this.simpleBlockItem(block,model);
             }
             this.simpleBlockItem(FlameReaction.ALCOHOL_LAMP,getBlockModel(AlcoholLamp.NAME));
+            if(block instanceof HeatFeGenerator){
+                var model = getBlockModel(HeatFeGenerator.NAME);
+                this.simpleBlock(block,model);
+                this.simpleBlockItem(block,model);
+            }
+            if(block instanceof SolarCollectorTowerCenter){
+                var model = getBlockModel(SolarCollectorTowerCenter.NAME);
+                this.simpleBlock(block,model);
+                this.simpleBlockItem(block,model);
+            }
+            if(block instanceof SolarReflector){
+                var mod1 = getBlockModel("iron_column");
+                var mod2 = getBlockModel("reflector");
+                this.simpleBlock(block,mod1);
+                this.simpleBlockItem(block,mod2);
+            }
         }
     }
     

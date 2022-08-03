@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "flamereaction:item/iron_stick"
+      "flamereaction:item/heat_fe_generator"
     ]
   },
   "criteria": {
-    "iron_ingot": {
+    "heat_fe_generator": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "minecraft:redstone_block"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "flamereaction:item/iron_stick"
+        "recipe": "flamereaction:item/heat_fe_generator"
       }
     }
   },
   "requirements": [
     [
-      "iron_ingot",
+      "heat_fe_generator",
       "has_the_recipe"
     ]
   ]

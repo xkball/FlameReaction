@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "air": {
+    "copper_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:air"
+              "minecraft:copper_ingot"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "air",
+      "copper_ingot",
       "has_the_recipe"
     ]
   ]

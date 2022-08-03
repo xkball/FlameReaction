@@ -33,6 +33,7 @@ public class AlcoholLampBER implements BlockEntityRenderer<AlcoholLampBlockEntit
             var i2 = i%5%4;
             pPoseStack.pushPose();
             pPoseStack.mulPose(Vector3f.YP.rotationDegrees(90F*i2));
+            pPoseStack.popPose();
             if(pBlockEntity.getBlockState().getValue(AlcoholLamp.O_COLORED)){
                 blockRenderer.getModelRenderer()
                         .renderModel(pPoseStack.last(), pBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(pState, false)), pState, model_o, 1f,1f,1f, pPackedLight, pPackedOverlay, EmptyModelData.INSTANCE);
@@ -41,7 +42,7 @@ public class AlcoholLampBER implements BlockEntityRenderer<AlcoholLampBlockEntit
                 blockRenderer.getModelRenderer()
                         .renderModel(pPoseStack.last(), pBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(pState, false)), pState, model, 1f,1f,1f, pPackedLight, pPackedOverlay, EmptyModelData.INSTANCE);
             }
-            pPoseStack.popPose();
+            
         }
         
     }

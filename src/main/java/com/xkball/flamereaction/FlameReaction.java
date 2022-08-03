@@ -110,10 +110,14 @@ public class FlameReaction
     public static CommonItem WROUGHT_IRON_STICK;
     public static CommonItem ICON;
     public static CommonItem IRON_STAND;
+    public static CommonItem REFLECTOR;
     public static Hammer HAMMER;
     public static Gift GIFT1;
     public static Gift GIFT2;
     public static Gift GIFT3;
+    public static HeatFeGenerator HEAT_FE_GENERATOR;
+    public static SolarCollectorTowerCenter SOLAR_COLLECTOR_TOWER_CENTER;
+    public static SolarReflector SOLAR_REFLECTOR;
     
     public static void init(){
         BasicMaterial.loadList();
@@ -156,6 +160,10 @@ public class FlameReaction
             FLUID_FUEL_BURNING_BOX = new FluidFuelBurningBox();
             ICON = new CommonItem(CreativeModeTabs.FLAME_REACTION_GROUP,CommonItem.ICON,"焰火");
             IRON_STAND = new CommonItem(CreativeModeTabs.FLAME_REACTION_GROUP,CommonItem.IRON_STAND,"铁架台");
+            REFLECTOR = new CommonItem(CreativeModeTabs.FLAME_REACTION_GROUP,CommonItem.REFLECTOR,"反射镜");
+            HEAT_FE_GENERATOR = new HeatFeGenerator();
+            SOLAR_COLLECTOR_TOWER_CENTER = new SolarCollectorTowerCenter();
+            SOLAR_REFLECTOR = new SolarReflector();
             
             for(DyeColor dyeColor : DyeColor.values()){
                 new FlameDyeItem(dyeColor.getName(), dyeColor);

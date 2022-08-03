@@ -36,7 +36,7 @@ public class GlassCraftingScreen extends Screen {
             int textureWidth = 256;
             int textureHeight = 256;
             blit(poseStack, (this.width/2) -88, (this.height/2) -83, 0, 0, 176, 166, textureWidth, textureHeight);
-            drawString(poseStack, this.font, "玻璃合成", this.width / 2 - 10, this.height/2-80, new Color(0,0,0).getRGB());
+            drawString(poseStack, this.font, "玻璃合成", this.width / 2 - 20, this.height/2-80, new Color(0,0,0).getRGB());
             
             for(ImageCheckBox imageCheckBox: imageCheckBoxes) {
                 imageCheckBox.render(poseStack, mouseX, mouseY, p_96565_);
@@ -57,7 +57,7 @@ public class GlassCraftingScreen extends Screen {
                                 20,20,new TranslatableComponent("flamereaction.null"),
                                 true,new ResourceLocation(FlameReaction.MOD_ID,"textures/gui/white_glass_checkbox.png"),false,
                                 new ResourceLocation(FlameReaction.MOD_ID,"textures/gui/light_gray_glass_checkbox.png"),0,0,1,20,20);
-                if(intList[i] == 1 && !imageCheckBoxes[i].selected()) imageCheckBoxes[i].onPress();
+                imageCheckBoxes[i].setSelected(intList[i] == 1 );
                 this.addRenderableWidget(imageCheckBoxes[i]);
                 i++;
             }

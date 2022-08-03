@@ -57,6 +57,18 @@ public class ColorHandler {
             colorMaterialBlock(block,event);
         }
         colorFlameFireBlock(FlameReaction.FLAME_FIRE_BLOCK,event);
+        event.getBlockColors().register(((blockState,batg,blockPos,tint) ->
+        {
+            if(blockState.getBlock() == FlameReaction.ALCOHOL_LAMP && batg!=null && blockPos!= null){
+                var entity = batg.getBlockEntity(blockPos);
+                if( entity instanceof AlcoholLampBlockEntity alcoholLampBlockEntity){
+                    var color = alcoholLampBlockEntity.getColor();
+                    if(color != 0) return color;
+                }
+            }
+            return new Color(255,255,255,0).getRGB();
+        }),FlameReaction.ALCOHOL_LAMP);
+        
     }
     
     public static void colorItemBlock(Item item,ColorHandlerEvent.Item event){
@@ -141,19 +153,6 @@ public class ColorHandler {
                     (blockState,batg,blockPos,tint) -> blockState.getValue(FlameFireBlock.MATERIAL).getColor().getRGB(),
                     block);
         }
-        if(block instanceof AlcoholLamp){
-            event.getBlockColors().register((blockState,batg,blockPos,tint) ->
-            {
-                if(batg!=null && blockPos!= null){
-                    var entity = batg.getBlockEntity(blockPos);
-                    if( entity instanceof AlcoholLampBlockEntity alcoholLampBlockEntity){
-                        var color = alcoholLampBlockEntity.getColor();
-                        if(color != 0) return color;
-                    }
-                    
-                }
-                return new Color(255,255,255,0).getRGB();
-            });
-        }
+        
     }
 }

@@ -6,16 +6,16 @@ public class HeatGap {
         LINEAR
     }
     
-    public static int getNextGap(Heat heat){
+    public static int getNextGap(Heat heat,int sp){
         var i = heat.getDegree();
         var g = standardLinearGap(i);
-        return g - heat.getHeatBuf();
+        return g*sp - heat.getHeatBuf();
     }
     
-    public static int getForeGap(Heat heat){
+    public static int getForeGap(Heat heat,int sp){
         var i = heat.getDegree()-1;
         var g = standardLinearGap(i);
-        return g + heat.getHeatBuf();
+        return g*sp + heat.getHeatBuf();
     }
     
     public static Heat tick(IHeatHandler heatHandler){
@@ -27,11 +27,11 @@ public class HeatGap {
     
     public static int getTickChange(Heat heat,int sp){
         var d = Math.abs(heat.getDegree()-300);
-        return (int) (heat.getDegree()>300?-(d*sp*1.4*((d/100)+1)):(d*sp*2*((d/100)+1)));
+        return (int) (heat.getDegree()>300?-(d*sp*1.4*((d/100)*5+1)):(d*sp*2*((d/100)+1)));
     }
     
     public static int standardLinearGap(int i){
-        return (i-300)*20;
+        return (i-300)*20+1;
     }
     
     public static int standardLinearGap(Heat heat){

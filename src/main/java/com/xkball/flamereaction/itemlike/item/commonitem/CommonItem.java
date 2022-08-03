@@ -14,6 +14,7 @@ public class CommonItem extends Item implements FRCItem {
     public static final String WROUGHT_IRON_STICK = "wrought_iron_stick";
     public static final String ICON = "flame_fire";
     public static final String IRON_STAND = "iron_stand";
+    public static final String REFLECTOR = "reflector";
     
     private final String c;
     public CommonItem(CreativeModeTab tab, String s,String c) {

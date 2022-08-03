@@ -5,7 +5,9 @@
     "i"
   ],
   "key": {
-    "i": []
+    "i": {
+      "item": "minecraft:copper_ingot"
+    }
   },
   "result": {
     "item": "flamereaction:copper_stick",

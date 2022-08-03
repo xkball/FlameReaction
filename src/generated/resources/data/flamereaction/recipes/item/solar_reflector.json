@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "w",
+    "i",
+    "q"
+  ],
+  "key": {
+    "w": {
+      "item": "flamereaction:reflector"
+    },
+    "i": {
+      "item": "flamereaction:wrought_iron_stick"
+    },
+    "q": {
+      "item": "flamereaction:wrought_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "flamereaction:solar_reflector"
+  }
+}

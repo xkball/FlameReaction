@@ -139,7 +139,7 @@ public class AlcoholLamp extends AbstractBurningBlock implements FRCBlock {
                 LevelUtil.addItem((ServerLevel) level,pos,new ItemStack(FlameReaction.IRON_STAND));
                 return InteractionResult.SUCCESS;
             }
-            
+            //染色
             if(entity instanceof AlcoholLampBlockEntity alcoholLampBlockEntity
                     &&(item.is(ItemTags.getMaterialTag(MaterialType.STICK, PeriodicTableOfElements.Fe))
                     || item.is(ItemTags.getMaterialTag(MaterialType.STICK,PeriodicTableOfElements.Pt)))
@@ -147,7 +147,6 @@ public class AlcoholLamp extends AbstractBurningBlock implements FRCBlock {
             && Objects.requireNonNull(item.getTag()).contains("color")){
                 var color = item.getTag().getInt("color");
                 if(color != 0){
-                    alcoholLampBlockEntity.setColor(color);
                     if(color == FlammableChemicalMaterials.IRON_SALT.getColor().getRGB()
                     || color == FlammableChemicalMaterials.POTASSIUM_SALT.getColor().getRGB()){
                         blockState = blockState.setValue(O_COLORED,Boolean.FALSE);
@@ -155,6 +154,7 @@ public class AlcoholLamp extends AbstractBurningBlock implements FRCBlock {
                     else {
                         blockState = blockState.setValue(O_COLORED,Boolean.TRUE);
                     }
+                    alcoholLampBlockEntity.setColor(color);
                     level.setBlock(pos,blockState,Block.UPDATE_ALL);
                     return InteractionResult.SUCCESS;
                 }
@@ -169,8 +169,10 @@ public class AlcoholLamp extends AbstractBurningBlock implements FRCBlock {
                 return InteractionResult.SUCCESS;
             }
             //灭火
-            if(item.isEmpty() && hand == InteractionHand.MAIN_HAND){
-                blockState = blockState.setValue(FIRED,Boolean.FALSE);
+            if(item.isEmpty() && hand == InteractionHand.MAIN_HAND
+            && entity instanceof AlcoholLampBlockEntity alcoholLampBlockEntity){
+                alcoholLampBlockEntity.cleanColor();
+                blockState = blockState.setValue(FIRED,Boolean.FALSE).setValue(O_COLORED,Boolean.FALSE);
                 level.setBlock(pos,blockState,Block.UPDATE_ALL);
             }
             //塞东西

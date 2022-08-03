@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    " w ",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:copper_plate"
+    },
+    "w": {
+      "item": "minecraft:copper_block"
+    }
+  },
+  "result": {
+    "item": "flamereaction:solar_collector_tower_center"
+  }
+}

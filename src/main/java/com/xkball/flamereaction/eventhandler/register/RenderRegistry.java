@@ -2,12 +2,11 @@ package com.xkball.flamereaction.eventhandler.register;
 
 
 import com.xkball.flamereaction.FlameReaction;
-import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
-import com.xkball.flamereaction.itemlike.block.blockentityrender.AlcoholLampBER;
 import com.xkball.flamereaction.itemlike.block.blockentityrender.DippingBlockBER;
-import com.xkball.flamereaction.itemlike.block.blockentityrender.ForgingTableBER;
-import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.itemlike.block.blockentityrender.ExhibitBlockBER;
+import com.xkball.flamereaction.itemlike.block.blockentityrender.ForgingTableBER;
+import com.xkball.flamereaction.itemlike.block.blockentityrender.SolarReflectorBER;
+import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.util.LevelUtil;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -43,7 +42,8 @@ public class RenderRegistry {
         event.registerBlockEntityRenderer(BlockEntityRegister.EXHIBIT_BLOCK_ENTITY.get(), ExhibitBlockBER::new);
         event.registerBlockEntityRenderer(BlockEntityRegister.FORGING_TABLE_BLOCK_ENTITY.get(), ForgingTableBER::new);
         event.registerBlockEntityRenderer(BlockEntityRegister.DIPPING_BLOCK_ENTITY.get(), DippingBlockBER::new);
-        event.registerBlockEntityRenderer(BlockEntityRegister.ALCOHOL_LAMP_BLOCK_ENTITY.get(), AlcoholLampBER::new);
+        //event.registerBlockEntityRenderer(BlockEntityRegister.ALCOHOL_LAMP_BLOCK_ENTITY.get(), AlcoholLampBER::new);
+        event.registerBlockEntityRenderer(BlockEntityRegister.SOLAR_REFLECTOR_BLOCK_ENTITY.get(), SolarReflectorBER::new);
     }
     
     

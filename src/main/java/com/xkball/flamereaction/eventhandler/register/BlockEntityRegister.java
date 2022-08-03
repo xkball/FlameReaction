@@ -7,6 +7,9 @@ import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.Al
 import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.FluidFuelBurningBoxBlockEntity;
 import com.xkball.flamereaction.itemlike.block.blockentity.burningblockentity.SolidFuelBurningBoxBlockEntity;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
+import com.xkball.flamereaction.itemlike.block.commonblocks.HeatFeGenerator;
+import com.xkball.flamereaction.itemlike.block.commonblocks.SolarCollectorTowerCenter;
+import com.xkball.flamereaction.itemlike.block.commonblocks.SolarReflector;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.FluidFuelBurningBox;
 import com.xkball.flamereaction.itemlike.block.commonblocks.burningblock.SolidFuelBurningBox;
 import com.xkball.flamereaction.util.BlockList;
@@ -56,6 +59,22 @@ public class BlockEntityRegister {
             BLOCK_ENTITY_TYPES.register(FluidFuelBurningBox.NAME,
                     () -> BlockEntityType.Builder.of(FluidFuelBurningBoxBlockEntity::new, FlameReaction.FLUID_FUEL_BURNING_BOX)
                             .build(DSL.remainderType()));
+    
+    public static final RegistryObject<BlockEntityType<HeatFeGeneratorBlockEntity>> HEAT_FE_GENERATOR_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register(HeatFeGenerator.NAME,
+                    () -> BlockEntityType.Builder.of(HeatFeGeneratorBlockEntity::new, FlameReaction.HEAT_FE_GENERATOR)
+                            .build(DSL.remainderType()));
+    
+    public static final RegistryObject<BlockEntityType<SolarCollectorTowerCenterBlockEntity>> SOLAR_COLLECTOR_TOWER_CENTER_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register(SolarCollectorTowerCenter.NAME,
+                    () -> BlockEntityType.Builder.of(SolarCollectorTowerCenterBlockEntity::new, FlameReaction.SOLAR_COLLECTOR_TOWER_CENTER)
+                            .build(DSL.remainderType()));
+    
+    public static final RegistryObject<BlockEntityType<SolarReflectorBlockEntity>> SOLAR_REFLECTOR_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register(SolarReflector.NAME,
+                    () -> BlockEntityType.Builder.of(SolarReflectorBlockEntity::new, FlameReaction.SOLAR_REFLECTOR)
+                            .build(DSL.remainderType()));
+    
 //    public static final RegistryObject<BlockEntityType<FlameFireBlockEntity>> FLAME_FIRE_BLOCK_ENTITY=
 //            BLOCK_ENTITY_TYPES.register("flame_fire_block_entity",
 //                    () -> BlockEntityType.Builder.of(FlameFireBlockEntity::new, BlockList.block_instance.get(FlameFireBlock.NAME))

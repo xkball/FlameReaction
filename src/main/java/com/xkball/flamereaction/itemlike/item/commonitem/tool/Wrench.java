@@ -3,13 +3,17 @@ package com.xkball.flamereaction.itemlike.item.commonitem.tool;
 import com.xkball.flamereaction.FlameReaction;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.itemlike.block.FRCInfo;
+import com.xkball.flamereaction.itemlike.block.blockentity.SolarReflectorBlockEntity;
 import com.xkball.flamereaction.itemlike.block.blocktags.BlockTags;
 import com.xkball.flamereaction.itemlike.item.FRCItem;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.IntArrayTag;
+import net.minecraft.nbt.IntTag;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,6 +30,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Wrench extends Item implements FRCItem {
     
@@ -76,6 +81,23 @@ public class Wrench extends Item implements FRCItem {
             var pos = context.getClickedPos();
             var block = level.getBlockState(pos);
             var player = context.getPlayer();
+            var item = context.getItemInHand();
+            if(block.getBlock() == FlameReaction.SOLAR_COLLECTOR_TOWER_CENTER && player != null){
+                item.addTagElement("pos_x",IntTag.valueOf(pos.getX()));
+                item.addTagElement("pos_y",IntTag.valueOf(pos.getY()));
+                item.addTagElement("pos_z",IntTag.valueOf(pos.getZ()));
+                ((ServerPlayer)player).sendMessage(new TextComponent("set pos"), ChatType.GAME_INFO, Util.NIL_UUID);
+                
+            }
+            if(block.getBlock() == FlameReaction.SOLAR_REFLECTOR && item.hasTag() && Objects.requireNonNull(item.getTag()).contains("pos_x")){
+                var entity = level.getBlockEntity(pos);
+                if(entity instanceof SolarReflectorBlockEntity se){
+                    var x = item.getTag().getInt("pos_x");
+                    var y = item.getTag().getInt("pos_y");
+                    var z = item.getTag().getInt("pos_z");
+                    se.setPos(x,y,z);
+                }
+            }
             if(block.getBlock() instanceof FRCInfo f && player != null){
                 for(String s : f.getInfo((ServerLevel) level,pos)){
                     var c = Component.nullToEmpty(s);

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "w"
+  ],
+  "key": {
+    "i": {
+      "item": "flamereaction:rainbow_ingot"
+    },
+    "w": {
+      "item": "flamereaction:alcohol_lamp"
+    }
+  },
+  "result": {
+    "item": "flamereaction:flame_fire"
+  }
+}

@@ -14,6 +14,7 @@ import com.xkball.flamereaction.itemlike.item.materialitem.MaterialIngot;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialStick;
 import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.util.ItemList;
+import com.xkball.flamereaction.util.PeriodicTableOfElements;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
@@ -66,6 +67,8 @@ public class RecipeGenerator extends RecipeProvider {
             if(item instanceof MaterialStick i){
                 //棍子的合成
                 var in = ForgeRegistries.ITEMS.getValue(new ResourceLocation(FlameReaction.MOD_ID, i.getMaterial().getName() +"_ingot"));
+                if(i.getMaterial() == PeriodicTableOfElements.Fe) in = Items.IRON_INGOT;
+                if(i.getMaterial() == PeriodicTableOfElements.Cu) in = Items.COPPER_INGOT;
                 if(in != null){
                     new ShapedRecipeBuilder(item,2)
                             .pattern("i")
@@ -258,6 +261,58 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy(Objects.requireNonNull(FlameReaction.GIFT3.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(FlameReaction.GIFT2))
                 .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+FlameReaction.GIFT3.getRegistryName().getPath()));
     
+        //热能发电机合成
+        new ShapedRecipeBuilder(FlameReaction.HEAT_FE_GENERATOR,1)
+                .pattern("iei")
+                .pattern("www")
+                .pattern("iii")
+                .define('i',ItemList.item_instance.get("copper_plate"))
+                .define('w',Blocks.REDSTONE_BLOCK)
+                .define('e',ItemList.item_instance.get("iron_plate"))
+                .unlockedBy(Objects.requireNonNull(FlameReaction.HEAT_FE_GENERATOR.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.REDSTONE_BLOCK))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+FlameReaction.HEAT_FE_GENERATOR.getRegistryName().getPath()));
+    
+        //集热塔核心合成
+        new ShapedRecipeBuilder(FlameReaction.SOLAR_COLLECTOR_TOWER_CENTER,1)
+                .pattern("iii")
+                .pattern(" w ")
+                .pattern("iii")
+                .define('i',ItemList.item_instance.get("copper_plate"))
+                .define('w',Blocks.COPPER_BLOCK)
+                .unlockedBy(Objects.requireNonNull(FlameReaction.SOLAR_COLLECTOR_TOWER_CENTER.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.COPPER_BLOCK))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+FlameReaction.SOLAR_COLLECTOR_TOWER_CENTER.getRegistryName().getPath()));
+    
+    
+        //反射镜合成
+        new ShapedRecipeBuilder(FlameReaction.REFLECTOR,3)
+                .pattern("iii")
+                .pattern("qqq")
+                .pattern("www")
+                .define('i',Items.AMETHYST_SHARD)
+                .define('q',Blocks.GLASS_PANE)
+                .define('w',ItemList.item_instance.get("iron_plate"))
+                .unlockedBy(Objects.requireNonNull(FlameReaction.REFLECTOR.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.GLASS_PANE))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+FlameReaction.REFLECTOR.getRegistryName().getPath()));
+    
+        //反射器合成
+        new ShapedRecipeBuilder(FlameReaction.SOLAR_REFLECTOR,1)
+                .pattern("w")
+                .pattern("i")
+                .pattern("q")
+                .define('w',FlameReaction.REFLECTOR)
+                .define('i',FlameReaction.WROUGHT_IRON_STICK)
+                .define('q',FlameReaction.WROUGHT_IRON_INGOT)
+                .unlockedBy(Objects.requireNonNull(FlameReaction.SOLAR_REFLECTOR.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(FlameReaction.REFLECTOR))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+FlameReaction.SOLAR_REFLECTOR.getRegistryName().getPath()));
+    
+        //图标合成
+        new ShapedRecipeBuilder(FlameReaction.ICON,1)
+                .pattern("i")
+                .pattern("w")
+                .define('i',ItemList.item_instance.get("rainbow_ingot"))
+                .define('w',FlameReaction.ALCOHOL_LAMP)
+                .unlockedBy(Objects.requireNonNull(FlameReaction.ICON.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(FlameReaction.ALCOHOL_LAMP))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+FlameReaction.ICON.getRegistryName().getPath()));
     
     }
 }

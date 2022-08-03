@@ -41,6 +41,10 @@ public class ImageCheckBox extends Checkbox {
         this.textureHeight = textureHeight;
     }
     
+    public void setSelected(boolean b){
+        if(this.selected() != b) this.onPress();
+    }
+    
     @Override
     public void renderButton(@NotNull PoseStack p_93843_, int p_93844_, int p_93845_, float p_93846_) {
         Minecraft minecraft = Minecraft.getInstance();

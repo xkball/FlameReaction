@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "flamereaction:item/iron_stick"
+      "flamereaction:item/flame_fire"
     ]
   },
   "criteria": {
-    "iron_ingot": {
+    "flame_fire": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "flamereaction:alcohol_lamp"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "flamereaction:item/iron_stick"
+        "recipe": "flamereaction:item/flame_fire"
       }
     }
   },
   "requirements": [
     [
-      "iron_ingot",
+      "flame_fire",
       "has_the_recipe"
     ]
   ]

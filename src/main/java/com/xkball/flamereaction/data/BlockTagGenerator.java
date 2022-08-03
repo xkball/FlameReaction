@@ -36,7 +36,12 @@ public class BlockTagGenerator extends BlockTagsProvider {
                 .add(FlameReaction.FLUID_FUEL_BURNING_BOX)
                 .add(FlameReaction.SOLID_FUEL_BURNING_BOX)
                 .add(FlameReaction.DIPPINGBLOCK)
-                .add(FlameReaction.FORGING_TABLE);
+                .add(FlameReaction.FORGING_TABLE)
+                .add(FlameReaction.BREWING_BARREL)
+                .add(FlameReaction.SOLAR_REFLECTOR)
+                .add(FlameReaction.SOLAR_COLLECTOR_TOWER_CENTER)
+                .add(FlameReaction.ALCOHOL_LAMP)
+                .add(FlameReaction.HEAT_FE_GENERATOR);
         addDigInPickAxe(FlameReaction.DIPPINGBLOCK);
         
     }

@@ -76,10 +76,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         generatedItem(Gift.NAME1);
         generatedItem(Gift.NAME2);
         generatedItem(Gift.NAME3);
-    }
-    
-    public void spGEN(String name,String loc){
-    
+        withExistingParent(CommonItem.REFLECTOR,new ResourceLocation(FlameReaction.MOD_ID,"block/reflector"));
     }
     
     public ItemModelBuilder generatedItem(String name) {
