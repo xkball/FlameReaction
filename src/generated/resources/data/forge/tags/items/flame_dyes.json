@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "flamereaction:white_flame_dye_item",
+    "flamereaction:orange_flame_dye_item",
+    "flamereaction:magenta_flame_dye_item",
+    "flamereaction:light_blue_flame_dye_item",
+    "flamereaction:yellow_flame_dye_item",
+    "flamereaction:lime_flame_dye_item",
+    "flamereaction:pink_flame_dye_item",
+    "flamereaction:gray_flame_dye_item",
+    "flamereaction:light_gray_flame_dye_item",
+    "flamereaction:cyan_flame_dye_item",
+    "flamereaction:purple_flame_dye_item",
+    "flamereaction:blue_flame_dye_item",
+    "flamereaction:brown_flame_dye_item",
+    "flamereaction:green_flame_dye_item",
+    "flamereaction:red_flame_dye_item",
+    "flamereaction:black_flame_dye_item"
+  ]
+}

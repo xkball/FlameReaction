@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:orange_dye"
+    },
+    {
+      "tag": "forge:flame_dyes"
+    }
+  ],
+  "result": {
+    "item": "flamereaction:orange_flame_dye_item"
+  }
+}

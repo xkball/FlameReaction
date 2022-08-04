@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/white_flame_dye_item1"
+    ]
+  },
+  "criteria": {
+    "white_flame_dye_item1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:white_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/white_flame_dye_item1"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "white_flame_dye_item1",
+      "has_the_recipe"
+    ]
+  ]
+}

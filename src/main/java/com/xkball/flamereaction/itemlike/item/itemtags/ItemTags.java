@@ -17,6 +17,7 @@ public class ItemTags {
     public static final TagKey<Item> HAMMER = tag("tool/hammer");
     public static final TagKey<Item> WRENCH = tag("tool/wrench");
     public static final TagKey<Item> PLIERS = tag("tool/pliers");
+    public static final TagKey<Item> FLAME_DYES = tag("flame_dyes");
     public static final TagKey<Item> FLAMES =  net.minecraft.tags.ItemTags.create(new ResourceLocation("nocaet","flames"));
     
     private static TagKey<Item> tag(String name) {
@@ -37,6 +38,7 @@ public class ItemTags {
         add(PLIERS);
         add(WRENCH);
         add(FLAMES);
+        add(FLAME_DYES);
     }
     
     public static void addMaterialTag(MaterialType materialType,IMaterial material){

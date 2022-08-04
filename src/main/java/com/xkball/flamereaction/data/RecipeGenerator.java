@@ -10,8 +10,11 @@ import com.xkball.flamereaction.eventhandler.register.RecipeRegister;
 import com.xkball.flamereaction.itemlike.block.commonblocks.ExhibitBlock;
 import com.xkball.flamereaction.itemlike.block.materialblock.MaterialBlock;
 import com.xkball.flamereaction.itemlike.block.materialblock.MetalScaffoldingBlock;
+import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
+import com.xkball.flamereaction.itemlike.item.itemtags.ItemTags;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialIngot;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialStick;
+import com.xkball.flamereaction.part.material.FlammableChemicalMaterials;
 import com.xkball.flamereaction.util.BlockList;
 import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.PeriodicTableOfElements;
@@ -20,9 +23,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -314,5 +315,102 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy(Objects.requireNonNull(FlameReaction.ICON.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(FlameReaction.ALCOHOL_LAMP))
                 .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+FlameReaction.ICON.getRegistryName().getPath()));
     
+        
+        //染料
+        var rdyes = FlammableChemicalMaterials.values();
+        var dyes = DyeColor.values();
+        new ShapelessRecipeBuilder(ItemList.item_instance.get(dyes[5].getName()+"_flame_dye_item"),1)
+                .requires(ItemList.item_instance.get(rdyes[0].getName()))
+                .requires(Items.SLIME_BALL)
+                .unlockedBy(Objects.requireNonNull(ItemList.item_instance.get(dyes[5].getName()+"_flame_dye_item").getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+ Objects.requireNonNull(ItemList.item_instance.get(dyes[5].getName() + "_flame_dye_item").getRegistryName()).getPath()));
+    
+        var d2 = ItemList.item_instance.get(dyes[13].getName()+"_flame_dye_item");
+        new ShapelessRecipeBuilder(d2,1)
+                .requires(ItemList.item_instance.get(rdyes[1].getName()))
+                .requires(Items.SLIME_BALL)
+                .unlockedBy(Objects.requireNonNull(d2.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d2.getRegistryName().getPath()));
+        
+            var d3 = ItemList.item_instance.get(dyes[4].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d3,1)
+                    .requires(ItemList.item_instance.get(rdyes[2].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d3.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d3.getRegistryName().getPath()));
+        
+            var d4 = ItemList.item_instance.get(dyes[3].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d4,1)
+                    .requires(ItemList.item_instance.get(rdyes[3].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d4.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d4.getRegistryName().getPath()));
+        
+            var d5 = ItemList.item_instance.get(dyes[5].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d5,1)
+                    .requires(ItemList.item_instance.get(rdyes[7].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d5.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d5.getRegistryName().getPath()+"2"));
+        
+            var d6 = ItemList.item_instance.get(dyes[2].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d6,1)
+                    .requires(ItemList.item_instance.get(rdyes[5].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d6.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d6.getRegistryName().getPath()));
+        
+            var d7 = ItemList.item_instance.get(dyes[14].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d7,1)
+                    .requires(ItemList.item_instance.get(rdyes[6].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d7.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d7.getRegistryName().getPath()));
+            
+            var d8 = ItemList.item_instance.get(dyes[9].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d8,1)
+                    .requires(ItemList.item_instance.get(rdyes[12].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d8.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d8.getRegistryName().getPath()));
+        
+            var d9 = ItemList.item_instance.get(dyes[2].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d9,1)
+                    .requires(ItemList.item_instance.get(rdyes[14].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d9.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d9.getRegistryName().getPath()+"2"));
+    
+    
+            var d10 = ItemList.item_instance.get(dyes[7].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d10,1)
+                    .requires(ItemList.item_instance.get(rdyes[16].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d10.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d10.getRegistryName().getPath()));
+        
+            var d11 = ItemList.item_instance.get(dyes[8].getName()+"_flame_dye_item");
+            new ShapelessRecipeBuilder(d11,1)
+                    .requires(ItemList.item_instance.get(rdyes[17].getName()))
+                    .requires(Items.SLIME_BALL)
+                    .unlockedBy(Objects.requireNonNull(d11.getRegistryName()).getPath(),InventoryChangeTrigger.TriggerInstance.hasItems(Items.SLIME_BALL))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+d11.getRegistryName().getPath()));
+        
+           
+        for(DyeColor dyeColor : dyes){
+            var input = FlameDyeItem.byColorV(dyeColor);
+            var output = FlameDyeItem.byColorN(dyeColor);
+            new ShapelessRecipeBuilder(output,1)
+                    .requires(input)
+                    .requires(ItemTags.FLAME_DYES)
+                    .unlockedBy(Objects.requireNonNull(output.getRegistryName()).getPath()+"1",InventoryChangeTrigger.TriggerInstance.hasItems(input))
+                    .save(consumer,new ResourceLocation(FlameReaction.MOD_ID,"item/"+output.getRegistryName().getPath()+"1"));
+    
+    
+        }
+        
+        
+        
+        
     }
 }

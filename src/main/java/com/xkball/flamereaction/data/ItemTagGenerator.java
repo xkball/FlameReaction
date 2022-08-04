@@ -1,6 +1,7 @@
 package com.xkball.flamereaction.data;
 
 import com.xkball.flamereaction.FlameReaction;
+import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import com.xkball.flamereaction.itemlike.item.commonitem.tool.Hammer;
 import com.xkball.flamereaction.itemlike.item.itemtags.ItemTags;
 import com.xkball.flamereaction.itemlike.item.materialitem.MaterialItem;
@@ -25,6 +26,11 @@ public class ItemTagGenerator extends ItemTagsProvider {
         }
         this.tag(ItemTags.HAMMER).add(list.get(Hammer.NAME));
         this.tag(ItemTags.FLAMES).add(FlameReaction.ICON);
+    
+        var dyee = ItemList.item_instance.values().stream().filter((i) -> i instanceof FlameDyeItem).toList();
+        for(Item item : dyee){
+            this.tag(ItemTags.FLAME_DYES).add(item);
+        }
     }
     
     private void addMaterialTag(Item item) {

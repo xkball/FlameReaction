@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/purple_flame_dye_item1"
+    ]
+  },
+  "criteria": {
+    "purple_flame_dye_item1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:purple_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/purple_flame_dye_item1"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "purple_flame_dye_item1",
+      "has_the_recipe"
+    ]
+  ]
+}

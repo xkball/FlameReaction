@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/red_flame_dye_item"
+    ]
+  },
+  "criteria": {
+    "red_flame_dye_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:slime_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/red_flame_dye_item"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "red_flame_dye_item",
+      "has_the_recipe"
+    ]
+  ]
+}

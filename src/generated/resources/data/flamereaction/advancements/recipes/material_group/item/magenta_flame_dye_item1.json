@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "flamereaction:item/magenta_flame_dye_item1"
+    ]
+  },
+  "criteria": {
+    "magenta_flame_dye_item1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:magenta_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "flamereaction:item/magenta_flame_dye_item1"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "magenta_flame_dye_item1",
+      "has_the_recipe"
+    ]
+  ]
+}

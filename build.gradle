@@ -163,7 +163,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, 'mixins.flamereaction.refmap.json'
+    add sourceSets.main, 'flamereaction.refmap.json'
 
     config 'mixins.flamereaction.json'
 
