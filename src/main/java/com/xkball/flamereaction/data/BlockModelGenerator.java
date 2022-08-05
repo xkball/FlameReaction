@@ -70,7 +70,7 @@ public class BlockModelGenerator extends BlockStateProvider {
                 var model = getBlockModel(FluidFuelBurningBox.NAME);
                 this.simpleBlockItem(block,model);
             }
-            this.simpleBlockItem(FlameReaction.ALCOHOL_LAMP,getBlockModel(AlcoholLamp.NAME));
+            this.simpleBlockItem(FlameReaction.ALCOHOL_LAMP,getBlockModel("alcohol_lamp_item"));
             if(block instanceof HeatFeGenerator){
                 var model = getBlockModel(HeatFeGenerator.NAME);
                 this.simpleBlock(block,model);
