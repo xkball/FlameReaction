@@ -23,10 +23,11 @@ public class DippingBlockBER implements BlockEntityRenderer<DippingBlockEntity> 
     
     @Override
     public void render(@NotNull DippingBlockEntity entity, float partialTicks, @NotNull PoseStack poseStack, @NotNull MultiBufferSource multiBufferSource,int combinedLightIn, int combinedOverlayIn) {
-        var buffer = multiBufferSource.getBuffer(FluidRenderFromMantle.RenderTypesFromMantle.FLUID);
-        var texture = FluidRenderFromMantle.getBlockSprite(FluidRegister.STILL_TEXTURE);
         var fluid = entity.getFluid();
         var fluidAttributes = fluid.getFluid().getAttributes();
+        var buffer = multiBufferSource.getBuffer(FluidRenderFromMantle.RenderTypesFromMantle.FLUID);
+        var t = fluidAttributes.getStillTexture();
+        var texture = FluidRenderFromMantle.getBlockSprite(t);
         var color = fluidAttributes.getColor();
         var from = Vector3f.ZERO.copy();
         var item = entity.getItem();

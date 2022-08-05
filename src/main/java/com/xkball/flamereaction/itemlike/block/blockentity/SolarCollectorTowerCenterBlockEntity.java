@@ -49,7 +49,7 @@ public class SolarCollectorTowerCenterBlockEntity extends EasyChangedBlockEntity
     
                 @Override
                 public int getSpecificHeatCapacity() {
-                    return 100;
+                    return 50;
                 }
     
                 @Override

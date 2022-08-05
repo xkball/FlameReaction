@@ -5,6 +5,7 @@
   "refmap": "flamereaction.refmap.json",
   "mixins": [
     "FireworkStarFadeRecipeMixin",
+    "FireworkStarItemMixin",
     "FireworkStarRecipeMixin"
   ],
   "injectors": {

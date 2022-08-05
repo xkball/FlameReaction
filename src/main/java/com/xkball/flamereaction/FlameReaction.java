@@ -1,6 +1,7 @@
 package com.xkball.flamereaction;
 
 import com.mojang.logging.LogUtils;
+import com.xkball.flamereaction.config.FireworkStarConfig;
 import com.xkball.flamereaction.creativemodetab.CreativeModeTabs;
 import com.xkball.flamereaction.eventhandler.register.BlockEntityRegister;
 import com.xkball.flamereaction.eventhandler.register.FluidRegister;
@@ -32,11 +33,15 @@ import com.xkball.flamereaction.itemlike.item.materialitem.MaterialPlate;
 import com.xkball.flamereaction.part.material.BasicMaterial;
 import com.xkball.flamereaction.part.material.IMaterial;
 import com.xkball.flamereaction.util.PeriodicTableOfElements;
+import com.xkball.flamereaction.util.translateutil.TranslateUtil;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -52,6 +57,11 @@ public class FlameReaction
     public static final ItemStack AIR = new ItemStack(Items.AIR);
     
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static final TranslatableComponent tooltip1 = TranslateUtil.create("firework_item_mixin.tooltip1","请使用@flame reaction模组的焰色染料染色","please dyeing it by flame dyes");
+    public static final TranslatableComponent tooltip2 = TranslateUtil.create("firework_item_mixin.tooltip2",
+            "你可以在配置文件关闭它.当前启用状态:",
+            "you can disable this feature in config. now requirement:");
+    //public static boolean b = false;
     
     public static final String MOD_ID = "flamereaction";
 
@@ -68,6 +78,7 @@ public class FlameReaction
         FluidRegister.FLUID_BUCKETS.register(bus);
         //ForgeMod.enableMilkFluid();
         bus.addListener(this::setup);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON,FireworkStarConfig.CONFIG);
     }
     
     //晚于注册？
@@ -79,6 +90,7 @@ public class FlameReaction
         //IMPURE_ALCOHOL_FLUID_BUCKET.setRegistryName(new ResourceLocation(FlameReaction.MOD_ID,UnstableFluidBlock.IMPURE_ALCOHOL_FLUID_NAME));
         ItemList.addItem(IMPURE_ALCOHOL_FLUID_BUCKET);
         event.enqueueWork(NetworkHandler::init);
+        //b = FireworkStarConfig.SP_FIREWORK_RECIPE.get();
     }
     
     public static String getItemName(Item item){

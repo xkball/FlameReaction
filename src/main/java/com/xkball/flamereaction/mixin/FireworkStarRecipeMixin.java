@@ -1,6 +1,7 @@
 package com.xkball.flamereaction.mixin;
 
 import com.google.common.collect.Maps;
+import com.xkball.flamereaction.config.FireworkStarConfig;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
@@ -48,58 +49,62 @@ public abstract class FireworkStarRecipeMixin extends CustomRecipe {
         at = @At("HEAD"),
         cancellable = true)
     public void onMatches(CraftingContainer craftingContainer, Level pLevel, CallbackInfoReturnable<Boolean> cir) {
-        boolean flag = false;
-        boolean flag1 = false;
-        boolean flag2 = false;
-        boolean flag3 = false;
-        boolean flag4 = false;
+        if( FireworkStarConfig.SP_FIREWORK_RECIPE.get()) {
+            boolean flag = false;
+            boolean flag1 = false;
+            boolean flag2 = false;
+            boolean flag3 = false;
+            boolean flag4 = false;
     
-        for(int i = 0; i < craftingContainer.getContainerSize(); ++i) {
-            ItemStack itemstack = craftingContainer.getItem(i);
-            if (!itemstack.isEmpty()) {
-                if (SHAPE_INGREDIENT.test(itemstack)) {
-                    if (flag2) {
-                        cir.setReturnValue(false);
-                        cir.cancel();
-                        return;
-                    }
+            for (int i = 0; i < craftingContainer.getContainerSize(); ++i) {
+                ItemStack itemstack = craftingContainer.getItem(i);
+                if (!itemstack.isEmpty()) {
+                    if (SHAPE_INGREDIENT.test(itemstack)) {
+                        if (flag2) {
+                            cir.setReturnValue(false);
+                            cir.cancel();
+                            return;
+                        }
                 
-                    flag2 = true;
-                } else if (FLICKER_INGREDIENT.test(itemstack)) {
-                    if (flag4) {
-                        cir.setReturnValue(false);
-                        cir.cancel();
-                        return;
-                    }
+                        flag2 = true;
+                    } else if (FLICKER_INGREDIENT.test(itemstack)) {
+                        if (flag4) {
+                            cir.setReturnValue(false);
+                            cir.cancel();
+                            return;
+                        }
                 
-                    flag4 = true;
-                } else if (TRAIL_INGREDIENT.test(itemstack)) {
-                    if (flag3) {
-                        cir.setReturnValue(false);
-                        cir.cancel();
-                        return;
-                    }
+                        flag4 = true;
+                    } else if (TRAIL_INGREDIENT.test(itemstack)) {
+                        if (flag3) {
+                            cir.setReturnValue(false);
+                            cir.cancel();
+                            return;
+                        }
                 
-                    flag3 = true;
-                } else if (GUNPOWDER_INGREDIENT.test(itemstack)) {
-                    if (flag) {
-                        cir.setReturnValue(false);
-                        cir.cancel();
-                        return;
-                    }
+                        flag3 = true;
+                    } else if (GUNPOWDER_INGREDIENT.test(itemstack)) {
+                        if (flag) {
+                            cir.setReturnValue(false);
+                            cir.cancel();
+                            return;
+                        }
                 
-                    flag = true;
-                } else {
-                    if (!(itemstack.getItem() instanceof FlameDyeItem)) {
-                        cir.setReturnValue(false);
-                        cir.cancel();
-                        return;
-                    }
+                        flag = true;
+                    } else {
+                        if (!(itemstack.getItem() instanceof FlameDyeItem)) {
+                            cir.setReturnValue(false);
+                            cir.cancel();
+                            return;
+                        }
                 
-                    flag1 = true;
+                        flag1 = true;
+                    }
                 }
             }
+            cir.setReturnValue(flag && flag1);
+    
         }
-        cir.setReturnValue(flag && flag1);
     }
+    
 }

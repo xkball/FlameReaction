@@ -1,5 +1,6 @@
 package com.xkball.flamereaction.mixin;
 
+import com.xkball.flamereaction.config.FireworkStarConfig;
 import com.xkball.flamereaction.itemlike.item.commonitem.FlameDyeItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -28,32 +29,34 @@ public abstract class FireworkStarFadeRecipeMixin extends CustomRecipe {
         at = @At("HEAD"),
         cancellable = true)
     public void onMatches(CraftingContainer craftingContainer, Level pLevel, CallbackInfoReturnable<Boolean> cir) {
-        boolean flag = false;
-        boolean flag1 = false;
+        if( FireworkStarConfig.SP_FIREWORK_RECIPE.get()) {
+            boolean flag = false;
+            boolean flag1 = false;
     
-        for(int i = 0; i < craftingContainer.getContainerSize(); ++i) {
-            ItemStack itemstack = craftingContainer.getItem(i);
-            if (!itemstack.isEmpty()) {
-                //!
-                if (itemstack.getItem() instanceof FlameDyeItem) {
-                    flag = true;
-                } else {
-                    if (!STAR_INGREDIENT.test(itemstack)) {
-                        cir.setReturnValue(false);
-                        cir.cancel();
-                        return;
-                    }
+            for (int i = 0; i < craftingContainer.getContainerSize(); ++i) {
+                ItemStack itemstack = craftingContainer.getItem(i);
+                if (!itemstack.isEmpty()) {
+                    //!
+                    if (itemstack.getItem() instanceof FlameDyeItem) {
+                        flag = true;
+                    } else {
+                        if (!STAR_INGREDIENT.test(itemstack)) {
+                            cir.setReturnValue(false);
+                            cir.cancel();
+                            return;
+                        }
                 
-                    if (flag1) {
-                        cir.setReturnValue(false);
-                        cir.cancel();
-                        return;
-                    }
+                        if (flag1) {
+                            cir.setReturnValue(false);
+                            cir.cancel();
+                            return;
+                        }
                 
-                    flag1 = true;
+                        flag1 = true;
+                    }
                 }
             }
+            cir.setReturnValue(flag1 && flag);
         }
-        cir.setReturnValue( flag1 && flag);
     }
 }
