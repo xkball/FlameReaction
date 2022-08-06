@@ -12,6 +12,7 @@ import com.xkball.flamereaction.util.ItemList;
 import com.xkball.flamereaction.util.translateutil.TranslateUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -73,6 +74,17 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
         regItemBlock();
     }
     
+    @Override
+    @SuppressWarnings("deprecation")
+    public boolean skipRendering(@NotNull BlockState pState, @NotNull BlockState pAdjacentBlockState, @NotNull Direction pDirection) {
+        return pAdjacentBlockState.is(this) || super.skipRendering(pState, pAdjacentBlockState, pDirection);
+    }
+    
+    @Override
+    public boolean propagatesSkylightDown(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos) {
+        return true;
+    }
+    
     public void regItemBlock(){
         var bi = new BlockItem(this,new Item.Properties().fireResistant().tab(CreativeModeTabs.FLAME_REACTION_GROUP));
         bi.setRegistryName(FlameReaction.MOD_ID, NAME);
@@ -90,6 +102,7 @@ public class ExhibitBlock extends BaseEntityBlock implements FRCBlock, FRCInfo {
     
     @Nonnull
     @Override
+    @SuppressWarnings("deprecation")
     public RenderShape getRenderShape(@Nonnull BlockState state) {
         return RenderShape.MODEL;
     }
